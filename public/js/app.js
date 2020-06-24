@@ -123,6 +123,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Loading Icon Mounted.");
@@ -233,7 +235,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.lds-heart[data-v-a7b8c78c] {\r\n    display: inline-block;\r\n    position: relative;\r\n    width: 80px;\r\n    height: 80px;\r\n    transform: rotate(45deg);\r\n    transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n    top: 32px;\r\n    left: 32px;\r\n    position: absolute;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: rgb(255, 46, 46);\r\n    -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n            animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n    content: \" \";\r\n    position: absolute;\r\n    display: block;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n    left: -24px;\r\n    border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n    top: -24px;\r\n    border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n        transform: scale(0.95);\n}\n5% {\r\n        transform: scale(1.1);\n}\n39% {\r\n        transform: scale(0.85);\n}\n45% {\r\n        transform: scale(1);\n}\n60% {\r\n        transform: scale(0.95);\n}\n100% {\r\n        transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n        transform: scale(0.95);\n}\n5% {\r\n        transform: scale(1.1);\n}\n39% {\r\n        transform: scale(0.85);\n}\n45% {\r\n        transform: scale(1);\n}\n60% {\r\n        transform: scale(0.95);\n}\n100% {\r\n        transform: scale(0.9);\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n    height: 90vh;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\n}\n.lds-heart[data-v-a7b8c78c] {\r\n    display: inline-block;\r\n    position: relative;\r\n    width: 80px;\r\n    height: 80px;\r\n    transform: rotate(45deg);\r\n    transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n    top: 32px;\r\n    left: 32px;\r\n    position: absolute;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: rgb(255, 46, 46);\r\n    -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n            animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n    content: \" \";\r\n    position: absolute;\r\n    display: block;\r\n    width: 32px;\r\n    height: 32px;\r\n    background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n    left: -24px;\r\n    border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n    top: -24px;\r\n    border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n        transform: scale(0.95);\n}\n5% {\r\n        transform: scale(1.1);\n}\n39% {\r\n        transform: scale(0.85);\n}\n45% {\r\n        transform: scale(1);\n}\n60% {\r\n        transform: scale(0.95);\n}\n100% {\r\n        transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n        transform: scale(0.95);\n}\n5% {\r\n        transform: scale(1.1);\n}\n39% {\r\n        transform: scale(0.85);\n}\n45% {\r\n        transform: scale(1);\n}\n60% {\r\n        transform: scale(0.95);\n}\n100% {\r\n        transform: scale(0.9);\n}\n}\r\n", ""]);
 
 // exports
 
@@ -1391,7 +1393,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "lds-heart" }, [_c("div")])
+    return _c("div", { staticClass: "container loading-container" }, [
+      _c("div", { staticClass: "lds-heart" }, [_c("div")])
+    ])
   }
 ]
 render._withStripped = true

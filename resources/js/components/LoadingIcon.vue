@@ -1,5 +1,7 @@
 <template>
-    <div class="lds-heart"><div></div></div>
+    <div class="container loading-container">
+        <div class="lds-heart"><div></div></div>
+    </div>
 </template>
 
 <script>
@@ -11,6 +13,12 @@ export default {
 </script>
 
 <style scoped>
+.loading-container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .lds-heart {
     display: inline-block;
     position: relative;
