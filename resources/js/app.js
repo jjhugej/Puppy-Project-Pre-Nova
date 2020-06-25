@@ -1,8 +1,6 @@
-import VueRouter from "vue-router";
-import router from "./routes";
+require("./bootstrap");
 
-window.Vue = require("vue");
-Vue.use(VueRouter);
+import router from "./routes";
 
 /**
  * The following block of code may be used to automatically register your
