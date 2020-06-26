@@ -8,6 +8,7 @@ Route::get('/', function () {
     return view('main');
 });
 Route::get('/pets', 'PetController@index');
+Route::post('/pets/add', 'PetController@store');
 
 Auth::routes();
 

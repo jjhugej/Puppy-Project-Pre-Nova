@@ -8,6 +8,10 @@ let routes = [
     {
         path: "/pets",
         component: require("./views/PetSearch.vue").default
+    },
+    {
+        path: "/pets/add",
+        component: require("./views/AddPet.vue").default
     }
 ];
 export default new VueRouter({

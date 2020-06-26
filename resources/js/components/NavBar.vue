@@ -20,6 +20,7 @@
       <div class="navbar-start">
         <router-link to="/home" class="navbar-item" exact>Home</router-link>
         <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
+        <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
       </div>
 
       <div class="navbar-end">

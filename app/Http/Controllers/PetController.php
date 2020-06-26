@@ -26,7 +26,7 @@ class PetController extends Controller
      */
     public function create()
     {
-        //
+       //
     }
 
     /**
@@ -37,7 +37,10 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pet = new Pet();
+        $pet->name = $request->name;
+        $pet->save();
+        return $request;
     }
 
     /**
