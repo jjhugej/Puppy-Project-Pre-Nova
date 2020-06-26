@@ -14,7 +14,9 @@ class PetController extends Controller
      */
     public function index()
     {
-        return view('pets_home');
+        $pets = Pet::all();
+        
+        return $pets;
     }
 
     /**

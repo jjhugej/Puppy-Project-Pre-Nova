@@ -2078,19 +2078,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      pets: [{
-        id: 1,
-        name: "maggie"
-      }, {
-        id: 2,
-        name: "nathan"
-      }, {
-        id: 3,
-        name: "max"
-      }]
+      pets: []
     };
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    var _this = this;
+
+    axios.get("/pets").then(function (response) {
+      response.data.forEach(function (pet) {
+        _this.pets.push(pet);
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
+  }
 });
 
 /***/ }),

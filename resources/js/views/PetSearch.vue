@@ -12,14 +12,21 @@
 export default {
   data: function() {
     return {
-      pets: [
-        { id: 1, name: "maggie" },
-        { id: 2, name: "nathan" },
-        { id: 3, name: "max" }
-      ]
+      pets: []
     };
   },
-  mounted() {}
+  mounted() {
+    axios
+      .get("/pets")
+      .then(response => {
+        response.data.forEach(pet => {
+          this.pets.push(pet);
+        });
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 };
 </script>
 <style scoped>
