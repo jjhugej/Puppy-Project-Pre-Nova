@@ -26,7 +26,7 @@ class PetController extends Controller
      */
     public function create()
     {
-       //
+       return view ('addpet');
     }
 
     /**
@@ -37,10 +37,28 @@ class PetController extends Controller
      */
     public function store(Request $request)
     {
+
+        $validatedData = $this->validate($request, [
+            'name' => 'required|string',
+            'image' => 'required|image',
+        ]); 
+        
+       
         $pet = new Pet();
         $pet->name = $request->name;
+        $image_path = request()->file('image')->store('images');
+        $pet->image = $image_path;
+        $image_name = request()->file('image')->getClientOriginalName();
+        $pet->image_name = 'images/' . trim($image_name);
+
+        $validatedData['image']->move(public_path('images'), $image_name);
+
         $pet->save();
-        return $request;
+  
+        return $pet;
+        
+        
+         
     }
 
     /**
@@ -87,4 +105,6 @@ class PetController extends Controller
     {
         //
     }
+    
+    
 }

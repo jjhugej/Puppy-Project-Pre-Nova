@@ -2030,7 +2030,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "name"],
+  props: ["id", "name", "image", "image_name"],
   mounted: function mounted() {}
 });
 
@@ -2072,21 +2072,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      name: ""
+      name: "",
+      image: "",
+      imagePreview: ""
     };
   },
   methods: {
+    onImageChange: function onImageChange(e) {
+      var _this = this;
+
+      this.image = e.target.files[0];
+      var fileReader = new FileReader();
+      fileReader.readAsDataURL(this.image);
+
+      fileReader.onload = function (e) {
+        _this.imagePreview = e.target.result;
+      };
+    },
     formSubmit: function formSubmit() {
-      /* console.log(this.name); */
-      axios.post("/pets/add", {
-        name: this.name
-      }).then(function (response) {
+      var data = new FormData();
+      data.append("name", this.name);
+      data.append("image", this.image);
+      axios.post("pets/add", data).then(function (response) {
         console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
+      })["catch"](function (response) {
+        console.log(response);
       });
     }
   },
@@ -2125,6 +2143,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3644,7 +3667,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "column is-one-third" }, [
     _c("div", { staticClass: "card" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "card-image" }, [
+        _c("figure", { staticClass: "image is-4by3" }, [
+          _c("img", { attrs: { src: _vm.image } })
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-content" }, [
         _c("div", { staticClass: "media" }, [
@@ -3658,23 +3685,11 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(1)
+      _vm._m(0)
     ])
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-image" }, [
-      _c("figure", { staticClass: "image is-4by3" }, [
-        _c("img", {
-          attrs: { src: "https://bulma.io/images/placeholders/128x128.png" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -3716,14 +3731,11 @@ var render = function() {
       _c(
         "form",
         {
-          attrs: {
-            action: "#",
-            method: "POST",
-            enctype: "multipart/form-data"
-          },
+          attrs: { method: "POST", enctype: "multipart/form-data" },
           on: {
             submit: function($event) {
               $event.preventDefault()
+              return _vm.formSubmit($event)
             }
           }
         },
@@ -3758,20 +3770,25 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(0),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [_vm._v("Image")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                staticClass: "input",
+                attrs: { type: "file" },
+                on: { change: _vm.onImageChange }
+              })
+            ])
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "field" }, [
-            _c("p", { staticClass: "control" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "button is-primary",
-                  on: { click: _vm.formSubmit }
-                },
-                [_vm._v("Submit")]
-              )
+            _c("figure", { staticClass: "image is-128x128" }, [
+              _c("img", { attrs: { src: _vm.imagePreview } })
             ])
-          ])
+          ]),
+          _vm._v(" "),
+          _vm._m(0)
         ]
       )
     ])
@@ -3783,13 +3800,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label" }, [_vm._v("Name")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "file", placeholder: "e.g Max" }
-        })
+      _c("p", { staticClass: "control" }, [
+        _c("input", { attrs: { type: "submit", value: "Submit" } })
       ])
     ])
   }
@@ -3854,7 +3866,10 @@ var render = function() {
         "div",
         { staticClass: "columns is-multiline" },
         _vm._l(_vm.pets, function(pet) {
-          return _c("pet-card", { key: pet.id, attrs: { name: pet.name } })
+          return _c("pet-card", {
+            key: pet.id,
+            attrs: { name: pet.name, image: pet.image_name }
+          })
         }),
         1
       )

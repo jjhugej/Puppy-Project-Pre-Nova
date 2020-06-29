@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-image">
         <figure class="image is-4by3">
-          <img src="https://bulma.io/images/placeholders/128x128.png" />
+          <img :src="image" />
         </figure>
       </div>
       <div class="card-content">
@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  props: ["id", "name"],
+  props: ["id", "name", "image", "image_name"],
   mounted() {}
 };
 </script>

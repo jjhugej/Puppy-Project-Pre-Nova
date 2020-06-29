@@ -2,7 +2,12 @@
   <section class="section">
     <div class="container">
       <div class="columns is-multiline">
-        <pet-card v-for="pet in pets" v-bind:key="pet.id" v-bind:name="pet.name"></pet-card>
+        <pet-card
+          v-for="pet in pets"
+          v-bind:key="pet.id"
+          v-bind:name="pet.name"
+          v-bind:image="pet.image_name"
+        ></pet-card>
       </div>
     </div>
   </section>
