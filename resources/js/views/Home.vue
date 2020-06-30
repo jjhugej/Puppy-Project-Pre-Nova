@@ -6,6 +6,14 @@
 
 <script>
 export default {
-  mounted() {}
+  mounted() {
+    //this.$root.loading = false;
+    this.$root.$data.loading = false;
+
+    /*
+      TODO: implement state management in order to cause 
+      the application to cease loading on a specified event.
+    */
+  }
 };
 </script>

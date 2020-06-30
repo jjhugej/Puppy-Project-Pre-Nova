@@ -59,13 +59,19 @@ export default {
         .post("pets/add", data)
         .then(response => {
           console.log(response);
+          this.name = "";
+          this.image = "";
+          this.imagePreview = "";
         })
         .catch(response => {
           console.log(response);
         });
     }
   },
-  mounted() {}
+
+  mounted() {
+    this.$root.loading = false;
+  }
 };
 </script>
 <style scoped>

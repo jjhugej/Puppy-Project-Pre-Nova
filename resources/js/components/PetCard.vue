@@ -25,7 +25,9 @@
 <script>
 export default {
   props: ["id", "name", "image", "image_name"],
-  mounted() {}
+  mounted() {
+    this.$root.loading = false;
+  }
 };
 </script>
 <style scoped>

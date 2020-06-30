@@ -2031,7 +2031,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "name", "image", "image_name"],
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.$root.loading = false;
+  }
 });
 
 /***/ }),
@@ -2098,17 +2100,24 @@ __webpack_require__.r(__webpack_exports__);
       };
     },
     formSubmit: function formSubmit() {
+      var _this2 = this;
+
       var data = new FormData();
       data.append("name", this.name);
       data.append("image", this.image);
       axios.post("pets/add", data).then(function (response) {
         console.log(response);
+        _this2.name = "";
+        _this2.image = "";
+        _this2.imagePreview = "";
       })["catch"](function (response) {
         console.log(response);
       });
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    this.$root.loading = false;
+  }
 });
 
 /***/ }),
@@ -2129,7 +2138,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    //this.$root.loading = false;
+    this.$root.$data.loading = false;
+    /*
+      TODO: implement state management in order to cause 
+      the application to cease loading on a specified event.
+    */
+  }
 });
 
 /***/ }),
@@ -2164,6 +2180,9 @@ __webpack_require__.r(__webpack_exports__);
       pets: []
     };
   },
+  beforeCreate: function beforeCreate() {
+    this.$root.loading = true;
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -2174,6 +2193,7 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
+    this.$root.loading = false;
   }
 });
 
@@ -19113,14 +19133,14 @@ var app = new Vue({
   },
   router: _routes__WEBPACK_IMPORTED_MODULE_0__["default"]
 });
-_routes__WEBPACK_IMPORTED_MODULE_0__["default"].beforeEach(function (to, from, next) {
+_routes__WEBPACK_IMPORTED_MODULE_0__["default"].beforeResolve(function (to, from, next) {
   app.loading = true;
   next();
 });
 _routes__WEBPACK_IMPORTED_MODULE_0__["default"].afterEach(function (to, from, next) {
   setTimeout(function () {
     return app.loading = false;
-  }, 1000);
+  }, 5000);
 });
 
 /***/ }),

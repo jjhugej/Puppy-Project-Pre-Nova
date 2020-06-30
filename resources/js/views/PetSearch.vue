@@ -20,6 +20,9 @@ export default {
       pets: []
     };
   },
+  beforeCreate() {
+    this.$root.loading = true;
+  },
   mounted() {
     axios
       .get("/pets")
@@ -31,6 +34,7 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
+    this.$root.loading = false;
   }
 };
 </script>

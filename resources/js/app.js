@@ -27,11 +27,11 @@ const app = new Vue({
     router
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeResolve((to, from, next) => {
     app.loading = true;
     next();
 });
 
 router.afterEach((to, from, next) => {
-    setTimeout(() => (app.loading = false), 1000);
+    setTimeout(() => (app.loading = false), 5000);
 });
