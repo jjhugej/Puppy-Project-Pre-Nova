@@ -1,6 +1,9 @@
 require("./bootstrap");
 
 import router from "./routes";
+import Vuex from "vuex";
+import store from "./store";
+Vue.use(Vuex);
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,18 +23,27 @@ files.keys().map(key =>
         files(key).default
     )
 );
+//
 
 const app = new Vue({
     el: "#app",
-    data: { loading: false },
-    router
+    data: {},
+    router,
+    store,
+
+    computed: {
+        loading: () => {
+            return store.state.loading;
+        }
+    }
 });
 
+/*
 router.beforeResolve((to, from, next) => {
-    app.loading = true;
+    store.commit("isLoading");
     next();
 });
 
 router.afterEach((to, from, next) => {
     setTimeout(() => (app.loading = false), 5000);
-});
+}); */

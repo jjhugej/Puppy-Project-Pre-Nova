@@ -1,6 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
+      <h1>{{count}}</h1>
       <div class="columns is-multiline">
         <pet-card
           v-for="pet in pets"
@@ -14,14 +15,20 @@
 </template>
 
 <script>
+import store from "../store";
 export default {
   data: function() {
     return {
       pets: []
     };
   },
+  computed: {
+    count() {
+      return store.state.count;
+    }
+  },
   beforeCreate() {
-    this.$root.loading = true;
+    store.commit("isLoading");
   },
   mounted() {
     axios
@@ -34,7 +41,7 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-    this.$root.loading = false;
+    store.commit("isDoneLoading");
   }
 };
 </script>

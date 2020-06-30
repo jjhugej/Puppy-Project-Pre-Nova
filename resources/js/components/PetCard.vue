@@ -10,7 +10,7 @@
         <div class="media">
           <div class="media-left"></div>
           <div class="media-content">
-            <p class="title is-4 has-text-centered">{{name}}</p>
+            <p class="title is-4 has-text-centered">{{ name }}</p>
           </div>
         </div>
       </div>
@@ -25,9 +25,7 @@
 <script>
 export default {
   props: ["id", "name", "image", "image_name"],
-  mounted() {
-    this.$root.loading = false;
-  }
+  mounted() {}
 };
 </script>
 <style scoped>

@@ -1,19 +1,30 @@
 <template>
   <div class="container">
     <h1>Home View!</h1>
+    <h2>{{count}}</h2>
+    <button v-on:click="incrementCount">Increment</button>
   </div>
 </template>
 
 <script>
+import store from "../store";
 export default {
-  mounted() {
-    //this.$root.loading = false;
-    this.$root.$data.loading = false;
+  methods: {
+    incrementCount() {
+      store.commit("incrementCount");
+    }
+  },
+  computed: {
+    count() {
+      return store.state.count;
+    }
+  },
+  beforeCreate() {
+    store.commit("isLoading");
+  },
 
-    /*
-      TODO: implement state management in order to cause 
-      the application to cease loading on a specified event.
-    */
+  mounted() {
+    store.commit("isDoneLoading");
   }
 };
 </script>
