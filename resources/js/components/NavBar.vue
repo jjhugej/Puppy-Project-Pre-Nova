@@ -6,6 +6,8 @@
       <a
         role="button"
         class="navbar-burger burger"
+        v-bind:class="{ 'is-active': isActive}"
+        v-on:click="hamburgerClicked"
         aria-label="menu"
         aria-expanded="false"
         data-target="navbarBasicExample"
@@ -16,7 +18,7 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="navbarBasicExample" v-bind:class="{'is-active': isActive}" class="navbar-menu">
       <div class="navbar-start">
         <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
         <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
@@ -36,6 +38,16 @@
 
 <script>
 export default {
+  data: function() {
+    return {
+      isActive: false
+    };
+  },
+  methods: {
+    hamburgerClicked: function() {
+      this.isActive = !this.isActive;
+    }
+  },
   mounted() {}
 };
 </script>

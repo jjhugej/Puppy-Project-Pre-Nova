@@ -1989,7 +1989,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      isActive: false
+    };
+  },
+  methods: {
+    hamburgerClicked: function hamburgerClicked() {
+      this.isActive = !this.isActive;
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -2376,7 +2388,65 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirm: ""
+    };
+  },
+  methods: {
+    registerFormSubmit: function registerFormSubmit() {
+      var data = new FormData();
+      data.append("name", this.name);
+      data.append("email", this.email);
+      data.append("password", this.password);
+      data.append("password-confirm", this.passwordConfirm);
+      axios.post("register", data).then(function (response) {
+        console.log(response);
+      })["catch"](function (response) {
+        console.log(response);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -3887,14 +3957,38 @@ var render = function() {
             [_vm._v("Paws")]
           ),
           _vm._v(" "),
-          _vm._m(0)
+          _c(
+            "a",
+            {
+              staticClass: "navbar-burger burger",
+              class: { "is-active": _vm.isActive },
+              attrs: {
+                role: "button",
+                "aria-label": "menu",
+                "aria-expanded": "false",
+                "data-target": "navbarBasicExample"
+              },
+              on: { click: _vm.hamburgerClicked }
+            },
+            [
+              _c("span", { attrs: { "aria-hidden": "true" } }),
+              _vm._v(" "),
+              _c("span", { attrs: { "aria-hidden": "true" } }),
+              _vm._v(" "),
+              _c("span", { attrs: { "aria-hidden": "true" } })
+            ]
+          )
         ],
         1
       ),
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "navbar-menu", attrs: { id: "navbarBasicExample" } },
+        {
+          staticClass: "navbar-menu",
+          class: { "is-active": _vm.isActive },
+          attrs: { id: "navbarBasicExample" }
+        },
         [
           _c(
             "div",
@@ -3954,32 +4048,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "navbar-burger burger",
-        attrs: {
-          role: "button",
-          "aria-label": "menu",
-          "aria-expanded": "false",
-          "data-target": "navbarBasicExample"
-        }
-      },
-      [
-        _c("span", { attrs: { "aria-hidden": "true" } }),
-        _vm._v(" "),
-        _c("span", { attrs: { "aria-hidden": "true" } }),
-        _vm._v(" "),
-        _c("span", { attrs: { "aria-hidden": "true" } })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4411,37 +4480,180 @@ var render = function() {
             "div",
             { staticClass: "column is-6-tablet is-6-desktop is-6-widescreen" },
             [
-              _c("form", { staticClass: "box", attrs: { action: "" } }, [
-                _c("h1", { staticClass: "has-text-centered mb-4" }, [
-                  _vm._v("Register")
-                ]),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field login-register-wrapper" },
-                  [
-                    _c("button", { staticClass: "button is-success" }, [
-                      _vm._v("Register")
+              _c(
+                "form",
+                {
+                  staticClass: "box",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c("h1", { staticClass: "has-text-centered mb-4" }, [
+                    _vm._v("Register")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Name")
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "pl-3",
-                        attrs: { to: "/register", exact: "" }
-                      },
-                      [_vm._v("Already have an account yet? Login here.")]
-                    )
-                  ],
-                  1
-                )
-              ])
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.name,
+                            expression: "name"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "text",
+                          placeholder: "e.g. Bob Smith",
+                          required: ""
+                        },
+                        domProps: { value: _vm.name },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.name = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Email")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "email",
+                          placeholder: "e.g. bobsmith@gmail.com",
+                          required: ""
+                        },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Password")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "password",
+                          placeholder: "*******",
+                          required: ""
+                        },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Verify Password")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.verifyPassword,
+                            expression: "verifyPassword"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "password",
+                          placeholder: "*******",
+                          required: ""
+                        },
+                        domProps: { value: _vm.verifyPassword },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.verifyPassword = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "field login-register-wrapper" },
+                    [
+                      _c("input", {
+                        staticClass: "button is-success",
+                        attrs: { type: "submit", value: "Register" },
+                        on: { click: _vm.registerFormSubmit }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "pl-3",
+                          attrs: { to: "/register", exact: "" }
+                        },
+                        [_vm._v("Already have an account yet? Login here.")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
             ]
           )
         ])
@@ -4449,63 +4661,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", attrs: { for: "" } }, [
-        _vm._v("Email")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass: "input",
-          attrs: {
-            type: "email",
-            placeholder: "e.g. bobsmith@gmail.com",
-            required: ""
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", attrs: { for: "" } }, [
-        _vm._v("Password")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "password", placeholder: "*******", required: "" }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", attrs: { for: "" } }, [
-        _vm._v("Re-enter Password")
-      ]),
-      _vm._v(" "),
-      _c("div", [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "password", placeholder: "*******", required: "" }
-        })
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 

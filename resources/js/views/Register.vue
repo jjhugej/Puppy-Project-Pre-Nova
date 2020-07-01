@@ -4,30 +4,65 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-6-tablet is-6-desktop is-6-widescreen">
-            <form action class="box">
+            <form @submit.prevent class="box">
               <h1 class="has-text-centered mb-4">Register</h1>
+              <div class="field">
+                <label for class="label">Name</label>
+                <div>
+                  <input
+                    v-model="name"
+                    type="text"
+                    placeholder="e.g. Bob Smith"
+                    class="input"
+                    required
+                  />
+                </div>
+              </div>
               <div class="field">
                 <label for class="label">Email</label>
                 <div>
-                  <input type="email" placeholder="e.g. bobsmith@gmail.com" class="input" required />
+                  <input
+                    v-model="email"
+                    type="email"
+                    placeholder="e.g. bobsmith@gmail.com"
+                    class="input"
+                    required
+                  />
                 </div>
               </div>
 
               <div class="field">
                 <label for class="label">Password</label>
                 <div>
-                  <input type="password" placeholder="*******" class="input" required />
+                  <input
+                    v-model="password"
+                    type="password"
+                    placeholder="*******"
+                    class="input"
+                    required
+                  />
                 </div>
               </div>
               <div class="field">
-                <label for class="label">Re-enter Password</label>
+                <label for class="label">Verify Password</label>
                 <div>
-                  <input type="password" placeholder="*******" class="input" required />
+                  <input
+                    v-model="verifyPassword"
+                    type="password"
+                    placeholder="*******"
+                    class="input"
+                    required
+                  />
                 </div>
               </div>
 
               <div class="field login-register-wrapper">
-                <button class="button is-success">Register</button>
+                <input
+                  @click="registerFormSubmit"
+                  type="submit"
+                  class="button is-success"
+                  value="Register"
+                />
                 <router-link
                   to="/register"
                   class="pl-3"
@@ -43,7 +78,34 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data: function() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      passwordConfirm: ""
+    };
+  },
+  methods: {
+    registerFormSubmit: function() {
+      let data = new FormData();
+      data.append("name", this.name);
+      data.append("email", this.email);
+      data.append("password", this.password);
+      data.append("password-confirm", this.passwordConfirm);
+
+      axios
+        .post("register", data)
+        .then(response => {
+          console.log(response);
+        })
+        .catch(response => {
+          console.log(response);
+        });
+    }
+  }
+};
 </script>
 <style scoped>
 h1 {
