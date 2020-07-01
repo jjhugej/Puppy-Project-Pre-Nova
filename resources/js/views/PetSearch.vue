@@ -49,6 +49,4 @@ export default {
 section {
   margin: 10px;
 }
-.container {
-}
 </style>

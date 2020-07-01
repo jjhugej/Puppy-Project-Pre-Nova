@@ -3,10 +3,11 @@
     <div class="container">
       <div class="hero-wrapper">
         <h1>Your new forever friend is waiting!</h1>
-
-        <a class="hero-btn" href="#">
-          <div class="hero-cta">Get Started</div>
-        </a>
+        <transition v-enter>
+          <router-link to="/pets" class="hero-btn" exact>
+            <div class="hero-cta">Get Started</div>
+          </router-link>
+        </transition>
       </div>
     </div>
   </section>
@@ -28,8 +29,6 @@ export default {
 </script>
 
 <style scoped>
-section {
-}
 .container {
   height: 80vh;
 
@@ -55,17 +54,20 @@ section {
 h1 {
   z-index: 99;
   font-size: 40px;
-  font-weight: 200;
+  font-weight: 600;
   color: white;
+  line-height: 50px;
 }
 .hero-btn {
-  border: solid 1px white;
+  background-color: white;
   border-radius: 10px;
   padding: 20px;
 }
 .hero-cta {
-  color: white;
+  border-bottom: solid 1px white;
+  color: black;
   font-size: 30px;
-  font-weight: 600;
+  font-weight: 800;
+  line-height: 30px;
 }
 </style>

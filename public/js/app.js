@@ -2196,6 +2196,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {},
@@ -2336,7 +2337,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-63cd6604] {\n}\n.container[data-v-63cd6604] {\r\n  height: 80vh;\r\n\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-63cd6604] {\r\n  width: 40%;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-63cd6604] {\r\n  z-index: 99;\r\n  font-size: 40px;\r\n  font-weight: 200;\r\n  color: white;\n}\n.hero-btn[data-v-63cd6604] {\r\n  border: solid 1px white;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-63cd6604] {\r\n  color: white;\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-63cd6604] {\r\n  height: 80vh;\r\n\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-63cd6604] {\r\n  width: 40%;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-63cd6604] {\r\n  z-index: 99;\r\n  font-size: 40px;\r\n  font-weight: 600;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-63cd6604] {\r\n  background-color: white;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-63cd6604] {\r\n  border-bottom: solid 1px white;\r\n  color: black;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -2355,7 +2356,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-4072d618] {\r\n  margin: 10px;\n}\n.container[data-v-4072d618] {\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-4072d618] {\r\n  margin: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -3982,26 +3983,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("section", { staticClass: "landing" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "hero-wrapper" }, [
+  return _c("section", { staticClass: "landing" }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "hero-wrapper" },
+        [
           _c("h1", [_vm._v("Your new forever friend is waiting!")]),
           _vm._v(" "),
-          _c("a", { staticClass: "hero-btn", attrs: { href: "#" } }, [
-            _c("div", { staticClass: "hero-cta" }, [_vm._v("Get Started")])
-          ])
-        ])
-      ])
+          _c(
+            "transition",
+            { directives: [{ name: "enter", rawName: "v-enter" }] },
+            [
+              _c(
+                "router-link",
+                { staticClass: "hero-btn", attrs: { to: "/pets", exact: "" } },
+                [
+                  _c("div", { staticClass: "hero-cta" }, [
+                    _vm._v("Get Started")
+                  ])
+                ]
+              )
+            ],
+            1
+          )
+        ],
+        1
+      )
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
