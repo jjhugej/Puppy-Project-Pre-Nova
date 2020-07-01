@@ -47,7 +47,7 @@
                 <label for class="label">Verify Password</label>
                 <div>
                   <input
-                    v-model="verifyPassword"
+                    v-model="passwordConfirmaton"
                     type="password"
                     placeholder="*******"
                     class="input"
@@ -84,7 +84,7 @@ export default {
       name: "",
       email: "",
       password: "",
-      passwordConfirm: ""
+      passwordConfirmaton: ""
     };
   },
   methods: {
@@ -93,8 +93,7 @@ export default {
       data.append("name", this.name);
       data.append("email", this.email);
       data.append("password", this.password);
-      data.append("password-confirm", this.passwordConfirm);
-
+      data.append("password_confirmation", this.passwordConfirmaton);
       axios
         .post("register", data)
         .then(response => {

@@ -2088,19 +2088,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2274,7 +2261,43 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      email: "",
+      password: ""
+    };
+  },
+  methods: {
+    loginFormSubmit: function loginFormSubmit() {
+      var data = new FormData();
+      data.append("email", this.email);
+      data.append("password", this.password);
+      axios.post("login", data).then(function (response) {
+        console.log(response);
+      })["catch"](function (response) {
+        console.log(response);
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -2429,7 +2452,7 @@ __webpack_require__.r(__webpack_exports__);
       name: "",
       email: "",
       password: "",
-      passwordConfirm: ""
+      passwordConfirmaton: ""
     };
   },
   methods: {
@@ -2438,7 +2461,7 @@ __webpack_require__.r(__webpack_exports__);
       data.append("name", this.name);
       data.append("email", this.email);
       data.append("password", this.password);
-      data.append("password-confirm", this.passwordConfirm);
+      data.append("password_confirmation", this.passwordConfirmaton);
       axios.post("register", data).then(function (response) {
         console.log(response);
       })["catch"](function (response) {
@@ -2500,7 +2523,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-004fc8c6] {\r\n    margin: 10px;\n}\n.container[data-v-004fc8c6] {\n}\nh1[data-v-004fc8c6] {\r\n    font-size: 36px;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-004fc8c6] {\r\n  margin: 10px;\n}\n.container[data-v-004fc8c6] {\n}\nh1[data-v-004fc8c6] {\r\n  font-size: 36px;\n}\r\n", ""]);
 
 // exports
 
@@ -4322,37 +4345,114 @@ var render = function() {
             "div",
             { staticClass: "column is-6-tablet is-6-desktop is-6-widescreen" },
             [
-              _c("form", { staticClass: "box", attrs: { action: "" } }, [
-                _c("h1", { staticClass: "has-text-centered mb-4" }, [
-                  _vm._v("Login")
-                ]),
-                _vm._v(" "),
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2),
-                _vm._v(" "),
-                _c(
-                  "div",
-                  { staticClass: "field login-register-wrapper" },
-                  [
-                    _c("button", { staticClass: "button is-success" }, [
-                      _vm._v("Login")
+              _c(
+                "form",
+                {
+                  staticClass: "box",
+                  on: {
+                    submit: function($event) {
+                      $event.preventDefault()
+                    }
+                  }
+                },
+                [
+                  _c("h1", { staticClass: "has-text-centered mb-4" }, [
+                    _vm._v("Login")
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Email")
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "pl-3",
-                        attrs: { to: "/register", exact: "" }
-                      },
-                      [_vm._v("Don't have an account yet? Register here.")]
-                    )
-                  ],
-                  1
-                )
-              ])
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.email,
+                            expression: "email"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "email",
+                          placeholder: "e.g. bobsmith@gmail.com",
+                          required: ""
+                        },
+                        domProps: { value: _vm.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.email = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "field" }, [
+                    _c("label", { staticClass: "label", attrs: { for: "" } }, [
+                      _vm._v("Password")
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "control" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.password,
+                            expression: "password"
+                          }
+                        ],
+                        staticClass: "input",
+                        attrs: {
+                          type: "password",
+                          placeholder: "*******",
+                          required: ""
+                        },
+                        domProps: { value: _vm.password },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.password = $event.target.value
+                          }
+                        }
+                      })
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "field login-register-wrapper" },
+                    [
+                      _c("input", {
+                        staticClass: "button is-success",
+                        attrs: { type: "submit", value: "Login" },
+                        on: { click: _vm.loginFormSubmit }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "pl-3",
+                          attrs: { to: "/register", exact: "" }
+                        },
+                        [_vm._v("Don't have an account yet? Register here.")]
+                      )
+                    ],
+                    1
+                  )
+                ]
+              )
             ]
           )
         ])
@@ -4361,44 +4461,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", attrs: { for: "" } }, [
-        _vm._v("Email")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: {
-            type: "email",
-            placeholder: "e.g. bobsmith@gmail.com",
-            required: ""
-          }
-        })
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "label", attrs: { for: "" } }, [
-        _vm._v("Password")
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "control" }, [
-        _c("input", {
-          staticClass: "input",
-          attrs: { type: "password", placeholder: "*******", required: "" }
-        })
-      ])
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -4608,8 +4670,8 @@ var render = function() {
                           {
                             name: "model",
                             rawName: "v-model",
-                            value: _vm.verifyPassword,
-                            expression: "verifyPassword"
+                            value: _vm.passwordConfirmaton,
+                            expression: "passwordConfirmaton"
                           }
                         ],
                         staticClass: "input",
@@ -4618,13 +4680,13 @@ var render = function() {
                           placeholder: "*******",
                           required: ""
                         },
-                        domProps: { value: _vm.verifyPassword },
+                        domProps: { value: _vm.passwordConfirmaton },
                         on: {
                           input: function($event) {
                             if ($event.target.composing) {
                               return
                             }
-                            _vm.verifyPassword = $event.target.value
+                            _vm.passwordConfirmaton = $event.target.value
                           }
                         }
                       })
