@@ -5,8 +5,9 @@
     <nav-bar></nav-bar>
     
     <main>
-        <loading-icon v-if="$root.loading"></loading-icon>
-        <router-view v-if="!$root.loading"></router-view>
+        <transition name="fade">
+            <router-view></router-view>
+        </transition>
     </main>
 
 @endsection

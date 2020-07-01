@@ -12,7 +12,6 @@ Vue.use(Vuex);
  *
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
-
 const files = require.context("./", true, /\.vue$/i);
 files.keys().map(key =>
     Vue.component(
@@ -23,7 +22,7 @@ files.keys().map(key =>
         files(key).default
     )
 );
-//
+//end auto-register
 
 const app = new Vue({
     el: "#app",

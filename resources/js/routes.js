@@ -10,6 +10,14 @@ let routes = [
         component: require("./views/Home.vue").default
     },
     {
+        path: "/login",
+        component: require("./views/Login.vue").default
+    },
+    {
+        path: "/register",
+        component: require("./views/Register.vue").default
+    },
+    {
         path: "/pets",
         component: require("./views/PetSearch.vue").default
     },
