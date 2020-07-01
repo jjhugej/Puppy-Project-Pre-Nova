@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <router-link to="/contact" class="navbar-item" exact>Paws</router-link>
+      <router-link to="/" class="navbar-item" exact>Paws</router-link>
 
       <a
         role="button"
@@ -18,7 +18,6 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <router-link to="/home" class="navbar-item" exact>Home</router-link>
         <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
         <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
       </div>
