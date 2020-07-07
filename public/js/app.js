@@ -4198,14 +4198,6 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "content" }, [
-          _c("p", { staticClass: "has-text-centered" }, [
-            _vm._v(_vm._s(_vm.name))
-          ])
-        ])
-      ]),
-      _vm._v(" "),
       _vm._m(0)
     ])
   ])

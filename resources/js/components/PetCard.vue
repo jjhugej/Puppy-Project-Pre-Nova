@@ -6,11 +6,11 @@
           <img :src="image" />
         </figure>
       </div>
-      <div class="card-content">
+      <!--  <div class="card-content">
         <div class="content">
           <p class="has-text-centered">{{ name }}</p>
         </div>
-      </div>
+      </div>-->
       <footer class="card-footer">
         <a class="card-footer-item">Like</a>
         <a class="card-footer-item">More</a>
