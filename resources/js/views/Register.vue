@@ -98,6 +98,7 @@ export default {
         .post("register", data)
         .then(response => {
           console.log(response);
+          this.$router.push("/pets");
         })
         .catch(response => {
           console.log(response);

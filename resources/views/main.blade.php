@@ -6,7 +6,8 @@
     
     <main>
         <transition name="fade">
-            <router-view></router-view>
+            <loading-icon v-if="loading"></loading-icon>
+            <router-view v-if="!loading"></router-view>
         </transition>
     </main>
 

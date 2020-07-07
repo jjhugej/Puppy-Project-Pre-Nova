@@ -69,9 +69,7 @@ export default {
     }
   },
 
-  mounted() {
-    this.$store.commit("isDoneLoading");
-  }
+  mounted() {}
 };
 </script>
 <style scoped>

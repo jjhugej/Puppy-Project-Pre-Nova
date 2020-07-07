@@ -1991,6 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2007,6 +2008,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
+  methods: {},
+  mounted: function mounted() {}
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PetCard.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PetCard.vue?vue&type=script&lang=js& ***!
@@ -2016,9 +2043,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -2124,9 +2148,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {
-    this.$store.commit("isDoneLoading");
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2200,12 +2222,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {},
   computed: {},
-  beforeCreate: function beforeCreate() {
-    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("isLoading");
-  },
-  mounted: function mounted() {
-    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("isDoneLoading");
-  }
+  beforeCreate: function beforeCreate() {},
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2282,16 +2300,26 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      remember: false
     };
   },
   methods: {
     loginFormSubmit: function loginFormSubmit() {
+      var _this = this;
+
       var data = new FormData();
       data.append("email", this.email);
       data.append("password", this.password);
+
+      if (this.remember == true) {
+        data.append("remember", this.remember);
+      }
+
       axios.post("login", data).then(function (response) {
-        console.log(response);
+        console.log(response.data);
+
+        _this.$router.push("/pets");
       })["catch"](function (response) {
         console.log(response);
       });
@@ -2326,7 +2354,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2334,14 +2361,8 @@ __webpack_require__.r(__webpack_exports__);
       pets: []
     };
   },
-  computed: {
-    count: function count() {
-      return _store__WEBPACK_IMPORTED_MODULE_0__["default"].state.count;
-    }
-  },
-  beforeCreate: function beforeCreate() {
-    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("isLoading");
-  },
+  computed: {},
+  beforeCreate: function beforeCreate() {},
   mounted: function mounted() {
     var _this = this;
 
@@ -2352,7 +2373,6 @@ __webpack_require__.r(__webpack_exports__);
     })["catch"](function (error) {
       console.log(error);
     });
-    _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("isDoneLoading");
   }
 });
 
@@ -2457,6 +2477,8 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     registerFormSubmit: function registerFormSubmit() {
+      var _this = this;
+
       var data = new FormData();
       data.append("name", this.name);
       data.append("email", this.email);
@@ -2464,6 +2486,8 @@ __webpack_require__.r(__webpack_exports__);
       data.append("password_confirmation", this.passwordConfirmaton);
       axios.post("register", data).then(function (response) {
         console.log(response);
+
+        _this.$router.push("/pets");
       })["catch"](function (response) {
         console.log(response);
       });
@@ -2492,6 +2516,25 @@ exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n  height: 90
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&":
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n@media only screen and (max-width: 1023px) {\n.buttons[data-v-e569e574] {\r\n    margin-top: 20px;\n}\n}\r\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PetCard.vue?vue&type=style&index=0&id=e237ba98&scoped=true&lang=css&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PetCard.vue?vue&type=style&index=0&id=e237ba98&scoped=true&lang=css& ***!
@@ -2504,7 +2547,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.title[data-v-e237ba98] {\r\n  line-height: 1.4 !important;\n}\r\n", ""]);
+exports.push([module.i, "\n.bm--card-equal-height[data-v-e237ba98] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  height: 100%;\n}\n.bm--card-equal-height .card-footer[data-v-e237ba98] {\r\n  margin-top: auto;\n}\np[data-v-e237ba98] {\r\n  font-size: 24px;\r\n  font-weight: 600;\n}\n.card-content[data-v-e237ba98] {\r\n  height: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  padding: 1rem;\n}\r\n", ""]);
 
 // exports
 
@@ -3095,6 +3138,36 @@ process.umask = function() { return 0; };
 
 
 var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./LoadingIcon.vue?vue&type=style&index=0&id=a7b8c78c&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/LoadingIcon.vue?vue&type=style&index=0&id=a7b8c78c&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&":
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&");
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -3989,7 +4062,7 @@ var render = function() {
                 role: "button",
                 "aria-label": "menu",
                 "aria-expanded": "false",
-                "data-target": "navbarBasicExample"
+                "data-target": "navbarBarMenu"
               },
               on: { click: _vm.hamburgerClicked }
             },
@@ -4009,8 +4082,8 @@ var render = function() {
         "div",
         {
           staticClass: "navbar-menu",
-          class: { "is-active": _vm.isActive },
-          attrs: { id: "navbarBasicExample" }
+          class: { "is-active has-text-centered": _vm.isActive },
+          attrs: { id: "navbarBarMenu" }
         },
         [
           _c(
@@ -4039,36 +4112,60 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "navbar-end" }, [
-            _c("div", { staticClass: "navbar-item" }, [
-              _c(
-                "div",
-                { staticClass: "buttons" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "button is-primary",
-                      attrs: { to: "/register", exact: "" }
-                    },
-                    [_vm._v("Sign Up")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "button is-light",
-                      attrs: { to: "/login", exact: "" }
-                    },
-                    [_vm._v("Login")]
-                  )
-                ],
-                1
-              )
-            ])
+            _c(
+              "div",
+              { staticClass: "navbar-item" },
+              [_c("nav-bar-account-access")],
+              1
+            )
           ])
         ]
       )
     ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "buttons columns is-mobile is-centered" },
+    [
+      _c(
+        "router-link",
+        {
+          staticClass: "button is-primary",
+          attrs: { to: "/register", exact: "" }
+        },
+        [_vm._v("Sign Up")]
+      ),
+      _vm._v(" "),
+      _c(
+        "router-link",
+        { staticClass: "button is-light", attrs: { to: "/login", exact: "" } },
+        [_vm._v("Login")]
+      )
+    ],
+    1
   )
 }
 var staticRenderFns = []
@@ -4093,8 +4190,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "column is-one-third" }, [
-    _c("div", { staticClass: "card" }, [
+  return _c("div", { staticClass: "column is-one-fifth" }, [
+    _c("div", { staticClass: "card bm--card-equal-height" }, [
       _c("div", { staticClass: "card-image" }, [
         _c("figure", { staticClass: "image is-4by3" }, [
           _c("img", { attrs: { src: _vm.image } })
@@ -4102,13 +4199,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card-content" }, [
-        _c("div", { staticClass: "media" }, [
-          _c("div", { staticClass: "media-left" }),
-          _vm._v(" "),
-          _c("div", { staticClass: "media-content" }, [
-            _c("p", { staticClass: "title is-4 has-text-centered" }, [
-              _vm._v(_vm._s(_vm.name))
-            ])
+        _c("div", { staticClass: "content" }, [
+          _c("p", { staticClass: "has-text-centered" }, [
+            _vm._v(_vm._s(_vm.name))
           ])
         ])
       ]),
@@ -4123,13 +4216,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("footer", { staticClass: "card-footer" }, [
-      _c("a", { staticClass: "card-footer-item", attrs: { href: "#" } }, [
-        _vm._v("Like")
-      ]),
+      _c("a", { staticClass: "card-footer-item" }, [_vm._v("Like")]),
       _vm._v(" "),
-      _c("a", { staticClass: "card-footer-item", attrs: { href: "#" } }, [
-        _vm._v("More")
-      ])
+      _c("a", { staticClass: "card-footer-item" }, [_vm._v("More")])
     ])
   }
 ]
@@ -4428,7 +4517,52 @@ var render = function() {
                     ])
                   ]),
                   _vm._v(" "),
-                  _vm._m(0),
+                  _c("div", { staticClass: "field" }, [
+                    _c(
+                      "label",
+                      { staticClass: "checkbox", attrs: { for: "" } },
+                      [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.remember,
+                              expression: "remember"
+                            }
+                          ],
+                          attrs: { type: "checkbox" },
+                          domProps: {
+                            checked: Array.isArray(_vm.remember)
+                              ? _vm._i(_vm.remember, null) > -1
+                              : _vm.remember
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.remember,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 && (_vm.remember = $$a.concat([$$v]))
+                                } else {
+                                  $$i > -1 &&
+                                    (_vm.remember = $$a
+                                      .slice(0, $$i)
+                                      .concat($$a.slice($$i + 1)))
+                                }
+                              } else {
+                                _vm.remember = $$c
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v("\n                Remember me\n              ")
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c(
                     "div",
@@ -4460,19 +4594,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "field" }, [
-      _c("label", { staticClass: "checkbox", attrs: { for: "" } }, [
-        _c("input", { attrs: { type: "checkbox" } }),
-        _vm._v("\n                Remember me\n              ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4496,8 +4618,6 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section" }, [
     _c("div", { staticClass: "container" }, [
-      _c("h1", [_vm._v(_vm._s(_vm.count))]),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "columns is-multiline" },
@@ -21160,6 +21280,7 @@ var map = {
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
 	"./components/LoadingIcon.vue": "./resources/js/components/LoadingIcon.vue",
 	"./components/NavBar.vue": "./resources/js/components/NavBar.vue",
+	"./components/NavBarAccountAccess.vue": "./resources/js/components/NavBarAccountAccess.vue",
 	"./components/PetCard.vue": "./resources/js/components/PetCard.vue",
 	"./views/AddPet.vue": "./resources/js/views/AddPet.vue",
 	"./views/ExampleHome.vue": "./resources/js/views/ExampleHome.vue",
@@ -21233,16 +21354,17 @@ var app = new Vue({
       return _store__WEBPACK_IMPORTED_MODULE_2__["default"].state.loading;
     }
   }
-});
-/*
-router.beforeResolve((to, from, next) => {
-    store.commit("isLoading");
-    next();
-});
+}); // the following was used to display a loading screen
 
-router.afterEach((to, from, next) => {
-    setTimeout(() => (app.loading = false), 5000);
-}); */
+_routes__WEBPACK_IMPORTED_MODULE_0__["default"].beforeResolve(function (to, from, next) {
+  _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit("isLoading");
+  next();
+});
+_routes__WEBPACK_IMPORTED_MODULE_0__["default"].afterEach(function (to, from, next) {
+  setTimeout(function () {
+    _store__WEBPACK_IMPORTED_MODULE_2__["default"].commit("isDoneLoading");
+  }, 1100);
+});
 
 /***/ }),
 
@@ -21498,6 +21620,93 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/NavBarAccountAccess.vue":
+/*!*********************************************************!*\
+  !*** ./resources/js/components/NavBarAccountAccess.vue ***!
+  \*********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true& */ "./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true&");
+/* harmony import */ var _NavBarAccountAccess_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NavBarAccountAccess.vue?vue&type=script&lang=js& */ "./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& */ "./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _NavBarAccountAccess_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "e569e574",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NavBarAccountAccess.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NavBarAccountAccess.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&":
+/*!******************************************************************************************************************!*\
+  !*** ./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& ***!
+  \******************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=style&index=0&id=e569e574&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_style_index_0_id_e569e574_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavBarAccountAccess.vue?vue&type=template&id=e569e574&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavBarAccountAccess_vue_vue_type_template_id_e569e574_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/PetCard.vue":
 /*!*********************************************!*\
   !*** ./resources/js/components/PetCard.vue ***!
@@ -21641,17 +21850,18 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
     count: 0,
-    loading: false
+    loading: false,
+    loggedIn: false
   },
   mutations: {
     incrementCount: function incrementCount() {
       return this.state.count++;
     },
     isLoading: function isLoading(state) {
-      return this.state.loading = true;
+      return state.loading = true;
     },
     isDoneLoading: function isDoneLoading(state) {
-      return this.state.loading = false;
+      return state.loading = false;
     }
   }
 }));

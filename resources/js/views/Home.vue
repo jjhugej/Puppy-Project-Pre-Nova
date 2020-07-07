@@ -18,13 +18,9 @@ import store from "../store";
 export default {
   methods: {},
   computed: {},
-  beforeCreate() {
-    store.commit("isLoading");
-  },
+  beforeCreate() {},
 
-  mounted() {
-    store.commit("isDoneLoading");
-  }
+  mounted() {}
 };
 </script>
 

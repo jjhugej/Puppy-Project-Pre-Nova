@@ -37,12 +37,14 @@ const app = new Vue({
     }
 });
 
-/*
+// the following was used to display a loading screen
 router.beforeResolve((to, from, next) => {
     store.commit("isLoading");
     next();
 });
 
 router.afterEach((to, from, next) => {
-    setTimeout(() => (app.loading = false), 5000);
-}); */
+    setTimeout(() => {
+        store.commit("isDoneLoading");
+    }, 1100);
+});

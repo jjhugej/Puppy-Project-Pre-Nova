@@ -32,7 +32,7 @@
               </div>
               <div class="field">
                 <label for class="checkbox">
-                  <input type="checkbox" />
+                  <input v-model="remember" type="checkbox" />
                   Remember me
                 </label>
               </div>
@@ -62,7 +62,8 @@ export default {
   data: function() {
     return {
       email: "",
-      password: ""
+      password: "",
+      remember: false
     };
   },
   methods: {
@@ -70,11 +71,16 @@ export default {
       let data = new FormData();
       data.append("email", this.email);
       data.append("password", this.password);
+      if (this.remember == true) {
+        data.append("remember", this.remember);
+      }
 
       axios
         .post("login", data)
         .then(response => {
-          console.log(response);
+          console.log(response.data);
+
+          this.$router.push("/pets");
         })
         .catch(response => {
           console.log(response);

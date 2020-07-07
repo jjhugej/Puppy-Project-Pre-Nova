@@ -10,7 +10,7 @@
         v-on:click="hamburgerClicked"
         aria-label="menu"
         aria-expanded="false"
-        data-target="navbarBasicExample"
+        data-target="navbarBarMenu"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -18,7 +18,11 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" v-bind:class="{'is-active': isActive}" class="navbar-menu">
+    <div
+      id="navbarBarMenu"
+      v-bind:class="{'is-active has-text-centered': isActive}"
+      class="navbar-menu"
+    >
       <div class="navbar-start">
         <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
         <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
@@ -26,10 +30,7 @@
 
       <div class="navbar-end">
         <div class="navbar-item">
-          <div class="buttons">
-            <router-link to="/register" class="button is-primary" exact>Sign Up</router-link>
-            <router-link to="/login" class="button is-light" exact>Login</router-link>
-          </div>
+          <nav-bar-account-access></nav-bar-account-access>
         </div>
       </div>
     </div>
