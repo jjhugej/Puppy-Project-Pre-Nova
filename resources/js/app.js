@@ -33,6 +33,9 @@ const app = new Vue({
     computed: {
         loading: () => {
             return store.state.loading;
+        },
+        showLoginMessage: () => {
+            return store.state.showLoginMessage;
         }
     }
 });

@@ -4,13 +4,13 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-6-tablet is-6-desktop is-6-widescreen">
-            <form @submit.prevent class="box">
+            <form @submit.prevent="loginFormSubmit" class="box">
               <h1 class="has-text-centered mb-4">Login</h1>
               <div class="field">
                 <label for class="label">Email</label>
                 <div class="control">
                   <input
-                    v-model="email"
+                    v-model="formData.email"
                     type="email"
                     placeholder="e.g. bobsmith@gmail.com"
                     class="input"
@@ -22,7 +22,7 @@
                 <label for class="label">Password</label>
                 <div class="control">
                   <input
-                    v-model="password"
+                    v-model="formData.password"
                     type="password"
                     placeholder="*******"
                     class="input"
@@ -32,22 +32,16 @@
               </div>
               <div class="field">
                 <label for class="checkbox">
-                  <input v-model="remember" type="checkbox" />
+                  <input v-model="formData.remember" type="checkbox" />
                   Remember me
                 </label>
               </div>
               <div class="field login-register-wrapper">
-                <input
-                  @click="loginFormSubmit"
-                  type="submit"
-                  class="button is-success"
-                  value="Login"
-                />
-                <router-link
-                  to="/register"
-                  class="pl-3"
-                  exact
-                >Don't have an account yet? Register here.</router-link>
+                <input type="submit" class="button is-success" value="Login" />
+                <router-link to="/register" class="pl-3" exact>
+                  Don't have an account yet? Register
+                  here.
+                </router-link>
               </div>
             </form>
           </div>
@@ -58,33 +52,34 @@
 </template>
 
 <script>
+import store from "../store";
 export default {
   data: function() {
     return {
-      email: "",
-      password: "",
-      remember: false
+      formData: {
+        email: "",
+        password: "",
+        remember: false
+      }
     };
   },
   methods: {
     loginFormSubmit: function() {
-      let data = new FormData();
-      data.append("email", this.email);
-      data.append("password", this.password);
-      if (this.remember == true) {
-        data.append("remember", this.remember);
-      }
+      axios.get("/sanctum/csrf-cookie").then(response => {
+        axios.post("/login", this.formData).then(response => {
+          //get user that is logged in.
+          axios.get("/api/user").then(response => {
+            console.log(response.data);
+            //set store state for logged in user
+            this.$store.commit("setLoggedInUser", response.data);
 
-      axios
-        .post("login", data)
-        .then(response => {
-          console.log(response.data);
+            // event now that user has logged in (listen for it on root element)
 
-          this.$router.push("/pets");
-        })
-        .catch(response => {
-          console.log(response);
+            //redirect to pets search
+          });
+          console.log("logged in!");
         });
+      });
     }
   }
 };

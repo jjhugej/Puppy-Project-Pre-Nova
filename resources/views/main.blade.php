@@ -9,6 +9,7 @@
             <loading-icon v-if="loading"></loading-icon>
             <router-view v-if="!loading"></router-view>
         </transition>
+        <alert-message v-if="showLoginMessage"></alet-message>
     </main>
 
 @endsection

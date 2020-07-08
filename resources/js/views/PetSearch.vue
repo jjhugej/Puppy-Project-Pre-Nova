@@ -1,6 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
+      {{user}}
       <div class="columns is-multiline">
         <pet-card
           v-for="pet in pets"
@@ -18,13 +19,12 @@ import store from "../store";
 export default {
   data: function() {
     return {
-      pets: []
+      pets: [],
+      user: ""
     };
   },
   computed: {},
-  beforeCreate() {
-    
-  },
+  beforeCreate() {},
   mounted() {
     axios
       .get("/pets")
@@ -36,7 +36,6 @@ export default {
       .catch(function(error) {
         console.log(error);
       });
-    
   }
 };
 </script>
