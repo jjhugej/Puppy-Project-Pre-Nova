@@ -30,6 +30,13 @@ export default new Vuex.Store({
             state.loggedInUser.userId = id;
             state.loggedInUser.isLoggedIn = true;
             state.showLoginMessage = true;
+
+            //remove the login message after 10sec
+            setTimeout(() => {
+                if (state.showLoginMessage === true) {
+                    this.commit("removeLoginMessage");
+                }
+            }, 10000);
         },
         removeLoginMessage(state) {
             console.log("removeMessage called");
@@ -39,8 +46,6 @@ export default new Vuex.Store({
     actions: {
         userLogin(context) {
             context.commit("setLoggedInUser", context);
-            //having trouble getting the remove loginmessage to fire
-            context.commit("removeLoginMessage");
         }
     }
 });

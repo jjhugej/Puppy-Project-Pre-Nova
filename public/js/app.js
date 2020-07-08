@@ -1908,6 +1908,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 //
 //
 //
@@ -1915,8 +1916,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {}
+  mounted: function mounted() {},
+  methods: {
+    removeLoginMessage: function removeLoginMessage() {
+      _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("removeLoginMessage");
+    }
+  }
 });
 
 /***/ }),
@@ -2529,7 +2541,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-6b4df514] {\r\n  position: fixed;\r\n  right: 0;\r\n  bottom: 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-6b4df514] {\r\n  position: fixed;\r\n  right: 5vw;\r\n  bottom: 10vh;\n}\r\n", ""]);
 
 // exports
 
@@ -4037,20 +4049,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", [_vm._v("Example Component")]),
+  return _c("div", { staticClass: "container" }, [
+    _c("article", { staticClass: "message is-success" }, [
+      _c("div", { staticClass: "message-header" }, [
+        _c("p", [_vm._v("Success!")]),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "delete",
+          attrs: { "aria-label": "delete" },
+          on: { click: _vm.removeLoginMessage }
+        })
+      ]),
       _vm._v(" "),
-      _c("div", [_vm._v("I'm an example component.")])
+      _c("div", { staticClass: "message-body" }, [
+        _vm._v("You have logged in!")
+      ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -22072,6 +22089,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       return state.loading = false;
     },
     setLoggedInUser: function setLoggedInUser(state, _ref) {
+      var _this = this;
+
       var name = _ref.name,
           email = _ref.email,
           id = _ref.id;
@@ -22082,7 +22101,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
       state.loggedInUser.userEmail = email;
       state.loggedInUser.userId = id;
       state.loggedInUser.isLoggedIn = true;
-      state.showLoginMessage = true;
+      state.showLoginMessage = true; //remove the login message after 10sec
+
+      setTimeout(function () {
+        if (state.showLoginMessage === true) {
+          _this.commit("removeLoginMessage");
+        }
+      }, 10000);
     },
     removeLoginMessage: function removeLoginMessage(state) {
       console.log("removeMessage called");
@@ -22091,9 +22116,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
   },
   actions: {
     userLogin: function userLogin(context) {
-      context.commit("setLoggedInUser", context); //having trouble getting the remove loginmessage to fire
-
-      context.commit("removeLoginMessage");
+      context.commit("setLoggedInUser", context);
     }
   }
 }));

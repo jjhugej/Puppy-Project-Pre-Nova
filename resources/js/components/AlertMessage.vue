@@ -1,19 +1,31 @@
 <template>
   <div class="container">
-    <div>Example Component</div>
-    <div>I'm an example component.</div>
+    <article class="message is-success">
+      <div class="message-header">
+        <p>Success!</p>
+        <button @click="removeLoginMessage" class="delete" aria-label="delete"></button>
+      </div>
+      <div class="message-body">You have logged in!</div>
+    </article>
   </div>
 </template>
 
 <script>
+import store from "../store";
+
 export default {
-  mounted() {}
+  mounted() {},
+  methods: {
+    removeLoginMessage: () => {
+      store.commit("removeLoginMessage");
+    }
+  }
 };
 </script>
 <style scoped>
 .container {
   position: fixed;
-  right: 0;
-  bottom: 0;
+  right: 5vw;
+  bottom: 10vh;
 }
 </style>
