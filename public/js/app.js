@@ -2272,6 +2272,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
 //
 //
 //
@@ -2325,6 +2326,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2346,9 +2348,10 @@ __webpack_require__.r(__webpack_exports__);
           axios.get("/api/user").then(function (response) {
             console.log(response.data); //set store state for logged in user
 
-            _this.$store.commit("setLoggedInUser", response.data); // event now that user has logged in (listen for it on root element)
-            //redirect to pets search
+            _this.$store.commit("setLoggedInUser", response.data); //redirect to pets search
 
+
+            _routes__WEBPACK_IMPORTED_MODULE_1__["default"].push("/pets");
           });
           console.log("logged in!");
         });

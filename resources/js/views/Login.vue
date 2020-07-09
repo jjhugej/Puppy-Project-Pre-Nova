@@ -53,6 +53,7 @@
 
 <script>
 import store from "../store";
+import router from "../routes";
 export default {
   data: function() {
     return {
@@ -73,9 +74,8 @@ export default {
             //set store state for logged in user
             this.$store.commit("setLoggedInUser", response.data);
 
-            // event now that user has logged in (listen for it on root element)
-
             //redirect to pets search
+            router.push("/pets");
           });
           console.log("logged in!");
         });
