@@ -2335,7 +2335,8 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         password: "",
         remember: false
-      }
+      },
+      errors: {}
     };
   },
   methods: {
@@ -2353,8 +2354,9 @@ __webpack_require__.r(__webpack_exports__);
 
             _routes__WEBPACK_IMPORTED_MODULE_1__["default"].push("/pets");
           });
-          console.log("logged in!");
-        });
+        })["catch"](function (errors) {
+          return _this.errors = errors.response.data.errors;
+        }); //.catch(error => (this.errors = error.response.data));
       });
     }
   }
@@ -4584,8 +4586,7 @@ var render = function() {
                         staticClass: "input",
                         attrs: {
                           type: "email",
-                          placeholder: "e.g. bobsmith@gmail.com",
-                          required: ""
+                          placeholder: "e.g. bobsmith@gmail.com"
                         },
                         domProps: { value: _vm.formData.email },
                         on: {
@@ -4597,7 +4598,13 @@ var render = function() {
                           }
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.errors.email
+                      ? _c("p", { staticClass: "has-text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.email[0]))
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "field" }, [
@@ -4616,11 +4623,7 @@ var render = function() {
                           }
                         ],
                         staticClass: "input",
-                        attrs: {
-                          type: "password",
-                          placeholder: "*******",
-                          required: ""
-                        },
+                        attrs: { type: "password", placeholder: "*******" },
                         domProps: { value: _vm.formData.password },
                         on: {
                           input: function($event) {
@@ -4635,7 +4638,13 @@ var render = function() {
                           }
                         }
                       })
-                    ])
+                    ]),
+                    _vm._v(" "),
+                    _vm.errors.password
+                      ? _c("p", { staticClass: "has-text-danger" }, [
+                          _vm._v(_vm._s(_vm.errors.password[0]))
+                        ])
+                      : _vm._e()
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "field" }, [

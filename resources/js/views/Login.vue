@@ -14,9 +14,9 @@
                     type="email"
                     placeholder="e.g. bobsmith@gmail.com"
                     class="input"
-                    required
                   />
                 </div>
+                <p class="has-text-danger" v-if="errors.email">{{errors.email[0]}}</p>
               </div>
               <div class="field">
                 <label for class="label">Password</label>
@@ -26,9 +26,9 @@
                     type="password"
                     placeholder="*******"
                     class="input"
-                    required
                   />
                 </div>
+                <p class="has-text-danger" v-if="errors.password">{{errors.password[0]}}</p>
               </div>
               <div class="field">
                 <label for class="checkbox">
@@ -61,24 +61,28 @@ export default {
         email: "",
         password: "",
         remember: false
-      }
+      },
+      errors: {}
     };
   },
   methods: {
     loginFormSubmit: function() {
       axios.get("/sanctum/csrf-cookie").then(response => {
-        axios.post("/login", this.formData).then(response => {
-          //get user that is logged in.
-          axios.get("/api/user").then(response => {
-            console.log(response.data);
-            //set store state for logged in user
-            this.$store.commit("setLoggedInUser", response.data);
+        axios
+          .post("/login", this.formData)
+          .then(response => {
+            //get user that is logged in.
+            axios.get("/api/user").then(response => {
+              console.log(response.data);
+              //set store state for logged in user
+              this.$store.commit("setLoggedInUser", response.data);
 
-            //redirect to pets search
-            router.push("/pets");
-          });
-          console.log("logged in!");
-        });
+              //redirect to pets search
+              router.push("/pets");
+            });
+          })
+          .catch(errors => (this.errors = errors.response.data.errors));
+        //.catch(error => (this.errors = error.response.data));
       });
     }
   }
