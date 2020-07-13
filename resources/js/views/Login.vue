@@ -73,10 +73,8 @@ export default {
           .then(response => {
             //get user that is logged in.
             axios.get("/api/user").then(response => {
-              console.log(response.data);
               //set store state for logged in user
               this.$store.commit("setLoggedInUser", response.data);
-
               //redirect to pets search
               router.push("/pets");
             });

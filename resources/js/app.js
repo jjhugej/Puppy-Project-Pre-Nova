@@ -34,8 +34,8 @@ const app = new Vue({
         loading: () => {
             return store.state.loading;
         },
-        showLoginMessage: () => {
-            return store.state.showLoginMessage;
+        showAlertMessage: () => {
+            return store.state.showAlertMessage;
         }
     }
 });

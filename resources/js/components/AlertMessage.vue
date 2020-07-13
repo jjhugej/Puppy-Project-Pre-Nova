@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <article class="message is-success">
+    <article class="message" :class="[alertType]">
       <div class="message-header">
-        <p>Success!</p>
-        <button @click="removeLoginMessage" class="delete" aria-label="delete"></button>
+        <p>{{title}}</p>
+        <button @click="removeAlertMessage" class="delete" aria-label="delete"></button>
       </div>
-      <div class="message-body">You have logged in!</div>
+      <div class="message-body">{{message}}</div>
     </article>
   </div>
 </template>
@@ -16,8 +16,19 @@ import store from "../store";
 export default {
   mounted() {},
   methods: {
-    removeLoginMessage: () => {
-      store.commit("removeLoginMessage");
+    removeAlertMessage: () => {
+      store.commit("removeAlertMessage");
+    }
+  },
+  computed: {
+    title: () => {
+      return store.state.alertTitle;
+    },
+    message: () => {
+      return store.state.alertMessage;
+    },
+    alertType: () => {
+      return store.state.alertType;
     }
   }
 };

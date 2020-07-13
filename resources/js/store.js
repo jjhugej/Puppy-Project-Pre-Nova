@@ -1,12 +1,16 @@
 import Vue from "vue";
 import Vuex, { Store } from "vuex";
+import router from "./routes";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
         loading: false,
-        showLoginMessage: false,
+        showAlertMessage: false,
+        alertType: "",
+        alertTitle: "",
+        alertMessage: "",
         loggedInUser: {
             isLoggedIn: false,
             usersName: "",
@@ -21,6 +25,24 @@ export default new Vuex.Store({
         isDoneLoading(state) {
             return (state.loading = false);
         },
+        loginRedirect(state) {
+            state.alertTitle = "Warning";
+            state.alertMessage = "You must log in to continue.";
+            state.alertType = "danger";
+            state.showAlertMessage = true;
+        },
+        setAlertMessage(state, alertData) {
+            console.log("setAlertMessageFired");
+            state.alertTitle = alertData.alertTitle;
+            state.alertMessage = alertData.alertMessage;
+            state.alertType = alertData.alertType;
+            state.showAlertMessage = true;
+            setTimeout(() => {
+                if (state.showAlertMessage === true) {
+                    this.commit("removeAlertMessage");
+                }
+            }, 5000);
+        },
         setLoggedInUser(state, { name, email, id }) {
             //here the payload is destructured from response.data(context coming from userLogin action and
             //response.data coming from Login.vue) and then assigned to the state variables
@@ -29,23 +51,43 @@ export default new Vuex.Store({
             state.loggedInUser.userEmail = email;
             state.loggedInUser.userId = id;
             state.loggedInUser.isLoggedIn = true;
-            state.showLoginMessage = true;
+
+            this.commit("setAlertMessage", {
+                alertTitle: "Success",
+                alertMessage: "You have been logged in",
+                alertType: "is-success"
+            });
+            /*  state.alertTitle = "Sucess";
+            state.alertMessage = "You have logged in!";
+            state.alertType = "success";
+            state.showAlertMessage = true; */
 
             //remove the login message after 10sec
             setTimeout(() => {
-                if (state.showLoginMessage === true) {
+                if (state.showAlertMessage === true) {
                     this.commit("removeLoginMessage");
                 }
             }, 10000);
         },
-        removeLoginMessage(state) {
-            console.log("removeMessage called");
-            return (state.showLoginMessage = false);
+        removeAlertMessage(state) {
+            return (state.showAlertMessage = false);
+        }
+    },
+    getters: {
+        getLoggedInUser: state => {
+            return state.loggedInUser;
         }
     },
     actions: {
+        //FUTURE TODO:refactor this to say loginUser ... it makes more sense
         userLogin(context) {
-            context.commit("setLoggedInUser", context);
+            console.log("fired");
+            //context.commit("setLoggedInUser", context);
+        },
+        redirectWithAlert(context, data) {
+            console.log(data);
+            context.commit("setAlertMessage", data);
+            router.push(data.url);
         }
     }
 });

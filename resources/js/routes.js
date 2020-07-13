@@ -24,6 +24,10 @@ let routes = [
     {
         path: "/pets/add",
         component: require("./views/AddPet.vue").default
+    },
+    {
+        path: "/dashboard",
+        component: require("./views/Dashboard.vue").default
     }
 ];
 export default new VueRouter({
