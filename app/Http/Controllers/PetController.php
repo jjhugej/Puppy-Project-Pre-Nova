@@ -14,7 +14,7 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::paginate(5);
+        $pets = Pet::paginate(20);
         
         return $pets;
     }

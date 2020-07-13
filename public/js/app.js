@@ -2089,6 +2089,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 //
 //
 //
@@ -2110,8 +2111,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "name", "image", "image_name"],
+  methods: {
+    liked: function liked() {
+      console.log(_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn);
+
+      if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
+        //check if user is logged in and get user info
+        //future todo: this is very similar to what is called in the dashboard
+        //refactor to keep it DRY
+        axios.get("/api/user").then(function (response) {
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
+        })["catch"](function (errors) {
+          if (errors.response.status === 401) {
+            //401 status is unauthorized, redirect to login with flash message.
+            _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch("redirectWithAlert", {
+              url: "/login",
+              alertTitle: "Log In",
+              alertMessage: "You must log in to continue",
+              alertType: "is-danger"
+            });
+          }
+        });
+      }
+    }
+  },
   mounted: function mounted() {}
 });
 
@@ -2452,6 +2479,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2467,7 +2502,31 @@ __webpack_require__.r(__webpack_exports__);
       pets: []
     };
   },
-  computed: {},
+  computed: {
+    showNextPageBtn: function showNextPageBtn() {
+      if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
+        //remove next link if these two are equal
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showLastPageBtn: function showLastPageBtn() {
+      if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
+        //remove next link if these two are equal
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showBackPageBtn: function showBackPageBtn() {
+      if (this.petPaginate.currentPage === 1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
   methods: {
     setPaginator: function setPaginator(data) {
       this.petPaginate.currentPage = data.current_page;
@@ -2481,31 +2540,36 @@ __webpack_require__.r(__webpack_exports__);
     getNextPage: function getNextPage() {
       var _this = this;
 
-      if (this.petPaginate.currentPage === this.petPaginate.lastPage) {//remove next link if these two are equal
-      } else {
-        axios.get(this.petPaginate.nextPageUrl).then(function (response) {
-          console.log(response.data);
-          _this.pets = [];
-          response.data.data.forEach(function (pet) {
-            _this.pets.push(pet);
+      axios.get(this.petPaginate.nextPageUrl).then(function (response) {
+        _this.pets = [];
+        response.data.data.forEach(function (pet) {
+          _this.pets.push(pet);
 
-            _this.setPaginator(response.data);
-          });
-        })["catch"](function (error) {
-          console.log(error);
+          _this.setPaginator(response.data);
         });
-      }
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     getPrevPage: function getPrevPage() {
       var _this2 = this;
 
       axios.get(this.petPaginate.prevPageUrl).then(function (response) {
-        console.log(response.data);
         _this2.pets = [];
         response.data.data.forEach(function (pet) {
           _this2.pets.push(pet);
 
           _this2.setPaginator(response.data);
+        });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
         });
       })["catch"](function (error) {
         console.log(error);
@@ -2515,7 +2579,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get(this.petPaginate.firstPageUrl).then(function (response) {
-        console.log(response.data);
         _this3.pets = [];
         response.data.data.forEach(function (pet) {
           _this3.pets.push(pet);
@@ -2530,7 +2593,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this4 = this;
 
       axios.get(this.petPaginate.lastPageUrl).then(function (response) {
-        console.log(response.data);
         _this4.pets = [];
         response.data.data.forEach(function (pet) {
           _this4.pets.push(pet);
@@ -2547,7 +2609,6 @@ __webpack_require__.r(__webpack_exports__);
     var _this5 = this;
 
     axios.get("/pets").then(function (response) {
-      console.log(response.data);
       response.data.data.forEach(function (pet) {
         _this5.pets.push(pet);
 
@@ -2711,7 +2772,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n  height: 90vh;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.lds-heart[data-v-a7b8c78c] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 80px;\r\n  height: 80px;\r\n  transform: rotate(45deg);\r\n  transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n  top: 32px;\r\n  left: 32px;\r\n  position: absolute;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\r\n  -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n          animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  content: \" \";\r\n  position: absolute;\r\n  display: block;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  left: -24px;\r\n  border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n  top: -24px;\r\n  border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n  height: 110vh;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.lds-heart[data-v-a7b8c78c] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 80px;\r\n  height: 80px;\r\n  transform: rotate(45deg);\r\n  transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n  top: 32px;\r\n  left: 32px;\r\n  position: absolute;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\r\n  -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n          animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  content: \" \";\r\n  position: absolute;\r\n  display: block;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  left: -24px;\r\n  border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n  top: -24px;\r\n  border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\r\n", ""]);
 
 // exports
 
@@ -2825,7 +2886,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-4072d618] {\r\n  margin: 10px;\n}\n.pet-search-navigation-btns[data-v-4072d618] {\r\n  padding: 0 10px;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-4072d618] {\r\n  margin: 10px;\n}\n.navigationBtns[data-v-4072d618] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\n.pet-search-navigation-btns[data-v-4072d618] {\r\n  padding: 0 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -4477,22 +4538,17 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(0)
+      _c("footer", { staticClass: "card-footer" }, [
+        _c("a", { staticClass: "card-footer-item", on: { click: _vm.liked } }, [
+          _vm._v("Like")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "card-footer-item" }, [_vm._v("More")])
+      ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("footer", { staticClass: "card-footer" }, [
-      _c("a", { staticClass: "card-footer-item" }, [_vm._v("Like")]),
-      _vm._v(" "),
-      _c("a", { staticClass: "card-footer-item" }, [_vm._v("More")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -4937,50 +4993,45 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section" }, [
     _c("div", { staticClass: "container" }, [
-      _c("span", [
-        _c(
-          "a",
-          {
-            staticClass: "pet-search-navigation-btns",
-            on: { click: _vm.getPrevPage }
-          },
-          [_vm._v("Back")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("span", [
-        _c(
-          "a",
-          {
-            staticClass: "pet-search-navigation-btns",
-            on: { click: _vm.getNextPage }
-          },
-          [_vm._v("Next")]
-        )
-      ]),
-      _vm._v(" "),
-      _c("span", [
-        _c(
-          "a",
-          {
-            staticClass: "pet-search-navigation-btns",
-            on: { click: _vm.getLastPage }
-          },
-          [_vm._v("Last")]
-        )
-      ]),
-      _vm._v(" "),
       _c(
         "div",
         { staticClass: "columns is-multiline" },
         _vm._l(_vm.pets, function(pet) {
           return _c("pet-card", {
             key: pet.id,
-            attrs: { name: pet.name, image: pet.image_name }
+            attrs: { id: pet.id, name: pet.name, image: pet.image_name }
           })
         }),
         1
-      )
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "navigationBtns" }, [
+        _c("span", [
+          _vm.showBackPageBtn
+            ? _c(
+                "a",
+                {
+                  staticClass: "pet-search-navigation-btns button is-danger",
+                  on: { click: _vm.getPrevPage }
+                },
+                [_vm._v("Back")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _vm.showNextPageBtn
+            ? _c(
+                "a",
+                {
+                  staticClass: "pet-search-navigation-btns button is-link",
+                  on: { click: _vm.getNextPage }
+                },
+                [_vm._v("More>")]
+              )
+            : _vm._e()
+        ])
+      ])
     ])
   ])
 }
@@ -22346,7 +22397,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
           id = _ref.id;
       //here the payload is destructured from response.data(context coming from userLogin action and
       //response.data coming from Login.vue) and then assigned to the state variables
-      console.log("setLoggedInUser called");
       state.loggedInUser.usersName = name;
       state.loggedInUser.userEmail = email;
       state.loggedInUser.userId = id;
@@ -22355,12 +22405,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
         alertTitle: "Success",
         alertMessage: "You have been logged in",
         alertType: "is-success"
-      });
-      /*  state.alertTitle = "Sucess";
-      state.alertMessage = "You have logged in!";
-      state.alertType = "success";
-      state.showAlertMessage = true; */
-      //remove the login message after 10sec
+      }); //remove the login message after timeout
 
       setTimeout(function () {
         if (state.showAlertMessage === true) {

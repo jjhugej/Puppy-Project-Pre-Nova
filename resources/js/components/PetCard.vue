@@ -11,8 +11,9 @@
           <p class="has-text-centered">{{ name }}</p>
         </div>
       </div>-->
+
       <footer class="card-footer">
-        <a class="card-footer-item">Like</a>
+        <a class="card-footer-item" v-on:click="liked">Like</a>
         <a class="card-footer-item">More</a>
       </footer>
     </div>
@@ -20,8 +21,35 @@
 </template>
 
 <script>
+import store from "../store";
 export default {
   props: ["id", "name", "image", "image_name"],
+  methods: {
+    liked: function() {
+      console.log(store.getters.getLoggedInUser.isLoggedIn);
+      if (store.getters.getLoggedInUser.isLoggedIn === false) {
+        //check if user is logged in and get user info
+        //future todo: this is very similar to what is called in the dashboard
+        //refactor to keep it DRY
+        axios
+          .get("/api/user")
+          .then(response => {
+            store.commit("setLoggedInUser", response.data);
+          })
+          .catch(errors => {
+            if (errors.response.status === 401) {
+              //401 status is unauthorized, redirect to login with flash message.
+              store.dispatch("redirectWithAlert", {
+                url: "/login",
+                alertTitle: "Log In",
+                alertMessage: "You must log in to continue",
+                alertType: "is-danger"
+              });
+            }
+          });
+      }
+    }
+  },
   mounted() {}
 };
 </script>

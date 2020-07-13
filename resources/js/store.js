@@ -46,7 +46,6 @@ export default new Vuex.Store({
         setLoggedInUser(state, { name, email, id }) {
             //here the payload is destructured from response.data(context coming from userLogin action and
             //response.data coming from Login.vue) and then assigned to the state variables
-            console.log("setLoggedInUser called");
             state.loggedInUser.usersName = name;
             state.loggedInUser.userEmail = email;
             state.loggedInUser.userId = id;
@@ -57,12 +56,8 @@ export default new Vuex.Store({
                 alertMessage: "You have been logged in",
                 alertType: "is-success"
             });
-            /*  state.alertTitle = "Sucess";
-            state.alertMessage = "You have logged in!";
-            state.alertType = "success";
-            state.showAlertMessage = true; */
 
-            //remove the login message after 10sec
+            //remove the login message after timeout
             setTimeout(() => {
                 if (state.showAlertMessage === true) {
                     this.commit("removeLoginMessage");
