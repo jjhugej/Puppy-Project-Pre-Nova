@@ -2120,23 +2120,30 @@ __webpack_require__.r(__webpack_exports__);
       console.log(_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn);
 
       if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
-        //check if user is logged in and get user info
-        //future todo: this is very similar to what is called in the dashboard
-        //refactor to keep it DRY
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+          something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
         axios.get("/api/user").then(function (response) {
           _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
         })["catch"](function (errors) {
+          console.log(errors);
+
           if (errors.response.status === 401) {
             //401 status is unauthorized, redirect to login with flash message.
             _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch("redirectWithAlert", {
               url: "/login",
               alertTitle: "Log In",
-              alertMessage: "You must log in to continue",
+              alertMessage: "You must log in to like an animal",
               alertType: "is-danger"
             });
           }
         });
-      }
+      } //end user check
+      //once user is logged in, post to persist liked pets for current user
+
     }
   },
   mounted: function mounted() {}
@@ -2319,8 +2326,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
-//
-//
 //
 //
 //
@@ -2772,7 +2777,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n  height: 110vh;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.lds-heart[data-v-a7b8c78c] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 80px;\r\n  height: 80px;\r\n  transform: rotate(45deg);\r\n  transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n  top: 32px;\r\n  left: 32px;\r\n  position: absolute;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\r\n  -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n          animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  content: \" \";\r\n  position: absolute;\r\n  display: block;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  left: -24px;\r\n  border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n  top: -24px;\r\n  border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\r\n", ""]);
+exports.push([module.i, "\n.loading-container[data-v-a7b8c78c] {\r\n  height: 101vh;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.lds-heart[data-v-a7b8c78c] {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 80px;\r\n  height: 80px;\r\n  transform: rotate(45deg);\r\n  transform-origin: 40px 40px;\n}\n.lds-heart div[data-v-a7b8c78c] {\r\n  top: 32px;\r\n  left: 32px;\r\n  position: absolute;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\r\n  -webkit-animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\r\n          animation: lds-heart-data-v-a7b8c78c 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);\n}\n.lds-heart div[data-v-a7b8c78c]:after,\r\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  content: \" \";\r\n  position: absolute;\r\n  display: block;\r\n  width: 32px;\r\n  height: 32px;\r\n  background: rgb(255, 46, 46);\n}\n.lds-heart div[data-v-a7b8c78c]:before {\r\n  left: -24px;\r\n  border-radius: 50% 0 0 50%;\n}\n.lds-heart div[data-v-a7b8c78c]:after {\r\n  top: -24px;\r\n  border-radius: 50% 50% 0 0;\n}\n@-webkit-keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\n@keyframes lds-heart-data-v-a7b8c78c {\n0% {\r\n    transform: scale(0.95);\n}\n5% {\r\n    transform: scale(1.1);\n}\n39% {\r\n    transform: scale(0.85);\n}\n45% {\r\n    transform: scale(1);\n}\n60% {\r\n    transform: scale(0.95);\n}\n100% {\r\n    transform: scale(0.9);\n}\n}\r\n", ""]);
 
 // exports
 
@@ -2848,7 +2853,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-63cd6604] {\r\n  height: 80vh;\r\n\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-63cd6604] {\r\n  width: 40%;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-63cd6604] {\r\n  z-index: 99;\r\n  font-size: 40px;\r\n  font-weight: 600;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-63cd6604] {\r\n  background-color: white;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-63cd6604] {\r\n  border-bottom: solid 1px white;\r\n  color: black;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\n.landing[data-v-63cd6604] {\r\n  height: 90vh;\r\n\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-63cd6604] {\r\n  width: 40%;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-63cd6604] {\r\n  z-index: 99;\r\n  font-size: 40px;\r\n  font-weight: 600;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-63cd6604] {\r\n  background-color: white;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-63cd6604] {\r\n  border-bottom: solid 1px white;\r\n  color: black;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -4726,33 +4731,27 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "landing" }, [
-    _c("div", { staticClass: "container" }, [
-      _c(
-        "div",
-        { staticClass: "hero-wrapper" },
-        [
-          _c("h1", [_vm._v("Your new forever friend is waiting!")]),
-          _vm._v(" "),
-          _c(
-            "transition",
-            { directives: [{ name: "enter", rawName: "v-enter" }] },
-            [
-              _c(
-                "router-link",
-                { staticClass: "hero-btn", attrs: { to: "/pets", exact: "" } },
-                [
-                  _c("div", { staticClass: "hero-cta" }, [
-                    _vm._v("Get Started")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
-    ])
+    _c(
+      "div",
+      { staticClass: "hero-wrapper" },
+      [
+        _c("h1", [_vm._v("Your new forever friend is waiting!")]),
+        _vm._v(" "),
+        _c(
+          "transition",
+          { directives: [{ name: "enter", rawName: "v-enter" }] },
+          [
+            _c(
+              "router-link",
+              { staticClass: "hero-btn", attrs: { to: "/pets", exact: "" } },
+              [_c("div", { staticClass: "hero-cta" }, [_vm._v("Get Started")])]
+            )
+          ],
+          1
+        )
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []

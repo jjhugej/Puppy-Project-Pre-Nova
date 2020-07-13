@@ -27,27 +27,35 @@ export default {
   methods: {
     liked: function() {
       console.log(store.getters.getLoggedInUser.isLoggedIn);
+
       if (store.getters.getLoggedInUser.isLoggedIn === false) {
-        //check if user is logged in and get user info
-        //future todo: this is very similar to what is called in the dashboard
-        //refactor to keep it DRY
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+
+        something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
         axios
           .get("/api/user")
           .then(response => {
             store.commit("setLoggedInUser", response.data);
           })
           .catch(errors => {
+            console.log(errors);
             if (errors.response.status === 401) {
               //401 status is unauthorized, redirect to login with flash message.
               store.dispatch("redirectWithAlert", {
                 url: "/login",
                 alertTitle: "Log In",
-                alertMessage: "You must log in to continue",
+                alertMessage: "You must log in to like an animal",
                 alertType: "is-danger"
               });
             }
           });
-      }
+      } //end user check
+
+      //once user is logged in, post to persist liked pets for current user
     }
   },
   mounted() {}

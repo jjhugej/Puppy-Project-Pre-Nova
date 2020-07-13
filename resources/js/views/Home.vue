@@ -1,14 +1,12 @@
 <template>
   <section class="landing">
-    <div class="container">
-      <div class="hero-wrapper">
-        <h1>Your new forever friend is waiting!</h1>
-        <transition v-enter>
-          <router-link to="/pets" class="hero-btn" exact>
-            <div class="hero-cta">Get Started</div>
-          </router-link>
-        </transition>
-      </div>
+    <div class="hero-wrapper">
+      <h1>Your new forever friend is waiting!</h1>
+      <transition v-enter>
+        <router-link to="/pets" class="hero-btn" exact>
+          <div class="hero-cta">Get Started</div>
+        </router-link>
+      </transition>
     </div>
   </section>
 </template>
@@ -25,8 +23,8 @@ export default {
 </script>
 
 <style scoped>
-.container {
-  height: 80vh;
+.landing {
+  height: 90vh;
 
   background-image: linear-gradient(
       to right,

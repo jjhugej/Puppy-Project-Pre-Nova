@@ -23,7 +23,7 @@
             class="pet-search-navigation-btns button is-link"
             v-if="showNextPageBtn"
             v-on:click="getNextPage"
-          >More></a>
+          >Next></a>
         </span>
       </div>
     </div>

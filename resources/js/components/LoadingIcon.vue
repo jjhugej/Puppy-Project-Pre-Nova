@@ -14,7 +14,7 @@ export default {
 
 <style scoped>
 .loading-container {
-  height: 110vh;
+  height: 101vh;
   display: flex;
   justify-content: center;
   align-items: center;
