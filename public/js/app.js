@@ -2322,10 +2322,157 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //get logged in user
+  data: function data() {
+    return {
+      petPaginate: {
+        currentPage: "",
+        lastPage: "",
+        firstPageUrl: "",
+        lastPageUrl: "",
+        nextPageUrl: "",
+        prevPageUrl: ""
+      },
+      pets: []
+    };
+  },
+  computed: {
+    showNextPageBtn: function showNextPageBtn() {
+      if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
+        //remove next link if these two are equal
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showLastPageBtn: function showLastPageBtn() {
+      if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
+        //remove next link if these two are equal
+        return false;
+      } else {
+        return true;
+      }
+    },
+    showBackPageBtn: function showBackPageBtn() {
+      if (this.petPaginate.currentPage === 1) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+  },
+  methods: {
+    setPaginator: function setPaginator(data) {
+      //console.log(data);
+      this.petPaginate.currentPage = data.current_page;
+      this.petPaginate.lastPage = data.last_page;
+      this.petPaginate.firstPageUrl = data.first_page_url;
+      this.petPaginate.lastPageUrl = data.last_page_url;
+      this.petPaginate.nextPageUrl = data.next_page_url;
+      this.petPaginate.prevPageUrl = data.prev_page_url;
+    },
+    //future todo: refactor all of these page methods into one
+    getNextPage: function getNextPage() {
+      var _this = this;
+
+      axios.get(this.petPaginate.nextPageUrl).then(function (response) {
+        _this.pets = [];
+        response.data.data.forEach(function (pet) {
+          _this.pets.push(pet);
+
+          _this.setPaginator(response.data);
+        });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getPrevPage: function getPrevPage() {
+      var _this2 = this;
+
+      axios.get(this.petPaginate.prevPageUrl).then(function (response) {
+        _this2.pets = [];
+        response.data.data.forEach(function (pet) {
+          _this2.pets.push(pet);
+
+          _this2.setPaginator(response.data);
+        });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getFirstPage: function getFirstPage() {
+      var _this3 = this;
+
+      axios.get(this.petPaginate.firstPageUrl).then(function (response) {
+        _this3.pets = [];
+        response.data.data.forEach(function (pet) {
+          _this3.pets.push(pet);
+
+          _this3.setPaginator(response.data);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    getLastPage: function getLastPage() {
+      var _this4 = this;
+
+      axios.get(this.petPaginate.lastPageUrl).then(function (response) {
+        _this4.pets = [];
+        response.data.data.forEach(function (pet) {
+          console.log(response);
+
+          _this4.pets.push(pet);
+
+          _this4.setPaginator(response.data);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
   beforeCreate: function beforeCreate() {
+    //get logged in user before the view is created, if user is not logged in redirect to login
     if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
       //if user is not set in vue store, get the user
       axios.get("/api/user").then(function (response) {
@@ -2341,11 +2488,22 @@ __webpack_require__.r(__webpack_exports__);
             alertType: "is-danger"
           });
         }
-      }); //errors.response.status
-      //router.push("/login");
-
-      /* this.errors = errors.response.data.errors */
+      });
     }
+  },
+  mounted: function mounted() {
+    var _this5 = this;
+
+    axios.get("/pets/liked").then(function (response) {
+      //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
+      response.data.data.forEach(function (pet) {
+        _this5.pets.push(pet);
+
+        _this5.setPaginator(response.data);
+      });
+    })["catch"](function (error) {
+      console.log(error);
+    });
   }
 });
 
@@ -4780,7 +4938,54 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("h1", [_vm._v("user dashboard")])
+  return _c("section", { staticClass: "section" }, [
+    _c("div", { staticClass: "container" }, [
+      _c(
+        "div",
+        { staticClass: "columns is-multiline" },
+        _vm._l(_vm.pets, function(pet) {
+          return _c("pet-card", {
+            key: pet.id,
+            attrs: {
+              id: pet.id,
+              name: pet.name,
+              is_liked: pet.is_liked,
+              image: pet.image_name
+            }
+          })
+        }),
+        1
+      ),
+      _vm._v(" "),
+      _c("div", { staticClass: "navigationBtns" }, [
+        _c("span", [
+          _vm.showBackPageBtn
+            ? _c(
+                "a",
+                {
+                  staticClass: "pet-search-navigation-btns button is-danger",
+                  on: { click: _vm.getPrevPage }
+                },
+                [_vm._v("Back")]
+              )
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("span", [
+          _vm.showNextPageBtn
+            ? _c(
+                "a",
+                {
+                  staticClass: "pet-search-navigation-btns button is-link",
+                  on: { click: _vm.getNextPage }
+                },
+                [_vm._v("Next>")]
+              )
+            : _vm._e()
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

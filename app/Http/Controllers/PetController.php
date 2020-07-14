@@ -137,6 +137,11 @@ class PetController extends Controller
 
         return 'success';
     }
+    public function likedPets(){
+        $user = Auth::user();
+
+        return $user->pets()->paginate(10);
+    }
     
     
 }
