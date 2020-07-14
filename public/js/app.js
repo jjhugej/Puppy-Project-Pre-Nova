@@ -2163,6 +2163,43 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         console.log(errors);
       });
+    },
+    unLiked: function unLiked() {
+      var _this2 = this;
+
+      if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+          something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
+        axios.get("/api/user").then(function (response) {
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data); //once user is logged in, post to persist liked pets for current user
+        })["catch"](function (errors) {
+          console.log(errors);
+
+          if (errors.response.status === 401) {
+            //401 status is unauthorized, redirect to login with flash message.
+            _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch("redirectWithAlert", {
+              url: "/login",
+              alertTitle: "Log In",
+              alertMessage: "You must log in to like an animal",
+              alertType: "is-danger"
+            });
+          }
+        });
+      } //end user check
+
+
+      axios.post("/pets/unlike/" + this.id).then(function (response) {
+        _this2.updateLikeStatus();
+
+        console.log("pet unliked");
+        console.log(response);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   mounted: function mounted() {
@@ -4581,7 +4618,7 @@ var render = function() {
         _vm.likedStatus
           ? _c(
               "a",
-              { staticClass: "card-footer-item", on: { click: _vm.liked } },
+              { staticClass: "card-footer-item", on: { click: _vm.unLiked } },
               [_vm._v("LikeDDD")]
             )
           : _vm._e(),

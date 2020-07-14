@@ -129,6 +129,14 @@ class PetController extends Controller
 
         return 'success';
     }
+    public function unlike($id){
+        $user = Auth::user();
+        //return $user;
+        // TODO: FINISH LINKING USERS WITH LIKED PETS WITH ATTACH() method
+        $user->pets()->detach($id);
+
+        return 'success';
+    }
     
     
 }
