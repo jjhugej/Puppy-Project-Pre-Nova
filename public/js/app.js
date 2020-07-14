@@ -2116,9 +2116,20 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "name", "image", "image_name", "is_liked"],
+  data: function data() {
+    return {
+      likedStatus: false
+    };
+  },
   computed: {},
   methods: {
+    updateLikeStatus: function updateLikeStatus() {
+      console.log("updateLikeStatus fired");
+      this.likedStatus = !this.likedStatus;
+    },
     liked: function liked() {
+      var _this = this;
+
       if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
         /* 
         future todo: this is very similar to what is called in the dashboard
@@ -2145,6 +2156,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
       axios.post("/pets/like/" + this.id).then(function (response) {
+        _this.updateLikeStatus();
+
         console.log("pet liked");
         console.log(response);
       })["catch"](function (errors) {
@@ -2152,7 +2165,11 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    if (this.is_liked !== undefined) {
+      this.likedStatus = this.is_liked;
+    }
+  }
 });
 
 /***/ }),
@@ -4553,7 +4570,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("footer", { staticClass: "card-footer" }, [
-        !_vm.is_liked
+        !_vm.likedStatus
           ? _c(
               "a",
               { staticClass: "card-footer-item", on: { click: _vm.liked } },
@@ -4561,7 +4578,7 @@ var render = function() {
             )
           : _vm._e(),
         _vm._v(" "),
-        _vm.is_liked
+        _vm.likedStatus
           ? _c(
               "a",
               { staticClass: "card-footer-item", on: { click: _vm.liked } },

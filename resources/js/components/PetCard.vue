@@ -13,8 +13,8 @@
       </div>-->
 
       <footer class="card-footer">
-        <a class="card-footer-item" v-if="!is_liked" v-on:click="liked">Like</a>
-        <a class="card-footer-item" v-if="is_liked" v-on:click="liked">LikeDDD</a>
+        <a class="card-footer-item" v-if="!likedStatus" v-on:click="liked">Like</a>
+        <a class="card-footer-item" v-if="likedStatus" v-on:click="liked">LikeDDD</a>
         <a class="card-footer-item">More</a>
       </footer>
     </div>
@@ -25,8 +25,17 @@
 import store from "../store";
 export default {
   props: ["id", "name", "image", "image_name", "is_liked"],
+  data: function() {
+    return {
+      likedStatus: false
+    };
+  },
   computed: {},
   methods: {
+    updateLikeStatus: function() {
+      console.log("updateLikeStatus fired");
+      this.likedStatus = !this.likedStatus;
+    },
     liked: function() {
       if (store.getters.getLoggedInUser.isLoggedIn === false) {
         /* 
@@ -59,6 +68,7 @@ export default {
       axios
         .post("/pets/like/" + this.id)
         .then(response => {
+          this.updateLikeStatus();
           console.log("pet liked");
           console.log(response);
         })
@@ -67,7 +77,11 @@ export default {
         });
     }
   },
-  mounted() {}
+  mounted() {
+    if (this.is_liked !== undefined) {
+      this.likedStatus = this.is_liked;
+    }
+  }
 };
 </script>
 <style scoped>
