@@ -7,7 +7,7 @@
           v-bind:key="pet.id"
           v-bind:id="pet.id"
           v-bind:name="pet.name"
-          v-bind:liked="pet.is_liked"
+          v-bind:is_liked="pet.is_liked"
           v-bind:image="pet.image_name"
         ></pet-card>
       </div>

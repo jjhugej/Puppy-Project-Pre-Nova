@@ -2115,8 +2115,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  //add prop -- liked -- and bring from petsearch component in order to conditionally render like
-  //TODO: conditionally render like or liked if the obj has that property
   props: ["id", "name", "image", "image_name", "is_liked"],
   computed: {},
   methods: {
@@ -5024,7 +5022,7 @@ var render = function() {
             attrs: {
               id: pet.id,
               name: pet.name,
-              liked: pet.is_liked,
+              is_liked: pet.is_liked,
               image: pet.image_name
             }
           })

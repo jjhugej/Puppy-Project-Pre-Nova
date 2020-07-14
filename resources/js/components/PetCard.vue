@@ -24,9 +24,6 @@
 <script>
 import store from "../store";
 export default {
-  //add prop -- liked -- and bring from petsearch component in order to conditionally render like
-
-  //TODO: conditionally render like or liked if the obj has that property
   props: ["id", "name", "image", "image_name", "is_liked"],
   computed: {},
   methods: {
