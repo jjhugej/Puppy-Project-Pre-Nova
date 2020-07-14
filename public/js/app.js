@@ -2112,13 +2112,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["id", "name", "image", "image_name"],
+  //add prop -- liked -- and bring from petsearch component in order to conditionally render like
+  //TODO: conditionally render like or liked if the obj has that property
+  props: ["id", "name", "image", "image_name", "is_liked"],
+  computed: {},
   methods: {
     liked: function liked() {
-      console.log(_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn);
-
       if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
         /* 
         future todo: this is very similar to what is called in the dashboard
@@ -2127,7 +2129,7 @@ __webpack_require__.r(__webpack_exports__);
          */
         //check if user status is set to isLoggedIn and if not get user info or redirect
         axios.get("/api/user").then(function (response) {
-          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data); //once user is logged in, post to persist liked pets for current user
         })["catch"](function (errors) {
           console.log(errors);
 
@@ -2142,8 +2144,14 @@ __webpack_require__.r(__webpack_exports__);
           }
         });
       } //end user check
-      //once user is logged in, post to persist liked pets for current user
 
+
+      axios.post("/pets/like/" + this.id).then(function (response) {
+        console.log("pet liked");
+        console.log(response);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
     }
   },
   mounted: function mounted() {}
@@ -2492,6 +2500,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2614,6 +2623,8 @@ __webpack_require__.r(__webpack_exports__);
     var _this5 = this;
 
     axios.get("/pets").then(function (response) {
+      console.log(response); //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
+
       response.data.data.forEach(function (pet) {
         _this5.pets.push(pet);
 
@@ -4544,9 +4555,21 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("footer", { staticClass: "card-footer" }, [
-        _c("a", { staticClass: "card-footer-item", on: { click: _vm.liked } }, [
-          _vm._v("Like")
-        ]),
+        !_vm.is_liked
+          ? _c(
+              "a",
+              { staticClass: "card-footer-item", on: { click: _vm.liked } },
+              [_vm._v("Like")]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.is_liked
+          ? _c(
+              "a",
+              { staticClass: "card-footer-item", on: { click: _vm.liked } },
+              [_vm._v("LikeDDD")]
+            )
+          : _vm._e(),
         _vm._v(" "),
         _c("a", { staticClass: "card-footer-item" }, [_vm._v("More")])
       ])
@@ -4998,7 +5021,12 @@ var render = function() {
         _vm._l(_vm.pets, function(pet) {
           return _c("pet-card", {
             key: pet.id,
-            attrs: { id: pet.id, name: pet.name, image: pet.image_name }
+            attrs: {
+              id: pet.id,
+              name: pet.name,
+              liked: pet.is_liked,
+              image: pet.image_name
+            }
           })
         }),
         1
@@ -5026,7 +5054,7 @@ var render = function() {
                   staticClass: "pet-search-navigation-btns button is-link",
                   on: { click: _vm.getNextPage }
                 },
-                [_vm._v("More>")]
+                [_vm._v("Next>")]
               )
             : _vm._e()
         ])
@@ -22377,7 +22405,6 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
     setAlertMessage: function setAlertMessage(state, alertData) {
       var _this = this;
 
-      console.log("setAlertMessageFired");
       state.alertTitle = alertData.alertTitle;
       state.alertMessage = alertData.alertMessage;
       state.alertType = alertData.alertType;

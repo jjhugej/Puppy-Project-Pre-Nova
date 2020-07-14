@@ -13,7 +13,8 @@
       </div>-->
 
       <footer class="card-footer">
-        <a class="card-footer-item" v-on:click="liked">Like</a>
+        <a class="card-footer-item" v-if="!is_liked" v-on:click="liked">Like</a>
+        <a class="card-footer-item" v-if="is_liked" v-on:click="liked">LikeDDD</a>
         <a class="card-footer-item">More</a>
       </footer>
     </div>
@@ -23,11 +24,13 @@
 <script>
 import store from "../store";
 export default {
-  props: ["id", "name", "image", "image_name"],
+  //add prop -- liked -- and bring from petsearch component in order to conditionally render like
+
+  //TODO: conditionally render like or liked if the obj has that property
+  props: ["id", "name", "image", "image_name", "is_liked"],
+  computed: {},
   methods: {
     liked: function() {
-      console.log(store.getters.getLoggedInUser.isLoggedIn);
-
       if (store.getters.getLoggedInUser.isLoggedIn === false) {
         /* 
         future todo: this is very similar to what is called in the dashboard
@@ -40,6 +43,7 @@ export default {
           .get("/api/user")
           .then(response => {
             store.commit("setLoggedInUser", response.data);
+            //once user is logged in, post to persist liked pets for current user
           })
           .catch(errors => {
             console.log(errors);
@@ -55,7 +59,15 @@ export default {
           });
       } //end user check
 
-      //once user is logged in, post to persist liked pets for current user
+      axios
+        .post("/pets/like/" + this.id)
+        .then(response => {
+          console.log("pet liked");
+          console.log(response);
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
     }
   },
   mounted() {}

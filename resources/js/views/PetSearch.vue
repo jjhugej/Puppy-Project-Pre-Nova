@@ -7,6 +7,7 @@
           v-bind:key="pet.id"
           v-bind:id="pet.id"
           v-bind:name="pet.name"
+          v-bind:liked="pet.is_liked"
           v-bind:image="pet.image_name"
         ></pet-card>
       </div>
@@ -154,6 +155,8 @@ export default {
     axios
       .get("/pets")
       .then(response => {
+        console.log(response);
+        //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
         response.data.data.forEach(pet => {
           this.pets.push(pet);
           this.setPaginator(response.data);

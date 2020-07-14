@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use Auth;
 use Illuminate\Http\Request;
 
 class PetController extends Controller
@@ -14,9 +15,22 @@ class PetController extends Controller
      */
     public function index()
     {
-        $pets = Pet::paginate(20);
-        
-        return $pets;
+        if(Auth::check()){
+            $user = Auth::user();
+            $userPetsArr = $user->pets()->pluck('id')->toArray();
+            $pets = Pet::paginate(20);
+
+             foreach($pets as $pet){
+                if(in_array($pet->id, $userPetsArr)){
+                    $pet->is_liked = true;
+                }
+            } 
+
+            return $pets;
+            /* return Pet::all()->users()->get(); */
+        }else{
+            return Pet::paginate(20);
+        }
     }
 
     /**
@@ -105,6 +119,15 @@ class PetController extends Controller
     public function destroy(Pet $pet)
     {
         //
+    }
+
+    public function like($id){
+        $user = Auth::user();
+        //return $user;
+        // TODO: FINISH LINKING USERS WITH LIKED PETS WITH ATTACH() method
+        $user->pets()->attach($id);
+
+        return 'success';
     }
     
     

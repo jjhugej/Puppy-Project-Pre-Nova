@@ -32,7 +32,6 @@ export default new Vuex.Store({
             state.showAlertMessage = true;
         },
         setAlertMessage(state, alertData) {
-            console.log("setAlertMessageFired");
             state.alertTitle = alertData.alertTitle;
             state.alertMessage = alertData.alertMessage;
             state.alertType = alertData.alertType;
