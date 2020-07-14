@@ -155,7 +155,6 @@ export default {
     axios
       .get("/pets")
       .then(response => {
-        console.log(response);
         //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
         response.data.data.forEach(pet => {
           this.pets.push(pet);

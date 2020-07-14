@@ -2063,6 +2063,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 //
 //
 //
@@ -2070,12 +2071,33 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
   },
+  computed: {
+    isLoggedIn: function isLoggedIn() {
+      return _store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn;
+    }
+  },
   methods: {},
-  mounted: function mounted() {}
+  mounted: function mounted() {
+    if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
+      /* 
+        future todo: this is very similar to what is called in the dashboard.
+        refactor to keep it DRY...
+          something like: checkUserLoginStatus()
+         */
+      //check if user status is set to isLoggedIn and if not get user info or redirect
+      axios.get("/api/user").then(function (response) {
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    }
+  }
 });
 
 /***/ }),
@@ -2124,7 +2146,6 @@ __webpack_require__.r(__webpack_exports__);
   computed: {},
   methods: {
     updateLikeStatus: function updateLikeStatus() {
-      console.log("updateLikeStatus fired");
       this.likedStatus = !this.likedStatus;
     },
     liked: function liked() {
@@ -2157,9 +2178,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/pets/like/" + this.id).then(function (response) {
         _this.updateLikeStatus();
-
-        console.log("pet liked");
-        console.log(response);
       })["catch"](function (errors) {
         console.log(errors);
       });
@@ -2175,7 +2193,7 @@ __webpack_require__.r(__webpack_exports__);
          */
         //check if user status is set to isLoggedIn and if not get user info or redirect
         axios.get("/api/user").then(function (response) {
-          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data); //once user is logged in, post to persist liked pets for current user
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
         })["catch"](function (errors) {
           console.log(errors);
 
@@ -2194,9 +2212,6 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.post("/pets/unlike/" + this.id).then(function (response) {
         _this2.updateLikeStatus();
-
-        console.log("pet unliked");
-        console.log(response);
       })["catch"](function (errors) {
         console.log(errors);
       });
@@ -2675,8 +2690,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this5 = this;
 
     axios.get("/pets").then(function (response) {
-      console.log(response); //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
-
+      //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
       response.data.data.forEach(function (pet) {
         _this5.pets.push(pet);
 
@@ -4558,20 +4572,35 @@ var render = function() {
     "div",
     { staticClass: "buttons columns is-mobile is-centered" },
     [
-      _c(
-        "router-link",
-        {
-          staticClass: "button is-primary",
-          attrs: { to: "/register", exact: "" }
-        },
-        [_vm._v("Sign Up")]
-      ),
+      !_vm.isLoggedIn
+        ? _c(
+            "router-link",
+            {
+              staticClass: "button is-primary",
+              attrs: { to: "/register", exact: "" }
+            },
+            [_vm._v("Sign Up")]
+          )
+        : _vm._e(),
       _vm._v(" "),
-      _c(
-        "router-link",
-        { staticClass: "button is-light", attrs: { to: "/login", exact: "" } },
-        [_vm._v("Login")]
-      )
+      !_vm.isLoggedIn
+        ? _c(
+            "router-link",
+            {
+              staticClass: "button is-light",
+              attrs: { to: "/login", exact: "" }
+            },
+            [_vm._v("Login")]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.isLoggedIn
+        ? _c(
+            "a",
+            { staticClass: "button is-warning", attrs: { href: "/logout" } },
+            [_vm._v("Logout")]
+          )
+        : _vm._e()
     ],
     1
   )

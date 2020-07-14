@@ -33,7 +33,6 @@ export default {
   computed: {},
   methods: {
     updateLikeStatus: function() {
-      console.log("updateLikeStatus fired");
       this.likedStatus = !this.likedStatus;
     },
     liked: function() {
@@ -69,8 +68,6 @@ export default {
         .post("/pets/like/" + this.id)
         .then(response => {
           this.updateLikeStatus();
-          console.log("pet liked");
-          console.log(response);
         })
         .catch(errors => {
           console.log(errors);
@@ -89,7 +86,6 @@ export default {
           .get("/api/user")
           .then(response => {
             store.commit("setLoggedInUser", response.data);
-            //once user is logged in, post to persist liked pets for current user
           })
           .catch(errors => {
             console.log(errors);
@@ -109,8 +105,6 @@ export default {
         .post("/pets/unlike/" + this.id)
         .then(response => {
           this.updateLikeStatus();
-          console.log("pet unliked");
-          console.log(response);
         })
         .catch(errors => {
           console.log(errors);
