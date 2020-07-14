@@ -156,6 +156,7 @@ export default {
       .get("/pets")
       .then(response => {
         //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
+        console.log(response.data.data);
         response.data.data.forEach(pet => {
           this.pets.push(pet);
           this.setPaginator(response.data);

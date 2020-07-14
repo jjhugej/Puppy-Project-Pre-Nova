@@ -1,6 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
+      <h1 class="section-header has-text-centered">Your Liked Pets</h1>
       <div class="columns is-multiline">
         <pet-card
           v-for="pet in pets"
@@ -182,6 +183,7 @@ export default {
       .then(response => {
         //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
         response.data.data.forEach(pet => {
+          console.log(response.data.data);
           this.pets.push(pet);
           this.setPaginator(response.data);
         });
@@ -192,3 +194,9 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.section-header {
+  font-size: 40px;
+}
+</style>

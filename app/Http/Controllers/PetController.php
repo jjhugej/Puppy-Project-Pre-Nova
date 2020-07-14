@@ -138,9 +138,18 @@ class PetController extends Controller
         return 'success';
     }
     public function likedPets(){
+  
         $user = Auth::user();
+            $userPetsArr = $user->pets()->pluck('id')->toArray();
+            $pets = $user->pets()->paginate(10);
 
-        return $user->pets()->paginate(10);
+             foreach($pets as $pet){
+                if(in_array($pet->id, $userPetsArr)){
+                    $pet->is_liked = true;
+                }
+            } 
+
+            return $pets;
     }
     
     

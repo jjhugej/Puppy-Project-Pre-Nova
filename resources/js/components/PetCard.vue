@@ -112,6 +112,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.is_liked);
     if (this.is_liked !== undefined) {
       this.likedStatus = this.is_liked;
     }
