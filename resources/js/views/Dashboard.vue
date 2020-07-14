@@ -1,8 +1,15 @@
 <template>
   <section class="section">
+    <h1 class="section-header has-text-centered">Welcome, {{usersName}}</h1>
+    <hr />
     <div class="container">
       <h1 class="section-header has-text-centered">Your Liked Pets</h1>
       <div class="columns is-multiline">
+        <div v-if="!hasLikedPets">
+          <p
+            class="has-text-centered"
+          >You haven't liked any pets! Go to pet search to find your new best friend!</p>
+        </div>
         <pet-card
           v-for="pet in pets"
           v-bind:key="pet.id"
@@ -49,6 +56,18 @@ export default {
     };
   },
   computed: {
+    usersName: function() {
+      /* return this.store.state.loggedInUser.usersName; */
+      let userName = store.getters.getLoggedInUser.usersName;
+      return userName.charAt(0).toUpperCase() + userName.slice(1);
+    },
+    hasLikedPets: function() {
+      if (this.pets.length < 1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     showNextPageBtn: function() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
         //remove next link if these two are equal
@@ -66,7 +85,7 @@ export default {
       }
     },
     showBackPageBtn: function() {
-      if (this.petPaginate.currentPage === 1) {
+      if (this.petPaginate.currentPage === 1 || this.pets.length < 1) {
         return false;
       } else {
         return true;

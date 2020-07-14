@@ -2354,6 +2354,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2370,6 +2377,18 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   computed: {
+    usersName: function usersName() {
+      /* return this.store.state.loggedInUser.usersName; */
+      var userName = _store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.usersName;
+      return userName.charAt(0).toUpperCase() + userName.slice(1);
+    },
+    hasLikedPets: function hasLikedPets() {
+      if (this.pets.length < 1) {
+        return false;
+      } else {
+        return true;
+      }
+    },
     showNextPageBtn: function showNextPageBtn() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
         //remove next link if these two are equal
@@ -2387,7 +2406,7 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     showBackPageBtn: function showBackPageBtn() {
-      if (this.petPaginate.currentPage === 1) {
+      if (this.petPaginate.currentPage === 1 || this.pets.length < 1) {
         return false;
       } else {
         return true;
@@ -4994,6 +5013,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", { staticClass: "section" }, [
+    _c("h1", { staticClass: "section-header has-text-centered" }, [
+      _vm._v("Welcome, " + _vm._s(_vm.usersName))
+    ]),
+    _vm._v(" "),
+    _c("hr"),
+    _vm._v(" "),
     _c("div", { staticClass: "container" }, [
       _c("h1", { staticClass: "section-header has-text-centered" }, [
         _vm._v("Your Liked Pets")
@@ -5002,18 +5027,30 @@ var render = function() {
       _c(
         "div",
         { staticClass: "columns is-multiline" },
-        _vm._l(_vm.pets, function(pet) {
-          return _c("pet-card", {
-            key: pet.id,
-            attrs: {
-              id: pet.id,
-              name: pet.name,
-              is_liked: pet.is_liked,
-              image: pet.image_name
-            }
+        [
+          !_vm.hasLikedPets
+            ? _c("div", [
+                _c("p", { staticClass: "has-text-centered" }, [
+                  _vm._v(
+                    "You haven't liked any pets! Go to pet search to find your new best friend!"
+                  )
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.pets, function(pet) {
+            return _c("pet-card", {
+              key: pet.id,
+              attrs: {
+                id: pet.id,
+                name: pet.name,
+                is_liked: pet.is_liked,
+                image: pet.image_name
+              }
+            })
           })
-        }),
-        1
+        ],
+        2
       ),
       _vm._v(" "),
       _c("div", { staticClass: "navigationBtns" }, [
