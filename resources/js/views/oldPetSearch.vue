@@ -1,26 +1,6 @@
 <template>
   <section class="section">
-    <h1 class="has-text-centered">Pet Search</h1>
     <div class="container">
-      <div class="search-options">
-        <div class="select">
-          <select v-model="selectFields.animalTypeSelect">
-            <option>All Animals</option>
-            <option>Dogs</option>
-            <option>Cats</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="select">
-          <select v-model="selectFields.animalAgeSelect">
-            <option>All Ages</option>
-            <option>Young</option>
-            <option>Middle Aged</option>
-            <option>Senior</option>
-          </select>
-        </div>
-        <button class="button is-success" @click="refineSearch">Search</button>
-      </div>
       <div class="columns is-multiline">
         <pet-card
           v-for="pet in pets"
@@ -64,11 +44,7 @@ export default {
         nextPageUrl: "",
         prevPageUrl: ""
       },
-      pets: [],
-      selectFields: {
-        animalTypeSelect: "All Animals",
-        animalAgeSelect: "All Ages"
-      }
+      pets: []
     };
   },
   computed: {
@@ -97,9 +73,6 @@ export default {
     }
   },
   methods: {
-    refineSearch: function() {
-      console.log(this.selectFields);
-    },
     setPaginator: function(data) {
       this.petPaginate.currentPage = data.current_page;
       this.petPaginate.lastPage = data.last_page;
@@ -206,22 +179,5 @@ section {
 }
 .pet-search-navigation-btns {
   padding: 0 10px;
-}
-.columns {
-  border-top: solid 0.5px grey;
-}
-h1 {
-  margin-bottom: 3vh;
-  font-size: 40px;
-}
-.search-options {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: flex-end;
-  margin-bottom: 20px;
-}
-.select {
-  padding: 0 5px;
 }
 </style>

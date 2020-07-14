@@ -141,11 +141,4 @@ p {
   align-items: center;
   padding: 1rem;
 }
-img {
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.card {
-  border-radius: 10px;
-}
 </style>
