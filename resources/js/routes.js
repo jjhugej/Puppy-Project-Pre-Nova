@@ -28,6 +28,12 @@ let routes = [
     {
         path: "/dashboard",
         component: require("./views/Dashboard.vue").default
+    },
+    {
+        path: "/pets/show",
+        name: "petShow",
+        props: true,
+        component: require("./views/PetShow.vue").default
     }
 ];
 export default new VueRouter({

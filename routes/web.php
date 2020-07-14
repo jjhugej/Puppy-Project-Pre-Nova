@@ -12,6 +12,7 @@ Route::post('/pets/add', 'PetController@store');
 
 
 Route::get('/pets', 'PetController@index');
+Route::get('/pets/show/{pet}', 'PetController@show');
 Route::get('/pets/liked', 'PetController@likedPets');
 
 Route::post('/pets/like/{id}', 'PetController@like');

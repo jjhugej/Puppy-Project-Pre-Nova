@@ -15,7 +15,8 @@
       <footer class="card-footer">
         <a class="card-footer-item" v-if="!likedStatus" v-on:click="liked">Like</a>
         <a class="card-footer-item" v-if="likedStatus" v-on:click="unLiked">LikeDDD</a>
-        <a class="card-footer-item">More</a>
+
+        <router-link :to="{name:'petShow', params:{petId}}" class="card-footer-item" exact>More</router-link>
       </footer>
     </div>
   </div>
@@ -27,7 +28,8 @@ export default {
   props: ["id", "name", "image", "image_name", "is_liked"],
   data: function() {
     return {
-      likedStatus: false
+      likedStatus: false,
+      petId: this.id
     };
   },
   computed: {},
@@ -112,7 +114,6 @@ export default {
     }
   },
   mounted() {
-    console.log(this.is_liked);
     if (this.is_liked !== undefined) {
       this.likedStatus = this.is_liked;
     }
