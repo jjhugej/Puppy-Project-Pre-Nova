@@ -15,6 +15,8 @@ Route::get('/pets', 'PetController@index');
 Route::get('/pets/show/{pet}', 'PetController@show');
 Route::get('/pets/liked', 'PetController@likedPets');
 
+Route::get('/pets/search/', 'PetController@refineSearch');
+
 Route::post('/pets/like/{id}', 'PetController@like');
 Route::post('/pets/unlike/{id}', 'PetController@unlike');
 

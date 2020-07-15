@@ -9,6 +9,20 @@
             <input v-model="name" class="input" type="text" placeholder="e.g Max" />
           </div>
         </div>
+        <div class="select">
+          <select v-model="animalType">
+            <option value="all">All Animals</option>
+            <option value="dog">Dogs</option>
+            <option value="cat">Cats</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="field">
+          <label class="label">Age</label>
+          <div class="control">
+            <input v-model="age" class="input" type="integer" placeholder="e.g Max" />
+          </div>
+        </div>
         <div class="field">
           <label class="label">Image</label>
           <div class="control">
@@ -35,6 +49,8 @@ export default {
   data: function() {
     return {
       name: "",
+      age: "",
+      animalType: "",
       image: "",
       imagePreview: ""
     };
@@ -53,6 +69,8 @@ export default {
     formSubmit() {
       let data = new FormData();
       data.append("name", this.name);
+      data.append("age", this.age);
+      data.append("animalType", this.animalType);
       data.append("image", this.image);
 
       axios
@@ -60,6 +78,8 @@ export default {
         .then(response => {
           console.log(response);
           this.name = "";
+          this.age = "";
+          this.animalType = "";
           this.image = "";
           this.imagePreview = "";
         })

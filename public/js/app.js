@@ -2395,10 +2395,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       name: "",
+      age: "",
+      animalType: "",
       image: "",
       imagePreview: ""
     };
@@ -2420,10 +2436,14 @@ __webpack_require__.r(__webpack_exports__);
 
       var data = new FormData();
       data.append("name", this.name);
+      data.append("age", this.age);
+      data.append("animalType", this.animalType);
       data.append("image", this.image);
       axios.post("pets/add", data).then(function (response) {
         console.log(response);
         _this2.name = "";
+        _this2.age = "";
+        _this2.animalType = "";
         _this2.image = "";
         _this2.imagePreview = "";
       })["catch"](function (response) {
@@ -2896,6 +2916,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2910,12 +2933,19 @@ __webpack_require__.r(__webpack_exports__);
       },
       pets: [],
       selectFields: {
-        animalTypeSelect: "All Animals",
-        animalAgeSelect: "All Ages"
+        animalTypeSelect: "all",
+        animalAgeSelect: "all"
       }
     };
   },
   computed: {
+    noMatches: function noMatches() {
+      if (this.pets.length < 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     showNextPageBtn: function showNextPageBtn() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
         //remove next link if these two are equal
@@ -2942,7 +2972,19 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     refineSearch: function refineSearch() {
-      console.log(this.selectFields);
+      var _this = this;
+
+      this.pets = [];
+      axios.get("pets/search?animal_type=" + this.selectFields.animalTypeSelect + "&age=" + this.selectFields.animalAgeSelect).then(function (response) {
+        console.log(response);
+        response.data.data.forEach(function (pet) {
+          _this.pets.push(pet);
+
+          _this.setPaginator(response.data);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
     },
     setPaginator: function setPaginator(data) {
       this.petPaginate.currentPage = data.current_page;
@@ -2954,28 +2996,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     //future todo: refactor all of these page methods into one
     getNextPage: function getNextPage() {
-      var _this = this;
-
-      axios.get(this.petPaginate.nextPageUrl).then(function (response) {
-        _this.pets = [];
-        response.data.data.forEach(function (pet) {
-          _this.pets.push(pet);
-
-          _this.setPaginator(response.data);
-        });
-        window.scrollTo({
-          top: 0,
-          left: 0,
-          behavior: "smooth"
-        });
-      })["catch"](function (error) {
-        console.log(error);
-      });
-    },
-    getPrevPage: function getPrevPage() {
       var _this2 = this;
 
-      axios.get(this.petPaginate.prevPageUrl).then(function (response) {
+      axios.get(this.petPaginate.nextPageUrl).then(function (response) {
         _this2.pets = [];
         response.data.data.forEach(function (pet) {
           _this2.pets.push(pet);
@@ -2991,24 +3014,29 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    getFirstPage: function getFirstPage() {
+    getPrevPage: function getPrevPage() {
       var _this3 = this;
 
-      axios.get(this.petPaginate.firstPageUrl).then(function (response) {
+      axios.get(this.petPaginate.prevPageUrl).then(function (response) {
         _this3.pets = [];
         response.data.data.forEach(function (pet) {
           _this3.pets.push(pet);
 
           _this3.setPaginator(response.data);
         });
+        window.scrollTo({
+          top: 0,
+          left: 0,
+          behavior: "smooth"
+        });
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    getLastPage: function getLastPage() {
+    getFirstPage: function getFirstPage() {
       var _this4 = this;
 
-      axios.get(this.petPaginate.lastPageUrl).then(function (response) {
+      axios.get(this.petPaginate.firstPageUrl).then(function (response) {
         _this4.pets = [];
         response.data.data.forEach(function (pet) {
           _this4.pets.push(pet);
@@ -3018,19 +3046,33 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    getLastPage: function getLastPage() {
+      var _this5 = this;
+
+      axios.get(this.petPaginate.lastPageUrl).then(function (response) {
+        _this5.pets = [];
+        response.data.data.forEach(function (pet) {
+          _this5.pets.push(pet);
+
+          _this5.setPaginator(response.data);
+        });
+      })["catch"](function (error) {
+        console.log(error);
+      });
     }
   },
   beforeCreate: function beforeCreate() {},
   mounted: function mounted() {
-    var _this5 = this;
+    var _this6 = this;
 
     axios.get("/pets").then(function (response) {
       //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
       console.log(response.data.data);
       response.data.data.forEach(function (pet) {
-        _this5.pets.push(pet);
+        _this6.pets.push(pet);
 
-        _this5.setPaginator(response.data);
+        _this6.setPaginator(response.data);
       });
     })["catch"](function (error) {
       console.log(error);
@@ -3060,6 +3102,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 //TODO: get petid passed in from router link in pet card
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3067,6 +3111,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       name: "",
+      age: null,
+      animalType: "",
       image: ""
     };
   },
@@ -3078,6 +3124,8 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/pets/show/" + this.petId).then(function (response) {
       console.log(response);
       _this.name = response.data.name;
+      _this.age = response.data.age;
+      _this.animalType = response.data.animal_type;
       _this.image = response.data.image_name;
     })["catch"](function (errors) {
       console.log(errors);
@@ -5515,6 +5563,76 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "select" }, [
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.animalType,
+                    expression: "animalType"
+                  }
+                ],
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.animalType = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { value: "all" } }, [
+                  _vm._v("All Animals")
+                ]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "dog" } }, [_vm._v("Dogs")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "cat" } }, [_vm._v("Cats")]),
+                _vm._v(" "),
+                _c("option", { attrs: { value: "other" } }, [_vm._v("Other")])
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "field" }, [
+            _c("label", { staticClass: "label" }, [_vm._v("Age")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "control" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.age,
+                    expression: "age"
+                  }
+                ],
+                staticClass: "input",
+                attrs: { type: "integer", placeholder: "e.g Max" },
+                domProps: { value: _vm.age },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.age = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
           _c("div", { staticClass: "field" }, [
             _c("label", { staticClass: "label" }, [_vm._v("Image")]),
             _vm._v(" "),
@@ -5991,13 +6109,15 @@ var render = function() {
               }
             },
             [
-              _c("option", [_vm._v("All Animals")]),
+              _c("option", { attrs: { value: "all" } }, [
+                _vm._v("All Animals")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("Dogs")]),
+              _c("option", { attrs: { value: "dog" } }, [_vm._v("Dogs")]),
               _vm._v(" "),
-              _c("option", [_vm._v("Cats")]),
+              _c("option", { attrs: { value: "cat" } }, [_vm._v("Cats")]),
               _vm._v(" "),
-              _c("option", [_vm._v("Other")])
+              _c("option", { attrs: { value: "other" } }, [_vm._v("Other")])
             ]
           )
         ]),
@@ -6033,13 +6153,19 @@ var render = function() {
               }
             },
             [
-              _c("option", [_vm._v("All Ages")]),
+              _c("option", { attrs: { value: "all" } }, [_vm._v("All Ages")]),
               _vm._v(" "),
-              _c("option", [_vm._v("Young")]),
+              _c("option", { attrs: { value: "less_than_one" } }, [
+                _vm._v("< 1 Year")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("Middle Aged")]),
+              _c("option", { attrs: { value: "less_than_five" } }, [
+                _vm._v("<5 Years")
+              ]),
               _vm._v(" "),
-              _c("option", [_vm._v("Senior")])
+              _c("option", { attrs: { value: "five_or_more" } }, [
+                _vm._v("5+ Years")
+              ])
             ]
           )
         ]),
@@ -6054,18 +6180,28 @@ var render = function() {
       _c(
         "div",
         { staticClass: "columns is-multiline" },
-        _vm._l(_vm.pets, function(pet) {
-          return _c("pet-card", {
-            key: pet.id,
-            attrs: {
-              id: pet.id,
-              name: pet.name,
-              is_liked: pet.is_liked,
-              image: pet.image_name
-            }
+        [
+          _vm.noMatches
+            ? _c("p", { staticClass: "has-text-centered" }, [
+                _vm._v("Sorry, we couldn't find any matches")
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm._l(_vm.pets, function(pet) {
+            return _c("pet-card", {
+              key: pet.id,
+              attrs: {
+                id: pet.id,
+                name: pet.name,
+                age: pet.age,
+                animal_type: pet.animal_type,
+                is_liked: pet.is_liked,
+                image: pet.image_name
+              }
+            })
           })
-        }),
-        1
+        ],
+        2
       ),
       _vm._v(" "),
       _c("div", { staticClass: "navigationBtns" }, [
@@ -6124,6 +6260,10 @@ var render = function() {
     _c("h1", [_vm._v("Pet Show View!")]),
     _vm._v(" "),
     _c("p", [_vm._v("Name:" + _vm._s(_vm.name))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("Age:" + _vm._s(_vm.age))]),
+    _vm._v(" "),
+    _c("p", [_vm._v("animal type:" + _vm._s(_vm.animalType))]),
     _vm._v(" "),
     _c("figure", { staticClass: "image is-4by3" }, [
       _c("img", { attrs: { src: _vm.image } })

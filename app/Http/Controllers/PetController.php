@@ -55,11 +55,15 @@ class PetController extends Controller
         if($request->ajax()){
             $validatedData = $this->validate($request, [
                 'name' => 'required|string',
+                'age' => 'required|integer',
+                'animalType' => 'required|string',
                 'image' => 'required|image',
             ]); 
         
             $pet = new Pet();
             $pet->name = $request->name;
+            $pet->age = $request->age;
+            $pet->animal_type = $request->animalType;
             $image_path = request()->file('image')->store('images');
             $pet->image = $image_path;
             $image_name = request()->file('image')->getClientOriginalName();
@@ -150,6 +154,33 @@ class PetController extends Controller
             } 
 
             return $pets;
+    }
+
+    public function refineSearch(Request $request){
+        $animal_type = request()->query('animal_type');
+        $age = request()->query('age');
+
+        
+        if($animal_type == 'all' && $age == 'all'){
+            return Pet::paginate(20);
+        }
+        elseif($age == 'all'){
+            return Pet::where('animal_type', $animal_type)->paginate(20);
+        }
+        elseif($age == 'less_than_one'){
+           return Pet::where('animal_type', $animal_type)->where('age', '<', 1)->paginate(20);
+        }elseif($age == 'less_than_five'){
+            return Pet::where('animal_type', $animal_type)->where('age', '<', 5)->paginate(20);
+        }elseif($age == 'five_or_more'){
+            return Pet::where('animal_type', $animal_type)->where('age', '>=', 5)->paginate(20);
+        }
+        else{
+            return 'something went wrong';
+            //return Pet::all();
+        }
+
+        /* $pets = Pet::where('animal_type', $animal_type)->where('age', $ageQuery)->get(); */
+
     }
     
     

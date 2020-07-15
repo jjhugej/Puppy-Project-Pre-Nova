@@ -5,28 +5,31 @@
       <div class="search-options">
         <div class="select">
           <select v-model="selectFields.animalTypeSelect">
-            <option>All Animals</option>
-            <option>Dogs</option>
-            <option>Cats</option>
-            <option>Other</option>
+            <option value="all">All Animals</option>
+            <option value="dog">Dogs</option>
+            <option value="cat">Cats</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div class="select">
           <select v-model="selectFields.animalAgeSelect">
-            <option>All Ages</option>
-            <option>Young</option>
-            <option>Middle Aged</option>
-            <option>Senior</option>
+            <option value="all">All Ages</option>
+            <option value="less_than_one">< 1 Year</option>
+            <option value="less_than_five"><5 Years</option>
+            <option value="five_or_more">5+ Years</option>
           </select>
         </div>
         <button class="button is-success" @click="refineSearch">Search</button>
       </div>
       <div class="columns is-multiline">
+        <p class="has-text-centered" v-if="noMatches">Sorry, we couldn't find any matches</p>
         <pet-card
           v-for="pet in pets"
           v-bind:key="pet.id"
           v-bind:id="pet.id"
           v-bind:name="pet.name"
+          v-bind:age="pet.age"
+          v-bind:animal_type="pet.animal_type"
           v-bind:is_liked="pet.is_liked"
           v-bind:image="pet.image_name"
         ></pet-card>
@@ -66,12 +69,19 @@ export default {
       },
       pets: [],
       selectFields: {
-        animalTypeSelect: "All Animals",
-        animalAgeSelect: "All Ages"
+        animalTypeSelect: "all",
+        animalAgeSelect: "all"
       }
     };
   },
   computed: {
+    noMatches: function() {
+      if (this.pets.length < 1) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     showNextPageBtn: function() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
         //remove next link if these two are equal
@@ -98,7 +108,24 @@ export default {
   },
   methods: {
     refineSearch: function() {
-      console.log(this.selectFields);
+      this.pets = [];
+      axios
+        .get(
+          "pets/search?animal_type=" +
+            this.selectFields.animalTypeSelect +
+            "&age=" +
+            this.selectFields.animalAgeSelect
+        )
+        .then(response => {
+          console.log(response);
+          response.data.data.forEach(pet => {
+            this.pets.push(pet);
+            this.setPaginator(response.data);
+          });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     },
     setPaginator: function(data) {
       this.petPaginate.currentPage = data.current_page;
