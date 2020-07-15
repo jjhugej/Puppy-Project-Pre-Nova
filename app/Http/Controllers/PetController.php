@@ -168,11 +168,25 @@ class PetController extends Controller
             return Pet::where('animal_type', $animal_type)->paginate(20);
         }
         elseif($age == 'less_than_one'){
-           return Pet::where('animal_type', $animal_type)->where('age', '<', 1)->paginate(20);
+            if($animal_type !== 'all'){
+                return Pet::where('animal_type', $animal_type)->where('age', '<', 1)->paginate(20);
+            }else{
+                return Pet::where('age', '<',1)->paginate(20);
+            }
         }elseif($age == 'less_than_five'){
-            return Pet::where('animal_type', $animal_type)->where('age', '<', 5)->paginate(20);
+            if($animal_type !== 'all'){
+                return Pet::where('animal_type', $animal_type)->where('age', '<', 5)->paginate(20);
+            }else{
+                return Pet::where('age', '<', 5)->paginate(20);
+            }
+            
         }elseif($age == 'five_or_more'){
-            return Pet::where('animal_type', $animal_type)->where('age', '>=', 5)->paginate(20);
+             if($animal_type !== 'all'){
+                 return Pet::where('animal_type', $animal_type)->where('age', '>=', 5)->paginate(20);
+            }else{
+                return Pet::where('age', '>=', 5)->paginate(20);
+            }
+           
         }
         else{
             return 'something went wrong';

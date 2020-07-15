@@ -117,7 +117,6 @@ export default {
             this.selectFields.animalAgeSelect
         )
         .then(response => {
-          console.log(response);
           response.data.data.forEach(pet => {
             this.pets.push(pet);
             this.setPaginator(response.data);
@@ -204,13 +203,15 @@ export default {
         });
     }
   },
-  beforeCreate() {},
+  beforeCreate() {
+    //set loading screen before create
+  },
   mounted() {
+    //remove loading screen once ajax data is in
     axios
       .get("/pets")
       .then(response => {
         //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
-        console.log(response.data.data);
         response.data.data.forEach(pet => {
           this.pets.push(pet);
           this.setPaginator(response.data);

@@ -2976,7 +2976,6 @@ __webpack_require__.r(__webpack_exports__);
 
       this.pets = [];
       axios.get("pets/search?animal_type=" + this.selectFields.animalTypeSelect + "&age=" + this.selectFields.animalAgeSelect).then(function (response) {
-        console.log(response);
         response.data.data.forEach(function (pet) {
           _this.pets.push(pet);
 
@@ -3062,13 +3061,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     }
   },
-  beforeCreate: function beforeCreate() {},
+  beforeCreate: function beforeCreate() {//set loading screen before create
+  },
   mounted: function mounted() {
     var _this6 = this;
 
+    //remove loading screen once ajax data is in
     axios.get("/pets").then(function (response) {
       //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
-      console.log(response.data.data);
       response.data.data.forEach(function (pet) {
         _this6.pets.push(pet);
 
