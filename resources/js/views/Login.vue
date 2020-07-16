@@ -29,6 +29,7 @@
                   />
                 </div>
                 <p class="has-text-danger" v-if="errors.password">{{errors.password[0]}}</p>
+                <a target="_blank" href="/password/reset">Forgot Password?</a>
               </div>
               <div class="field">
                 <label for class="checkbox">

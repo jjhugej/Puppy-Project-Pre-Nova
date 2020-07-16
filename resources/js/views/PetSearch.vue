@@ -15,14 +15,14 @@
           <select v-model="selectFields.animalAgeSelect">
             <option value="all">All Ages</option>
             <option value="less_than_one">< 1 Year</option>
-            <option value="less_than_five"><5 Years</option>
+            <option value="less_than_five">< 5 Years</option>
             <option value="five_or_more">5+ Years</option>
           </select>
         </div>
         <button class="button is-success" @click="refineSearch">Search</button>
       </div>
       <div class="columns is-multiline">
-        <p class="has-text-centered" v-if="noMatches">Sorry, we couldn't find any matches</p>
+        <loading-icon v-if="noMatches"></loading-icon>
         <pet-card
           v-for="pet in pets"
           v-bind:key="pet.id"
@@ -84,7 +84,6 @@ export default {
     },
     showNextPageBtn: function() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
-        //remove next link if these two are equal
         return false;
       } else {
         return true;
@@ -92,7 +91,6 @@ export default {
     },
     showLastPageBtn: function() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
-        //remove next link if these two are equal
         return false;
       } else {
         return true;

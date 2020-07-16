@@ -127,16 +127,14 @@ class PetController extends Controller
 
     public function like($id){
         $user = Auth::user();
-        //return $user;
-        // TODO: FINISH LINKING USERS WITH LIKED PETS WITH ATTACH() method
+    
         $user->pets()->attach($id);
 
         return 'success';
     }
     public function unlike($id){
         $user = Auth::user();
-        //return $user;
-        // TODO: FINISH LINKING USERS WITH LIKED PETS WITH ATTACH() method
+      
         $user->pets()->detach($id);
 
         return 'success';
@@ -160,7 +158,7 @@ class PetController extends Controller
         $animal_type = request()->query('animal_type');
         $age = request()->query('age');
 
-        
+        // possible refactor here. There are too many if statements. 
         if($animal_type == 'all' && $age == 'all'){
             return Pet::paginate(20);
         }
@@ -190,10 +188,9 @@ class PetController extends Controller
         }
         else{
             return 'something went wrong';
-            //return Pet::all();
         }
 
-        /* $pets = Pet::where('animal_type', $animal_type)->where('age', $ageQuery)->get(); */
+       
 
     }
     

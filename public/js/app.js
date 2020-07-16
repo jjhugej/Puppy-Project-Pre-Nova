@@ -1998,6 +1998,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 //
 //
 //
@@ -2038,11 +2039,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       isActive: false
     };
+  },
+  computed: {
+    isLoggedIn: function isLoggedIn() {
+      return _store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn;
+    }
   },
   methods: {
     hamburgerClicked: function hamburgerClicked() {
@@ -2645,7 +2653,7 @@ __webpack_require__.r(__webpack_exports__);
       //if user is not set in vue store, get the user
       axios.get("/api/user").then(function (response) {
         //set store state for logged in user
-        _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data); //call and get the users dashboard info here
+        _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
       })["catch"](function (errors) {
         if (errors.response.status === 401) {
           //401 status is unauthorized, redirect to login with flash message.
@@ -2665,8 +2673,6 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("/pets/liked").then(function (response) {
       //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
       response.data.data.forEach(function (pet) {
-        console.log(response.data.data);
-
         _this5.pets.push(pet);
 
         _this5.setPaginator(response.data);
@@ -2763,6 +2769,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
 /* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
+//
 //
 //
 //
@@ -2948,7 +2955,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     showNextPageBtn: function showNextPageBtn() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
-        //remove next link if these two are equal
         return false;
       } else {
         return true;
@@ -2956,7 +2962,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     showLastPageBtn: function showLastPageBtn() {
       if (this.petPaginate.currentPage === this.petPaginate.lastPage) {
-        //remove next link if these two are equal
         return false;
       } else {
         return true;
@@ -5281,12 +5286,20 @@ var render = function() {
               _vm._v(" "),
               _c(
                 "router-link",
-                {
-                  staticClass: "navbar-item",
-                  attrs: { to: "/dashboard", exact: "" }
-                },
-                [_vm._v("Dashboard")]
-              )
+                { staticClass: "navbar-item", attrs: { to: "#", exact: "" } },
+                [_vm._v("News")]
+              ),
+              _vm._v(" "),
+              _vm.isLoggedIn
+                ? _c(
+                    "router-link",
+                    {
+                      staticClass: "navbar-item",
+                      attrs: { to: "/dashboard", exact: "" }
+                    },
+                    [_vm._v("Your Favorites")]
+                  )
+                : _vm._e()
             ],
             1
           ),
@@ -5959,7 +5972,13 @@ var render = function() {
                       ? _c("p", { staticClass: "has-text-danger" }, [
                           _vm._v(_vm._s(_vm.errors.password[0]))
                         ])
-                      : _vm._e()
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "a",
+                      { attrs: { target: "_blank", href: "/password/reset" } },
+                      [_vm._v("Forgot Password?")]
+                    )
                   ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "field" }, [
@@ -6160,7 +6179,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("option", { attrs: { value: "less_than_five" } }, [
-                _vm._v("<5 Years")
+                _vm._v("< 5 Years")
               ]),
               _vm._v(" "),
               _c("option", { attrs: { value: "five_or_more" } }, [
@@ -6181,11 +6200,7 @@ var render = function() {
         "div",
         { staticClass: "columns is-multiline" },
         [
-          _vm.noMatches
-            ? _c("p", { staticClass: "has-text-centered" }, [
-                _vm._v("Sorry, we couldn't find any matches")
-              ])
-            : _vm._e(),
+          _vm.noMatches ? _c("loading-icon") : _vm._e(),
           _vm._v(" "),
           _vm._l(_vm.pets, function(pet) {
             return _c("pet-card", {

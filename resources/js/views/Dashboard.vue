@@ -181,7 +181,6 @@ export default {
         .then(response => {
           //set store state for logged in user
           store.commit("setLoggedInUser", response.data);
-          //call and get the users dashboard info here
         })
         .catch(errors => {
           if (errors.response.status === 401) {
@@ -202,7 +201,6 @@ export default {
       .then(response => {
         //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
         response.data.data.forEach(pet => {
-          console.log(response.data.data);
           this.pets.push(pet);
           this.setPaginator(response.data);
         });
