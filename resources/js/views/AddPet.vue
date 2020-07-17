@@ -66,7 +66,27 @@ export default {
       };
     },
 
-    formSubmit() {}
+    formSubmit() {
+      let data = new FormData();
+      data.append("name", this.name);
+      data.append("age", this.age);
+      data.append("animalType", this.animalType);
+      data.append("image", this.image);
+
+      axios
+        .post("pets/add", data)
+        .then(response => {
+          console.log(response);
+          this.name = "";
+          this.age = "";
+          this.animalType = "";
+          this.image = "";
+          this.imagePreview = "";
+        })
+        .catch(response => {
+          console.log(response);
+        });
+    }
   },
 
   mounted() {}
@@ -76,7 +96,8 @@ export default {
 section {
   margin: 10px;
 }
-
+.container {
+}
 h1 {
   font-size: 36px;
 }

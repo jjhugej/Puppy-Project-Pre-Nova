@@ -12,6 +12,8 @@ Route::post('/pets/add', 'PetController@store');
 
 Route::post('/news/add', 'NewsController@store');
 
+Route::get('/news', 'NewsController@index');
+
 
 Route::get('/pets', 'PetController@index');
 Route::get('/pets/show/{pet}', 'PetController@show');

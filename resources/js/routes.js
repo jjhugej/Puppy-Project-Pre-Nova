@@ -34,6 +34,10 @@ let routes = [
         component: require("./views/Dashboard.vue").default
     },
     {
+        path: "/news",
+        component: require("./views/News.vue").default
+    },
+    {
         path: "/pets/show",
         name: "petShow",
         props: true,

@@ -39,7 +39,19 @@ export default {
     };
   },
   methods: {
-    formSubmit() {}
+    formSubmit() {
+      axios
+        .post("/news/add", {
+          title: this.title,
+          body: this.body
+        })
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   },
 
   mounted() {}
