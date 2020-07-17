@@ -199,7 +199,6 @@ export default {
     axios
       .get("/pets/liked")
       .then(response => {
-        //if the pet is liked by the user it will have a property of isLiked:true on the pet obj
         response.data.data.forEach(pet => {
           this.pets.push(pet);
           this.setPaginator(response.data);

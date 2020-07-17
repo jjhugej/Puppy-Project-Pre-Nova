@@ -15,6 +15,9 @@ class User extends Authenticatable
     public function pets(){
         return $this->belongsToMany('App\Pet','pet_user', 'user_id', 'pet_id');
     }
+    /* public function pets(){
+        return $this->belongsToMany('App\Pet','pet_user', 'user_id', 'pet_id');
+    } */
 
     /**
      * The attributes that are mass assignable.

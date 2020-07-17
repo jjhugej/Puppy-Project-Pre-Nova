@@ -17,7 +17,7 @@ class PetController extends Controller
     {
         if(Auth::check()){
             $user = Auth::user();
-            $userPetsArr = $user->pets()->pluck('id')->toArray();
+            $userPetsArr = $user->pets()->pluck('pets.id')->toArray();
             $pets = Pet::paginate(20);
 
              foreach($pets as $pet){
@@ -142,7 +142,7 @@ class PetController extends Controller
     public function likedPets(){
   
         $user = Auth::user();
-            $userPetsArr = $user->pets()->pluck('id')->toArray();
+            $userPetsArr = $user->pets()->pluck('pets.id')->toArray();
             $pets = $user->pets()->paginate(10);
 
              foreach($pets as $pet){

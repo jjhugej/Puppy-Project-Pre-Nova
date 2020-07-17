@@ -10,6 +10,8 @@ Route::get('/', function () {
 
 Route::post('/pets/add', 'PetController@store');
 
+Route::post('/news/add', 'NewsController@store');
+
 
 Route::get('/pets', 'PetController@index');
 Route::get('/pets/show/{pet}', 'PetController@show');
