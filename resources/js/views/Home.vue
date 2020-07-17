@@ -1,12 +1,14 @@
 <template>
-  <section class="landing">
-    <div class="hero-wrapper">
-      <h1>Your new forever friend is waiting!</h1>
-      <transition v-enter>
-        <router-link to="/pets" class="hero-btn" exact>
-          <div class="hero-cta">Get Started</div>
-        </router-link>
-      </transition>
+  <section>
+    <div class="landing">
+      <div class="hero-wrapper">
+        <h1>Find your new best friend!</h1>
+        <transition v-enter>
+          <router-link to="/pets" class="hero-btn" exact>
+            <div class="hero-cta">Get Started</div>
+          </router-link>
+        </transition>
+      </div>
     </div>
   </section>
 </template>
@@ -24,8 +26,7 @@ export default {
 
 <style scoped>
 .landing {
-  height: 90vh;
-
+  height: 100vh;
   background-image: linear-gradient(
       to right,
       rgba(0, 0, 0, 0.4),
@@ -38,6 +39,7 @@ export default {
 }
 .hero-wrapper {
   width: 40%;
+  margin-left: 5vw;
   height: 100%;
   padding: 30px;
   display: flex;
@@ -46,22 +48,26 @@ export default {
   justify-content: space-evenly;
 }
 h1 {
+  width: 80%;
   z-index: 99;
   font-size: 40px;
+  font-family: sans-serif;
   font-weight: 600;
   color: white;
   line-height: 50px;
 }
 .hero-btn {
-  background-color: white;
+  background-color: #3eebff;
   border-radius: 10px;
   padding: 20px;
 }
 .hero-cta {
-  border-bottom: solid 1px white;
-  color: black;
+  color: white;
   font-size: 30px;
   font-weight: 800;
   line-height: 30px;
+}
+section {
+  min-height: 200vh;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <router-link to="/" class="navbar-item" exact>Paws</router-link>
 
@@ -23,17 +23,21 @@
       v-bind:class="{'is-active has-text-centered': isActive}"
       class="navbar-menu"
     >
-      <div class="navbar-start">
+      <div class="navbar-end">
         <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
         <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
         <router-link to="/news/add" class="navbar-item" exact>Add News</router-link>
         <router-link to="/news" class="navbar-item" exact>News</router-link>
-        <router-link to="/dashboard" v-if="isLoggedIn" class="navbar-item" exact>Your Favorites</router-link>
-      </div>
+        <div class="navbar-item has-dropdown is-active">
+          <i class="fas fa-user-circle navbar-item"></i>
+          <div class="navbar-dropdown">
+            <a class="navbar-item">Overview</a>
+          </div>
+        </div>
 
-      <div class="navbar-end">
+        <router-link to="/dashboard" v-if="isLoggedIn" class="navbar-item" exact>Your Favorites</router-link>
         <div class="navbar-item">
-          <nav-bar-account-access></nav-bar-account-access>
+          <!-- <nav-bar-account-access></nav-bar-account-access> -->
         </div>
       </div>
     </div>
@@ -62,4 +66,15 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.user-icon-wrapper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+i {
+  font-size: 30px;
+}
+</style>

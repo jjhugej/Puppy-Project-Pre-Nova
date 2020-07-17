@@ -15,6 +15,7 @@
     <!-- Fonts -->
 
     <!-- Icons -->
+    <script src="https://kit.fontawesome.com/b5970854f5.js" crossorigin="anonymous"></script>
     
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
