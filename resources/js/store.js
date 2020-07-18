@@ -63,6 +63,10 @@ export default new Vuex.Store({
                 }
             }, 10000);
         },
+        userLogout(state) {
+            console.log("user logout fired");
+            state.loggedInUser.isLoggedIn = false;
+        },
         removeAlertMessage(state) {
             return (state.showAlertMessage = false);
         }
@@ -70,6 +74,9 @@ export default new Vuex.Store({
     getters: {
         getLoggedInUser: state => {
             return state.loggedInUser;
+        },
+        isUserLoggedIn: state => {
+            return state.loggedInUser.isLoggedIn;
         }
     },
     actions: {
@@ -78,6 +85,7 @@ export default new Vuex.Store({
             console.log("fired");
             //context.commit("setLoggedInUser", context);
         },
+
         redirectWithAlert(context, data) {
             console.log(data);
             context.commit("setAlertMessage", data);
