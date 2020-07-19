@@ -6,11 +6,10 @@
       <img class="purple-rectangle" src="images/purpleRectangleSVG.SVG" alt />
     </div>
     <home-thrift-store></home-thrift-store>
-    <div class="svg-img-wrapper">
-      <img class="purple-rectangle" src="images/purpleRectangleSVG.SVG" alt />
-    </div>
+
     <div id="kittenPic"></div>
     <home-search-pets></home-search-pets>
+    <home-help-us></home-help-us>
   </div>
 </template>
 
@@ -34,11 +33,13 @@ img {
 #kittenPicWrapper {
   height: 20vh;
   width: 100vw;
+  overflow: hidden;
 }
 #kittenPic {
-  width: 150px;
-  height: 100px;
-  /* background-image: url("public/images/group-of-kittens.jpg"); */
+  margin-top: -1vh;
+  width: 100%;
+  height: 400px;
+  background-image: url("/images/cat-and-dog.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: 50% 50%;
