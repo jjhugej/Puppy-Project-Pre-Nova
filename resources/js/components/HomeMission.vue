@@ -56,6 +56,7 @@ export default {
   padding: 0;
 }
 .home-mission-header {
+  font-style: italic;
   margin: 10vh 0;
   font-size: 40px;
 }
