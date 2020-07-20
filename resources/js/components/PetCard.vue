@@ -13,10 +13,16 @@
       </div>-->
 
       <footer class="card-footer">
-        <a class="card-footer-item" v-if="!likedStatus" v-on:click="liked">Like</a>
-        <a class="card-footer-item" v-if="likedStatus" v-on:click="unLiked">LikeDDD</a>
+        <a class="card-footer-item" v-if="!likedStatus" v-on:click="liked">
+          <i class="far fa-heart like-btn"></i>
+        </a>
+        <a class="card-footer-item" v-if="likedStatus" v-on:click="unLiked">
+          <i class="fas fa-heart like-btn"></i>
+        </a>
 
-        <router-link :to="{name:'petShow', params:{petId}}" class="card-footer-item" exact>More</router-link>
+        <router-link :to="{name:'petShow', params:{petId}}" class="card-footer-item" exact>
+          <i class="fas fa-list"></i>
+        </router-link>
       </footer>
     </div>
   </div>
@@ -121,6 +127,17 @@ export default {
 };
 </script>
 <style scoped>
+p {
+  font-size: 24px;
+  font-weight: 600;
+}
+.like-btn {
+  color: red;
+}
+.more-btn {
+  color: #00e4ff;
+}
+
 .bm--card-equal-height {
   display: flex;
   flex-direction: column;
@@ -130,16 +147,15 @@ export default {
 .bm--card-equal-height .card-footer {
   margin-top: auto;
 }
-p {
-  font-size: 24px;
-  font-weight: 600;
-}
 .card-content {
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+}
+.card-footer-item {
+  border: solid 1px #ededed;
 }
 img {
   border-top-left-radius: 10px;

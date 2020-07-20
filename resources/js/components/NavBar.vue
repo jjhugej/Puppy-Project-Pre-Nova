@@ -2,7 +2,10 @@
   <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="container">
       <div class="navbar-brand">
-        <router-link to="/" class="navbar-item" exact>Paws</router-link>
+        <router-link to="/" class="navbar-item" exact>
+          <h1>Paws</h1>
+          <i class="fas fa-paw"></i>
+        </router-link>
 
         <a
           role="button"
@@ -70,5 +73,43 @@ export default {
   mounted() {}
 };
 </script>
+  
+<style scoped>
+nav {
+  background-color: #00e4ff;
+}
+span {
+  height: 3px;
+}
+.navbar-item {
+  color: white !important;
+  font-size: 16px;
+  font-weight: 600;
+}
+.navbar-item:hover {
+  background-color: #32eaff;
+}
+a.navbar-item.is-active {
+  background-color: #45ebfd;
+}
 
-<style scoped></style>
+.navbar-brand {
+  background-color: #00e4ff;
+}
+.navbar-brand > i,
+h1 {
+  font-size: 22px;
+  font-weight: 700;
+  padding: 0 10px;
+}
+
+.burger {
+  color: white;
+}
+a.navbar-item {
+  background-color: #00e4ff;
+}
+.navbar-menu {
+  background-color: #00e4ff;
+}
+</style>

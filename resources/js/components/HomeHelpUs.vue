@@ -108,7 +108,7 @@ li {
   align-items: center;
   margin-top: 15px;
   padding: 10px 0;
-  border-bottom: solid 0.25px #9497ff;
+  border-bottom: solid 0.25px #00e4ff;
 }
 .help-link {
   width: 200px;

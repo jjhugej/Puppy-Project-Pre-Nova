@@ -1,14 +1,16 @@
 <template>
   <section class="section">
-    <div class="container">News</div>
-    <news-article
-      v-for="article in news"
-      :key="article.id"
-      :id="article.id"
-      :title="article.title"
-      :body="article.body"
-      :created_at="article.created_at"
-    ></news-article>
+    <div class="container">
+      <h1 id="news-header" class="has-text-centered">PAWS News</h1>
+      <news-article
+        v-for="article in news"
+        :key="article.id"
+        :id="article.id"
+        :title="article.title"
+        :body="article.body"
+        :created_at="article.created_at"
+      ></news-article>
+    </div>
   </section>
 </template>
 
@@ -42,5 +44,10 @@ export default {
 <style scoped>
 section {
   margin: 10px;
+}
+#news-header {
+  margin: 5vh 0;
+  font-size: 30px;
+  font-weight: 600;
 }
 </style>

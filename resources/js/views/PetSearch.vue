@@ -1,6 +1,5 @@
 <template>
   <section class="section">
-    <h1 class="has-text-centered">Pet Search</h1>
     <div class="container">
       <div class="search-options">
         <div class="select">
@@ -19,7 +18,10 @@
             <option value="five_or_more">5+ Years</option>
           </select>
         </div>
-        <button class="button is-success" @click="refineSearch">Search</button>
+        <button id="search-btn" class="button" @click="refineSearch">
+          <i class="fas fa-paw"></i>Search
+          <i class="fas fa-paw"></i>
+        </button>
       </div>
       <div class="columns is-multiline">
         <loading-icon v-if="noMatches"></loading-icon>
@@ -47,7 +49,7 @@
             class="pet-search-navigation-btns button is-link"
             v-if="showNextPageBtn"
             v-on:click="getNextPage"
-          >Next></a>
+          >Next</a>
         </span>
       </div>
     </div>
@@ -231,23 +233,49 @@ section {
   align-items: center;
 }
 .pet-search-navigation-btns {
-  padding: 0 10px;
+  padding: 10px 25px;
+  background-color: #00e4ff;
 }
 .columns {
+  padding: 15px;
   border-top: solid 0.5px grey;
 }
 h1 {
-  margin-bottom: 3vh;
-  font-size: 40px;
+  margin: 3vh 0;
+  font-size: 36px;
+  font-weight: 600;
+}
+button > i {
+  padding: 0 5px;
 }
 .search-options {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
+  align-items: center;
   justify-content: flex-end;
-  margin-bottom: 20px;
+  padding: 3vh 0;
 }
 .select {
   padding: 0 5px;
+}
+#search-btn {
+  background-color: #00e4ff;
+  color: white;
+  font-weight: 600;
+  font-size: 20px;
+}
+@media only screen and (max-width: 600px) {
+  .search-options {
+    justify-content: center;
+  }
+  .select {
+    flex-basis: 40%;
+    padding: 0;
+  }
+  #search-btn {
+    flex-basis: 100%;
+    margin: 20px;
+  }
 }
 </style>

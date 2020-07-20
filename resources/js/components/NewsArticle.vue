@@ -1,7 +1,9 @@
 <template>
   <div>
-    <h2>Title:{{ title }}</h2>
-    <p>Body:{{body}}</p>
+    <article class="message">
+      <h1>{{ title }}</h1>
+      <div class="message-body">{{body}}</div>
+    </article>
   </div>
 </template>
 
