@@ -10,6 +10,7 @@
     <div id="kittenPic"></div>
     <home-search-pets></home-search-pets>
     <home-help-us></home-help-us>
+    <test-footer></test-footer>
   </div>
 </template>
 

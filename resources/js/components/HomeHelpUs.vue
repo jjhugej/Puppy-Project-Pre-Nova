@@ -18,9 +18,9 @@
         class="help-paragraph"
       >By placing a dog, cat, puppy, or kittens into a foster home, we're able to take in even more of Swain County's homeless and abandoned pets.</p>
       <ul>
-        <li>-Zero medical expenses to you</li>
-        <li>-Food provided as needed</li>
-        <li>-Additional supplies available</li>
+        <li>- Zero medical expenses to you</li>
+        <li>- Food provided as needed</li>
+        <li>- Additional supplies available</li>
       </ul>
       <div class="help-link-wrapper">
         <a class="help-link has-text-centered" href="#">Learn More</a>
@@ -32,10 +32,10 @@
         class="help-paragraph"
       >Donate your time by volunteering at our shelter, thrift store, festivals or fundraisers. There are all kinds of things you can do to help!</p>
       <ul>
-        <li>-Socialize with the animals at the shelter</li>
-        <li>-Assist us at the thrift store</li>
-        <li>-Help at adoption events</li>
-        <li>-Work at fundraising events</li>
+        <li>- Socialize with the animals at the shelter</li>
+        <li>- Assist us at the thrift store</li>
+        <li>- Help at adoption events</li>
+        <li>- Work at fundraising events</li>
       </ul>
       <div class="help-link-wrapper">
         <a class="help-link has-text-centered" href="#">Sign Up</a>
@@ -43,7 +43,7 @@
     </div>
     <div class="help-section-wrapper">
       <h2 class="has-text-centered">Donate Dog/Cat Necessities</h2>
-      <p class="has-text-centered">Wish List Items</p>
+      <p class="wish-list-header has-text-centered">Wish List Items</p>
       <ul id="wish-list-ul">
         <div id="left-side">
           <li>Purina dog, puppy, cat, kitten chow</li>
@@ -95,6 +95,10 @@ ul {
   padding: 0 10vw;
   margin-top: 10px;
 }
+li {
+  padding: 8px 0;
+  font-size: 18px;
+}
 .help-paragraph {
   font-size: 18px;
 }
@@ -108,16 +112,24 @@ ul {
 }
 .help-link {
   width: 200px;
+  margin-bottom: 5vh;
   padding: 10px;
   border-radius: 15px;
   background-color: #00e4ff;
   color: white;
+}
+.help-section-wrapper {
+  margin-bottom: 10vh;
+}
+.wish-list-header {
+  text-decoration: underline;
+  margin-bottom: 3vh;
 }
 #wish-list-ul {
   display: flex;
   justify-content: space-between;
 }
 #wish-list-ul li {
-  font-size: 20px;
+  font-size: 18px;
 }
 </style>
