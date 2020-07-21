@@ -70,5 +70,6 @@ export default {
 .button {
   padding: 20px;
   margin: 20px 0;
+  font-weight: 700;
 }
 </style>

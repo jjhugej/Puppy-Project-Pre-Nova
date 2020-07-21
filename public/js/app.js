@@ -4649,7 +4649,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-1e604bbe] {\r\n  margin-top: 12vh;\n}\n.adopt-header[data-v-1e604bbe] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\n.adopt-sub-header[data-v-1e604bbe] {\r\n  margin-top: 5vh;\r\n  font-size: 24px;\r\n  font-weight: 400;\r\n  font-style: italic;\n}\n.adopt-info-wrapper[data-v-1e604bbe] {\r\n  padding: 5vh 10vw;\n}\n.adopt-paragraph[data-v-1e604bbe] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  padding: 18px 0;\n}\n.button[data-v-1e604bbe] {\r\n  padding: 20px;\r\n  margin: 20px 0;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-1e604bbe] {\r\n  margin-top: 12vh;\n}\n.adopt-header[data-v-1e604bbe] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\n.adopt-sub-header[data-v-1e604bbe] {\r\n  margin-top: 5vh;\r\n  font-size: 24px;\r\n  font-weight: 400;\r\n  font-style: italic;\n}\n.adopt-info-wrapper[data-v-1e604bbe] {\r\n  padding: 5vh 10vw;\n}\n.adopt-paragraph[data-v-1e604bbe] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  padding: 18px 0;\n}\n.button[data-v-1e604bbe] {\r\n  padding: 20px;\r\n  margin: 20px 0;\r\n  font-weight: 700;\n}\r\n", ""]);
 
 // exports
 
