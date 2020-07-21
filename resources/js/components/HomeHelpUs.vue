@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>Help Us Help The Animals</h1>
+    <h1 class="has-text-centered">Help Us Help The Animals</h1>
     <p>Since PAWS inception, we have adopted more than 3,000 animals to loving, forever homes and provided financial assistance for 11,000+ spay/neuter surgeries. We can’t do any of this without your generous donations.</p>
 
     <div class="help-section-wrapper">
@@ -83,6 +83,7 @@ h1 {
   font-size: 40px;
   font-style: italic;
   margin-left: 15px;
+  font-weight: 700;
 }
 h2 {
   font-size: 30px;
@@ -91,8 +92,9 @@ h2 {
 }
 p {
   padding: 0 10vw;
-  font-size: 22px;
+  font-size: 20px;
   margin-top: 5vh;
+  font-weight: 500;
 }
 ul {
   padding: 0 10vw;
@@ -101,9 +103,11 @@ ul {
 li {
   padding: 8px 0;
   font-size: 18px;
+  font-weight: 500;
 }
 .help-paragraph {
   font-size: 18px;
+  font-weight: 500;
 }
 .help-link-wrapper {
   display: flex;
@@ -120,6 +124,7 @@ li {
   border-radius: 15px;
   background-color: #00e4ff;
   color: white;
+  font-weight: 500;
 }
 .help-section-wrapper {
   margin-bottom: 10vh;
@@ -134,5 +139,6 @@ li {
 }
 #wish-list-ul li {
   font-size: 18px;
+  font-weight: 500;
 }
 </style>

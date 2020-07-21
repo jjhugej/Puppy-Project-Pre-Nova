@@ -30,7 +30,8 @@ h1 {
 }
 p {
   padding: 0 10vw;
-  font-size: 22px;
+  font-size: 20px;
+  font-weight: 500;
 }
 .search-pets-link {
   text-align: center;
@@ -38,10 +39,11 @@ p {
   padding: 20px;
   border-radius: 20px;
   color: white;
+  font-weight: 500;
 }
 span {
   font-size: 22px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0 5px;
 }
 i {

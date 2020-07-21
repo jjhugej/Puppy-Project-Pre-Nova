@@ -47,7 +47,7 @@ h1 {
   font-weight: 700;
 }
 h3 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 500;
   text-decoration: underline;
   margin-top: 10vh;
@@ -64,5 +64,6 @@ p {
 li {
   padding: 5px;
   list-style-type: circle;
+  font-weight: 500;
 }
 </style>

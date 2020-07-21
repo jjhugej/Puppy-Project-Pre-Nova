@@ -35,11 +35,13 @@ section {
 h1 {
   margin-left: 15px;
   font-size: 40px;
+  font-weight: 700;
   font-style: italic;
 }
 p {
   margin-top: 5vh;
   font-size: 22px;
+  font-weight: 500;
   padding: 0 6vw;
   text-align: center;
 }

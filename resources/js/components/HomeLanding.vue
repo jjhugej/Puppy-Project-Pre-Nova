@@ -50,7 +50,7 @@ export default {
 h1 {
   font-size: 40px;
   font-family: sans-serif;
-  font-weight: 600;
+  font-weight: 900;
   color: white;
   line-height: 50px;
 }

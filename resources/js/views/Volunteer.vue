@@ -66,7 +66,7 @@ ul {
 }
 li {
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 500;
 }
 .volunteer-info-wrapper {
   padding: 5vh 20vw;

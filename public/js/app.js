@@ -4356,7 +4356,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh1[data-v-ff5b6dae] {\r\n  font-size: 40px;\r\n  font-style: italic;\r\n  margin-left: 15px;\n}\nh2[data-v-ff5b6dae] {\r\n  font-size: 30px;\r\n  font-weight: 600;\r\n  margin-top: 10vh;\n}\np[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  font-size: 22px;\r\n  margin-top: 5vh;\n}\nul[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  margin-top: 10px;\n}\nli[data-v-ff5b6dae] {\r\n  padding: 8px 0;\r\n  font-size: 18px;\n}\n.help-paragraph[data-v-ff5b6dae] {\r\n  font-size: 18px;\n}\n.help-link-wrapper[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 15px;\r\n  padding: 10px 0;\r\n  border-bottom: solid 0.25px #00e4ff;\n}\n.help-link[data-v-ff5b6dae] {\r\n  width: 200px;\r\n  margin-bottom: 5vh;\r\n  padding: 10px;\r\n  border-radius: 15px;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\n.help-section-wrapper[data-v-ff5b6dae] {\r\n  margin-bottom: 10vh;\n}\n.wish-list-header[data-v-ff5b6dae] {\r\n  text-decoration: underline;\r\n  margin-bottom: 3vh;\n}\n#wish-list-ul[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-ff5b6dae] {\r\n  font-size: 18px;\n}\r\n", ""]);
+exports.push([module.i, "\nh1[data-v-ff5b6dae] {\r\n  font-size: 40px;\r\n  font-style: italic;\r\n  margin-left: 15px;\r\n  font-weight: 700;\n}\nh2[data-v-ff5b6dae] {\r\n  font-size: 30px;\r\n  font-weight: 600;\r\n  margin-top: 10vh;\n}\np[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  font-size: 20px;\r\n  margin-top: 5vh;\r\n  font-weight: 500;\n}\nul[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  margin-top: 10px;\n}\nli[data-v-ff5b6dae] {\r\n  padding: 8px 0;\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-paragraph[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-link-wrapper[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 15px;\r\n  padding: 10px 0;\r\n  border-bottom: solid 0.25px #00e4ff;\n}\n.help-link[data-v-ff5b6dae] {\r\n  width: 200px;\r\n  margin-bottom: 5vh;\r\n  padding: 10px;\r\n  border-radius: 15px;\r\n  background-color: #00e4ff;\r\n  color: white;\r\n  font-weight: 500;\n}\n.help-section-wrapper[data-v-ff5b6dae] {\r\n  margin-bottom: 10vh;\n}\n.wish-list-header[data-v-ff5b6dae] {\r\n  text-decoration: underline;\r\n  margin-bottom: 3vh;\n}\n#wish-list-ul[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\r\n", ""]);
 
 // exports
 
@@ -4375,7 +4375,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.landing[data-v-72d5931d] {\r\n  height: 100vh;\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-72d5931d] {\r\n  width: 40%;\r\n  margin-left: 5vw;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-72d5931d] {\r\n  font-size: 40px;\r\n  font-family: sans-serif;\r\n  font-weight: 600;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-72d5931d] {\r\n  background-color: #3eebff;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-72d5931d] {\r\n  color: white;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\n.landing[data-v-72d5931d] {\r\n  height: 100vh;\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-72d5931d] {\r\n  width: 40%;\r\n  margin-left: 5vw;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-72d5931d] {\r\n  font-size: 40px;\r\n  font-family: sans-serif;\r\n  font-weight: 900;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-72d5931d] {\r\n  background-color: #3eebff;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-72d5931d] {\r\n  color: white;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -4413,7 +4413,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-4661d634] {\r\n  padding: 2vw;\n}\nh1[data-v-4661d634] {\r\n  margin: 5vh 0 2vh 0;\r\n  font-style: italic;\r\n  font-size: 18px;\r\n  font-weight: 700;\n}\np[data-v-4661d634] {\r\n  padding: 0 10vw;\r\n  font-size: 22px;\n}\n.search-pets-link[data-v-4661d634] {\r\n  text-align: center;\r\n  background-color: #9497ff;\r\n  padding: 20px;\r\n  border-radius: 20px;\r\n  color: white;\n}\nspan[data-v-4661d634] {\r\n  font-size: 22px;\r\n  font-weight: 500;\r\n  margin: 0 5px;\n}\ni[data-v-4661d634] {\r\n  font-size: 22px;\n}\n.btn-wrapper[data-v-4661d634] {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-4661d634] {\r\n  padding: 2vw;\n}\nh1[data-v-4661d634] {\r\n  margin: 5vh 0 2vh 0;\r\n  font-style: italic;\r\n  font-size: 18px;\r\n  font-weight: 700;\n}\np[data-v-4661d634] {\r\n  padding: 0 10vw;\r\n  font-size: 20px;\r\n  font-weight: 500;\n}\n.search-pets-link[data-v-4661d634] {\r\n  text-align: center;\r\n  background-color: #9497ff;\r\n  padding: 20px;\r\n  border-radius: 20px;\r\n  color: white;\r\n  font-weight: 500;\n}\nspan[data-v-4661d634] {\r\n  font-size: 22px;\r\n  font-weight: 600;\r\n  margin: 0 5px;\n}\ni[data-v-4661d634] {\r\n  font-size: 22px;\n}\n.btn-wrapper[data-v-4661d634] {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 20px;\n}\r\n", ""]);
 
 // exports
 
@@ -4432,7 +4432,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-4bcd982e] {\r\n  margin: 10vh 0;\n}\nh1[data-v-4bcd982e] {\r\n  margin-left: 15px;\r\n  font-size: 40px;\r\n  font-style: italic;\n}\np[data-v-4bcd982e] {\r\n  margin-top: 5vh;\r\n  font-size: 22px;\r\n  padding: 0 6vw;\r\n  text-align: center;\n}\na[data-v-4bcd982e] {\r\n  margin-top: 10px;\r\n  color: white;\r\n  padding: 15px 25px;\r\n  border-radius: 20px;\n}\n#blue-link[data-v-4bcd982e] {\r\n  background-color: #00e4ff;\n}\n#purple-link[data-v-4bcd982e] {\r\n  background-color: #9497ff;\n}\n.btn-group-wrapper[data-v-4bcd982e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.btn-group[data-v-4bcd982e] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-4bcd982e] {\r\n  margin: 10vh 0;\n}\nh1[data-v-4bcd982e] {\r\n  margin-left: 15px;\r\n  font-size: 40px;\r\n  font-weight: 700;\r\n  font-style: italic;\n}\np[data-v-4bcd982e] {\r\n  margin-top: 5vh;\r\n  font-size: 22px;\r\n  font-weight: 500;\r\n  padding: 0 6vw;\r\n  text-align: center;\n}\na[data-v-4bcd982e] {\r\n  margin-top: 10px;\r\n  color: white;\r\n  padding: 15px 25px;\r\n  border-radius: 20px;\n}\n#blue-link[data-v-4bcd982e] {\r\n  background-color: #00e4ff;\n}\n#purple-link[data-v-4bcd982e] {\r\n  background-color: #9497ff;\n}\n.btn-group-wrapper[data-v-4bcd982e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.btn-group[data-v-4bcd982e] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\n}\r\n", ""]);
 
 // exports
 
@@ -4698,7 +4698,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-aaa44514] {\r\n  margin-top: 12vh;\n}\nh1[data-v-aaa44514] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\nh3[data-v-aaa44514] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  text-decoration: underline;\r\n  margin-top: 10vh;\r\n  margin-bottom: 10px;\n}\n.foster-info-wrapper[data-v-aaa44514] {\r\n  padding: 5vh 20vw;\n}\np[data-v-aaa44514] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  margin: 10px 0;\n}\nli[data-v-aaa44514] {\r\n  padding: 5px;\r\n  list-style-type: circle;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-aaa44514] {\r\n  margin-top: 12vh;\n}\nh1[data-v-aaa44514] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\nh3[data-v-aaa44514] {\r\n  font-size: 20px;\r\n  font-weight: 500;\r\n  text-decoration: underline;\r\n  margin-top: 10vh;\r\n  margin-bottom: 10px;\n}\n.foster-info-wrapper[data-v-aaa44514] {\r\n  padding: 5vh 20vw;\n}\np[data-v-aaa44514] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  margin: 10px 0;\n}\nli[data-v-aaa44514] {\r\n  padding: 5px;\r\n  list-style-type: circle;\r\n  font-weight: 500;\n}\r\n", ""]);
 
 // exports
 
@@ -4831,7 +4831,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.container[data-v-2f74b87b] {\r\n  margin-top: 12vh;\n}\nh1[data-v-2f74b87b] {\r\n  margin: 25px 0;\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\nh2[data-v-2f74b87b] {\r\n  font-size: 24px;\r\n  font-weight: 600;\r\n\r\n  text-decoration: underline;\n}\nh3[data-v-2f74b87b] {\r\n  font-size: 22px;\r\n  font-weight: 500;\n}\np[data-v-2f74b87b] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\nul[data-v-2f74b87b] {\r\n  list-style-type: circle;\r\n  margin-top: 10vh;\n}\nli[data-v-2f74b87b] {\r\n  font-size: 16px;\r\n  font-weight: 400;\n}\n.volunteer-info-wrapper[data-v-2f74b87b] {\r\n  padding: 5vh 20vw;\r\n  margin-bottom: 10vh;\n}\r\n", ""]);
+exports.push([module.i, "\n.container[data-v-2f74b87b] {\r\n  margin-top: 12vh;\n}\nh1[data-v-2f74b87b] {\r\n  margin: 25px 0;\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\nh2[data-v-2f74b87b] {\r\n  font-size: 24px;\r\n  font-weight: 600;\r\n\r\n  text-decoration: underline;\n}\nh3[data-v-2f74b87b] {\r\n  font-size: 22px;\r\n  font-weight: 500;\n}\np[data-v-2f74b87b] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\nul[data-v-2f74b87b] {\r\n  list-style-type: circle;\r\n  margin-top: 10vh;\n}\nli[data-v-2f74b87b] {\r\n  font-size: 16px;\r\n  font-weight: 500;\n}\n.volunteer-info-wrapper[data-v-2f74b87b] {\r\n  padding: 5vh 20vw;\r\n  margin-bottom: 10vh;\n}\r\n", ""]);
 
 // exports
 
@@ -6850,7 +6850,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("h1", [_vm._v("Help Us Help The Animals")]),
+    _c("h1", { staticClass: "has-text-centered" }, [
+      _vm._v("Help Us Help The Animals")
+    ]),
     _vm._v(" "),
     _c("p", [
       _vm._v(
