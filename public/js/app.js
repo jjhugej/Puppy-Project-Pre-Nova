@@ -3620,6 +3620,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../routes */ "./resources/js/routes.js");
 //
 //
 //
@@ -3637,6 +3638,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["petId"],
@@ -3645,11 +3658,41 @@ __webpack_require__.r(__webpack_exports__);
       name: "",
       age: null,
       animalType: "",
+      animalBreed: "",
+      animalSex: "",
       image: ""
     };
   },
-  methods: {},
-  computed: {},
+  methods: {
+    goBack: function goBack() {
+      _routes__WEBPACK_IMPORTED_MODULE_1__["default"].go(-1);
+    }
+  },
+  computed: {
+    animalAge: function animalAge() {
+      var totalDays = this.age * 365;
+      var years = Math.floor(totalDays / 365);
+      var months = Math.floor((totalDays - years * 365) / 30);
+      var days = Math.floor(totalDays - years * 365 - months * 30);
+      var result; //= years + " years and " + months + " months"; // + days + " days";
+
+      if (years == 0) {
+        result = months + " months";
+      } else if (months == 0) {
+        if (years < 2) {
+          result = years + " year";
+        } else {
+          result = years + " years";
+        }
+      } else if (years < 2 && months != 0) {
+        result = years + " year and " + months + " months";
+      } else {
+        result = years + " years and " + months + " months";
+      }
+
+      return result;
+    }
+  },
   mounted: function mounted() {
     var _this = this;
 
@@ -3657,6 +3700,8 @@ __webpack_require__.r(__webpack_exports__);
       _this.name = response.data.name;
       _this.age = response.data.age;
       _this.animalType = response.data.animal_type;
+      _this.animalBreed = response.data.animal_breed;
+      _this.animalSex = response.data.animal_sex;
       _this.image = response.data.image_name;
     })["catch"](function (errors) {
       console.log(errors);
@@ -4427,7 +4472,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 500;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
 
 // exports
 
@@ -8359,11 +8404,31 @@ var render = function() {
             _vm._v(_vm._s(_vm.name))
           ]),
           _vm._v(" "),
-          _c("p", [_vm._v("Age:" + _vm._s(_vm.age))]),
+          _c("p", [
+            _c("strong", [_vm._v("Age:")]),
+            _vm._v("\n          " + _vm._s(_vm.animalAge) + "\n        ")
+          ]),
           _vm._v(" "),
-          _c("p", [_vm._v(_vm._s(_vm.name) + " is " + _vm._s(_vm.animalType))])
+          _c("p", [
+            _c("strong", [_vm._v("Sex:")]),
+            _vm._v("\n          " + _vm._s(_vm.animalSex) + "\n        ")
+          ]),
+          _vm._v(" "),
+          _c("p", [
+            _c("strong", [_vm._v("Breed:")]),
+            _vm._v("\n          " + _vm._s(_vm.animalBreed) + "\n        ")
+          ])
         ])
-      ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "button is-medium is-warning",
+          on: { click: _vm.goBack }
+        },
+        [_vm._v("Back")]
+      )
     ])
   ])
 }
@@ -26673,7 +26738,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__
 
       setTimeout(function () {
         if (state.showAlertMessage === true) {
-          _this2.commit("removeLoginMessage");
+          _this2.commit("removeAlertMessage");
         }
       }, 3000);
     },

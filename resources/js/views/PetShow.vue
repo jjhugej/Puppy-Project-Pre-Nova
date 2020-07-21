@@ -7,16 +7,28 @@
         </figure>
         <div class="info-text-wrapper">
           <h1 class="has-text-centered">{{name}}</h1>
-          <p>Age:{{age}}</p>
-          <p>{{name}} is {{animalType}}</p>
+          <p>
+            <strong>Age:</strong>
+            {{animalAge}}
+          </p>
+          <p>
+            <strong>Sex:</strong>
+            {{animalSex}}
+          </p>
+          <p>
+            <strong>Breed:</strong>
+            {{animalBreed}}
+          </p>
         </div>
       </div>
+      <button @click="goBack" class="button is-medium is-warning">Back</button>
     </div>
   </section>
 </template>
 
 <script>
 import store from "../store";
+import router from "../routes";
 export default {
   props: ["petId"],
   data: function() {
@@ -24,11 +36,39 @@ export default {
       name: "",
       age: null,
       animalType: "",
+      animalBreed: "",
+      animalSex: "",
       image: ""
     };
   },
-  methods: {},
-  computed: {},
+  methods: {
+    goBack: function() {
+      router.go(-1);
+    }
+  },
+  computed: {
+    animalAge: function() {
+      var totalDays = this.age * 365;
+      var years = Math.floor(totalDays / 365);
+      var months = Math.floor((totalDays - years * 365) / 30);
+      var days = Math.floor(totalDays - years * 365 - months * 30);
+      var result; //= years + " years and " + months + " months"; // + days + " days";
+      if (years == 0) {
+        result = months + " months";
+      } else if (months == 0) {
+        if (years < 2) {
+          result = years + " year";
+        } else {
+          result = years + " years";
+        }
+      } else if (years < 2 && months != 0) {
+        result = years + " year and " + months + " months";
+      } else {
+        result = years + " years and " + months + " months";
+      }
+      return result;
+    }
+  },
   mounted() {
     axios
       .get("/pets/show/" + this.petId)
@@ -36,6 +76,8 @@ export default {
         this.name = response.data.name;
         this.age = response.data.age;
         this.animalType = response.data.animal_type;
+        this.animalBreed = response.data.animal_breed;
+        this.animalSex = response.data.animal_sex;
         this.image = response.data.image_name;
       })
       .catch(errors => {
@@ -50,7 +92,7 @@ section {
 }
 h1 {
   font-size: 30px;
-  font-weight: 500;
+  font-weight: 600;
 }
 p {
   font-size: 22px;
@@ -58,6 +100,12 @@ p {
 }
 img {
   max-width: auto;
+}
+strong {
+  font-weight: 500;
+}
+button {
+  margin: 25px 30px;
 }
 .image img {
   height: 256px;

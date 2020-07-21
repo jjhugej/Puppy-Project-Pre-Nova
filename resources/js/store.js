@@ -59,7 +59,7 @@ export default new Vuex.Store({
             //remove the login message after timeout
             setTimeout(() => {
                 if (state.showAlertMessage === true) {
-                    this.commit("removeLoginMessage");
+                    this.commit("removeAlertMessage");
                 }
             }, 3000);
         },
