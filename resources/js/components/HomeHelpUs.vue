@@ -9,7 +9,10 @@
         class="help-paragraph"
       >Your contribution to PAWS Animal Shelter is immediately put to use saving lives and helping animals in need. Donations to our 501(c)(3) nonprofit organization are used to provide food, medical care and shelter for animals in Swain County.</p>
       <div class="help-link-wrapper">
-        <a class="help-link has-text-centered" href="#">Donate</a>
+        <a
+          class="help-link has-text-centered"
+          href="https://www.paypal.com/donate/?token=5iCgR07iTKVCyuFA043Q5PFTf6RkCLGtAbKEvfsUeVuVHvhWTXjcZ2Lj06MaTFG_-O7TiW&country.x=US&locale.x="
+        >Donate</a>
       </div>
     </div>
     <div class="help-section-wrapper">
@@ -23,7 +26,7 @@
         <li>- Additional supplies available</li>
       </ul>
       <div class="help-link-wrapper">
-        <a class="help-link has-text-centered" href="#">Learn More</a>
+        <router-link class="help-link has-text-centered" to="/foster">Learn More</router-link>
       </div>
     </div>
     <div class="help-section-wrapper">
@@ -38,7 +41,7 @@
         <li>- Work at fundraising events</li>
       </ul>
       <div class="help-link-wrapper">
-        <a class="help-link has-text-centered" href="#">Sign Up</a>
+        <router-link class="help-link has-text-centered" to="/volunteer">Learn More</router-link>
       </div>
     </div>
     <div class="help-section-wrapper">

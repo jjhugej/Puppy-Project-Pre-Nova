@@ -6,11 +6,17 @@
       <div class="btn-group-wrapper">
         <div class="btn-group">
           <p>Shop on ebay</p>
-          <a id="blue-link" href="#">Shop now</a>
+          <a
+            id="blue-link"
+            href="http://givingworks.ebay.com/charity-auctions/charity/placing-animals-within-society-paws/35743/"
+          >Shop now</a>
         </div>
         <div class="btn-group">
           <p>Directions to our store</p>
-          <a id="purple-link" href="#">Get directions</a>
+          <a
+            id="purple-link"
+            href="https://www.google.com/maps/place/57+Lemons+Branch+Rd,+Bryson+City,+NC+28713/@35.4235556,-83.4581449,17z/data=!3m1!4b1!4m5!3m4!1s0x885948504e1e7d89:0x630886b6fe244093!8m2!3d35.4235512!4d-83.4559562"
+          >Get directions</a>
         </div>
       </div>
     </div>

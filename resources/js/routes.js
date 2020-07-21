@@ -38,6 +38,22 @@ let routes = [
         component: require("./views/News.vue").default
     },
     {
+        path: "/adopt",
+        component: require("./views/Adopt.vue").default
+    },
+    {
+        path: "/donate",
+        component: require("./views/Donate.vue").default
+    },
+    {
+        path: "/volunteer",
+        component: require("./views/Volunteer.vue").default
+    },
+    {
+        path: "/foster",
+        component: require("./views/Foster.vue").default
+    },
+    {
         path: "/pets/show",
         name: "petShow",
         props: true,

@@ -3,11 +3,11 @@
     <h1 class="has-text-centered">"You can keep a dog, but it is the cat who keeps people..."</h1>
     <p>PAWS has a large variety of dogs and cats available - adults and youngsters - and sometimes purebred animals. We screen all of our animals for temperament and sound health before adopting them out. When animals are relinquished by owners we are able to obtain a thorough history.</p>
     <div class="btn-wrapper">
-      <a href="#">
+      <router-link class="search-pets-link" to="/pets">
         <i class="fas fa-paw"></i>
         <span>Search Our Pets</span>
         <i class="fas fa-paw"></i>
-      </a>
+      </router-link>
     </div>
     <hr />
   </div>
@@ -32,7 +32,7 @@ p {
   padding: 0 10vw;
   font-size: 22px;
 }
-a {
+.search-pets-link {
   text-align: center;
   background-color: #9497ff;
   padding: 20px;
