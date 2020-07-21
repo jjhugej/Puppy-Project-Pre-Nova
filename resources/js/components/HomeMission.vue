@@ -86,6 +86,7 @@ export default {
 .mission-box-body {
   height: 150px;
   padding: 15px;
+  font-weight: 500;
 }
 .mission-box-link {
   text-align: center;
