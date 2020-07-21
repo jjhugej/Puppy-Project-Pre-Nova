@@ -3578,6 +3578,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -4592,7 +4595,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n#main-footer-wrapper[data-v-9481a210] {\r\n  padding: 2vh 2vw;\r\n  background-color: #9497ff;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  color: white;\n}\n.footer-secion-wrapper[data-v-9481a210] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  padding: 20px;\n}\n.hours-header[data-v-9481a210] {\r\n  padding: 10px 0;\r\n  text-decoration: underline;\n}\n.hours-of-operation-wrapper[data-v-9481a210] {\r\n  display: flex;\r\n  flex-direction: row;\n}\n.hours-sub-section[data-v-9481a210] {\r\n  padding: 0 10px;\n}\n.has-text-left[data-v-9481a210] {\r\n  padding: 10px 5px;\n}\n.footer-secion-wrapper p[data-v-9481a210] {\r\n  padding: 10px 0;\n}\n@media only screen and (max-width: 800px) {\n#main-footer-wrapper[data-v-9481a210] {\r\n    flex-wrap: wrap;\n}\n}\r\n", ""]);
+exports.push([module.i, "\n#main-footer-wrapper[data-v-9481a210] {\r\n  padding: 2vh 2vw;\r\n  background-color: #9497ff;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: space-between;\r\n  align-items: center;\r\n  color: white;\n}\n.footer-secion-wrapper[data-v-9481a210] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  padding: 20px;\n}\n.hours-header[data-v-9481a210] {\r\n  padding: 10px 0;\r\n  font-weight: 600;\r\n  text-decoration: underline;\n}\n.hours-of-operation-wrapper[data-v-9481a210] {\r\n  display: flex;\r\n  flex-direction: row;\n}\n.hours-sub-section[data-v-9481a210] {\r\n  padding: 0 10px;\n}\n.has-text-left[data-v-9481a210] {\r\n  padding: 10px 5px;\n}\n.footer-secion-wrapper p[data-v-9481a210] {\r\n  padding: 10px 0;\r\n  font-weight: 500;\n}\n@media only screen and (max-width: 800px) {\n#main-footer-wrapper[data-v-9481a210] {\r\n    flex-wrap: wrap;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -9076,32 +9079,43 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "section" }, [
-    _c(
-      "div",
-      { staticClass: "container" },
-      [
+  return _c(
+    "div",
+    [
+      _c("section", { staticClass: "section" }, [
         _c(
-          "h1",
-          { staticClass: "has-text-centered", attrs: { id: "news-header" } },
-          [_vm._v("PAWS News")]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.news, function(article) {
-          return _c("news-article", {
-            key: article.id,
-            attrs: {
-              id: article.id,
-              title: article.title,
-              body: article.body,
-              created_at: article.created_at
-            }
-          })
-        })
-      ],
-      2
-    )
-  ])
+          "div",
+          { staticClass: "container" },
+          [
+            _c(
+              "h1",
+              {
+                staticClass: "has-text-centered",
+                attrs: { id: "news-header" }
+              },
+              [_vm._v("PAWS News")]
+            ),
+            _vm._v(" "),
+            _vm._l(_vm.news, function(article) {
+              return _c("news-article", {
+                key: article.id,
+                attrs: {
+                  id: article.id,
+                  title: article.title,
+                  body: article.body,
+                  created_at: article.created_at
+                }
+              })
+            })
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("test-footer")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

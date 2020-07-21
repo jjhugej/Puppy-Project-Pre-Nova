@@ -58,6 +58,7 @@ export default {
 }
 .hours-header {
   padding: 10px 0;
+  font-weight: 600;
   text-decoration: underline;
 }
 .hours-of-operation-wrapper {
@@ -72,6 +73,7 @@ export default {
 }
 .footer-secion-wrapper p {
   padding: 10px 0;
+  font-weight: 500;
 }
 @media only screen and (max-width: 800px) {
   #main-footer-wrapper {
