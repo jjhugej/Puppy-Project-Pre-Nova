@@ -61,7 +61,7 @@ export default new Vuex.Store({
                 if (state.showAlertMessage === true) {
                     this.commit("removeLoginMessage");
                 }
-            }, 10000);
+            }, 3000);
         },
         userLogout(state) {
             console.log("user logout fired");

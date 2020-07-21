@@ -29,8 +29,6 @@ export default {
     axios
       .get("/news")
       .then(response => {
-        console.log(response.data);
-        /* this.news.push(response.data); */
         response.data.forEach(article => {
           this.news.push(article);
         });
