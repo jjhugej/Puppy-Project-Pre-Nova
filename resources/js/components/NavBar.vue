@@ -25,9 +25,13 @@
       <div id="navbarBarMenu" v-bind:class="{ 'is-active': isActive }" class="navbar-menu">
         <div class="navbar-end">
           <router-link to="/pets" class="navbar-item" exact>Pet Search</router-link>
-          <router-link to="/dashboard" v-if="isLoggedIn" class="navbar-item" exact>Your Favorites</router-link>
-          <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link>
-          <router-link to="/news/add" class="navbar-item" exact>Add News</router-link>
+          <router-link to="/dashboard" v-if="isLoggedIn" class="navbar-item" exact>Favorites</router-link>
+          <!-- <router-link to="/pets/add" class="navbar-item" exact>Add Pet</router-link> -->
+          <!-- <router-link to="/news/add" class="navbar-item" exact>Add News</router-link> -->
+          <router-link to="/adopt" class="navbar-item" exact>Adopt</router-link>
+          <router-link to="/donate" class="navbar-item" exact>Donate</router-link>
+          <router-link to="/volunteer" class="navbar-item" exact>Volunteer</router-link>
+          <router-link to="/foster" class="navbar-item" exact>Foster</router-link>
           <router-link to="/news" class="navbar-item" exact>News</router-link>
           <router-link v-if="!isLoggedIn" to="/login" class="navbar-item" exact>Sign In</router-link>
           <a v-if="isLoggedIn" @click="logOutUser" class="navbar-item">Log Out</a>

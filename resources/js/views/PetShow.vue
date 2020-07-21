@@ -6,7 +6,7 @@
           <img class="is-rounded" :src="image" />
         </figure>
         <div class="info-text-wrapper">
-          <h1 class="has-text-centered">{{name}}</h1>
+          <h1 class="has-text-centered">{{animalName}}</h1>
           <p>
             <strong>Age:</strong>
             {{animalAge}}
@@ -21,7 +21,9 @@
           </p>
         </div>
       </div>
-      <button @click="goBack" class="button is-medium">Back</button>
+      <button @click="goBack" class="button is-medium">
+        <i class="fas fa-long-arrow-alt-left"></i>Back
+      </button>
     </div>
   </section>
 </template>
@@ -47,6 +49,9 @@ export default {
     }
   },
   computed: {
+    animalName: function() {
+      return this.name.charAt(0).toUpperCase() + this.name.slice(1);
+    },
     animalAge: function() {
       var totalDays = this.age * 365;
       var years = Math.floor(totalDays / 365);
@@ -54,17 +59,17 @@ export default {
       var days = Math.floor(totalDays - years * 365 - months * 30);
       var result;
       if (years == 0) {
-        result = months + " months";
+        result = months + " months old";
       } else if (months == 0) {
         if (years < 2) {
-          result = years + " year";
+          result = years + " year old";
         } else {
-          result = years + " years";
+          result = years + " years old";
         }
       } else if (years < 2 && months != 0) {
-        result = years + " year and " + months + " months";
+        result = years + " year and " + months + " months old";
       } else {
-        result = years + " years and " + months + " months";
+        result = years + " years and " + months + " months old";
       }
       return result;
     }
@@ -107,8 +112,12 @@ strong {
 }
 button {
   margin: 25px 30px;
+  font-weight: 700;
   background-color: #00e4ff;
   color: white;
+}
+i {
+  padding-right: 10px;
 }
 .image img {
   height: 256px;

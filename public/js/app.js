@@ -2326,6 +2326,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -3016,7 +3020,6 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store */ "./resources/js/store.js");
-//
 //
 //
 //
@@ -3868,6 +3871,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3888,6 +3893,9 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    animalName: function animalName() {
+      return this.name.charAt(0).toUpperCase() + this.name.slice(1);
+    },
     animalAge: function animalAge() {
       var totalDays = this.age * 365;
       var years = Math.floor(totalDays / 365);
@@ -3896,17 +3904,17 @@ __webpack_require__.r(__webpack_exports__);
       var result;
 
       if (years == 0) {
-        result = months + " months";
+        result = months + " months old";
       } else if (months == 0) {
         if (years < 2) {
-          result = years + " year";
+          result = years + " year old";
         } else {
-          result = years + " years";
+          result = years + " years old";
         }
       } else if (years < 2 && months != 0) {
-        result = years + " year and " + months + " months";
+        result = years + " year and " + months + " months old";
       } else {
-        result = years + " years and " + months + " months";
+        result = years + " years and " + months + " months old";
       }
 
       return result;
@@ -4660,7 +4668,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.section-header[data-v-1f79daf6] {\r\n  font-size: 40px;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-1f79daf6] {\r\n  margin-top: 12vh;\n}\nh2[data-v-1f79daf6] {\r\n  font-size: 22px;\r\n  font-weight: 500;\r\n  margin-bottom: 20px;\n}\n.section-header[data-v-1f79daf6] {\r\n  font-weight: 700;\r\n  font-size: 30px;\n}\r\n", ""]);
 
 // exports
 
@@ -4793,7 +4801,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\r\n  padding: 10px;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\r\n  padding: 10px;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\r\n  font-weight: 700;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\ni[data-v-8257a226] {\r\n  padding-right: 10px;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
 
 // exports
 
@@ -7499,7 +7507,7 @@ var render = function() {
                         staticClass: "navbar-item",
                         attrs: { to: "/dashboard", exact: "" }
                       },
-                      [_vm._v("Your Favorites")]
+                      [_vm._v("Favorites")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -7507,18 +7515,36 @@ var render = function() {
                   "router-link",
                   {
                     staticClass: "navbar-item",
-                    attrs: { to: "/pets/add", exact: "" }
+                    attrs: { to: "/adopt", exact: "" }
                   },
-                  [_vm._v("Add Pet")]
+                  [_vm._v("Adopt")]
                 ),
                 _vm._v(" "),
                 _c(
                   "router-link",
                   {
                     staticClass: "navbar-item",
-                    attrs: { to: "/news/add", exact: "" }
+                    attrs: { to: "/donate", exact: "" }
                   },
-                  [_vm._v("Add News")]
+                  [_vm._v("Donate")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: { to: "/volunteer", exact: "" }
+                  },
+                  [_vm._v("Volunteer")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "navbar-item",
+                    attrs: { to: "/foster", exact: "" }
+                  },
+                  [_vm._v("Foster")]
                 ),
                 _vm._v(" "),
                 _c(
@@ -8387,11 +8413,9 @@ var render = function() {
       _vm._v("Welcome, " + _vm._s(_vm.usersName))
     ]),
     _vm._v(" "),
-    _c("hr"),
-    _vm._v(" "),
     _c("div", { staticClass: "container" }, [
-      _c("h1", { staticClass: "section-header has-text-centered" }, [
-        _vm._v("Your Liked Pets")
+      _c("h2", { staticClass: "has-text-centered" }, [
+        _vm._v("Here are the pets you saved:")
       ]),
       _vm._v(" "),
       _c(
@@ -9295,7 +9319,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "info-text-wrapper" }, [
           _c("h1", { staticClass: "has-text-centered" }, [
-            _vm._v(_vm._s(_vm.name))
+            _vm._v(_vm._s(_vm.animalName))
           ]),
           _vm._v(" "),
           _c("p", [
@@ -9318,7 +9342,10 @@ var render = function() {
       _c(
         "button",
         { staticClass: "button is-medium", on: { click: _vm.goBack } },
-        [_vm._v("Back")]
+        [
+          _c("i", { staticClass: "fas fa-long-arrow-alt-left" }),
+          _vm._v("Back\n    ")
+        ]
       )
     ])
   ])

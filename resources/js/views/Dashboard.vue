@@ -1,9 +1,8 @@
 <template>
   <section class="section">
     <h1 class="section-header has-text-centered">Welcome, {{usersName}}</h1>
-    <hr />
     <div class="container">
-      <h1 class="section-header has-text-centered">Your Liked Pets</h1>
+      <h2 class="has-text-centered">Here are the pets you saved:</h2>
       <div class="columns is-multiline">
         <div v-if="!hasLikedPets">
           <p
@@ -212,7 +211,16 @@ export default {
 </script>
 
 <style scoped>
+section {
+  margin-top: 12vh;
+}
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
 .section-header {
-  font-size: 40px;
+  font-weight: 700;
+  font-size: 30px;
 }
 </style>
