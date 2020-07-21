@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-primary is-fullheight">
+  <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -96,5 +96,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.hero {
+  background-color: #00e5ffd2;
 }
 </style>

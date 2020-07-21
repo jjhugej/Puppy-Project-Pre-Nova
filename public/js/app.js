@@ -3674,7 +3674,7 @@ __webpack_require__.r(__webpack_exports__);
       var years = Math.floor(totalDays / 365);
       var months = Math.floor((totalDays - years * 365) / 30);
       var days = Math.floor(totalDays - years * 365 - months * 30);
-      var result; //= years + " years and " + months + " months"; // + days + " days";
+      var result;
 
       if (years == 0) {
         result = months + " months";
@@ -3720,10 +3720,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
 //
 //
 //
@@ -4415,7 +4411,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh1[data-v-12f5395a] {\r\n  font-size: 24px;\r\n  font-weight: 600;\n}\n.login-register-wrapper[data-v-12f5395a] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "\nh1[data-v-12f5395a] {\r\n  font-size: 24px;\r\n  font-weight: 600;\n}\n.login-register-wrapper[data-v-12f5395a] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\n.hero[data-v-12f5395a] {\r\n  background-color: #00e5ffd2;\n}\r\n", ""]);
 
 // exports
 
@@ -4472,7 +4468,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\r\n  padding: 10px;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
 
 // exports
 
@@ -4491,7 +4487,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh1[data-v-3563ad7c] {\r\n  font-size: 24px;\r\n  font-weight: 600;\n}\n.login-register-wrapper[data-v-3563ad7c] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\r\n", ""]);
+exports.push([module.i, "\nh1[data-v-3563ad7c] {\r\n  font-size: 24px;\r\n  font-weight: 600;\n}\n.login-register-wrapper[data-v-3563ad7c] {\r\n  display: flex;\r\n  justify-content: space-between;\r\n  align-items: center;\n}\n.hero[data-v-3563ad7c] {\r\n  background-color: #00e5ffd2;\n}\r\n", ""]);
 
 // exports
 
@@ -7938,7 +7934,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "hero is-primary is-fullheight" }, [
+  return _c("section", { staticClass: "hero is-fullheight" }, [
     _c("div", { staticClass: "hero-body" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "columns is-centered" }, [
@@ -8423,10 +8419,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "button",
-        {
-          staticClass: "button is-medium is-warning",
-          on: { click: _vm.goBack }
-        },
+        { staticClass: "button is-medium", on: { click: _vm.goBack } },
         [_vm._v("Back")]
       )
     ])
@@ -8454,7 +8447,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("section", { staticClass: "hero is-primary is-fullheight" }, [
+  return _c("section", { staticClass: "hero is-fullheight" }, [
     _c("div", { staticClass: "hero-body" }, [
       _c("div", { staticClass: "container" }, [
         _c("div", { staticClass: "columns is-centered" }, [
@@ -8629,7 +8622,7 @@ var render = function() {
                           staticClass: "pl-3",
                           attrs: { to: "/register", exact: "" }
                         },
-                        [_vm._v("Already have an account yet? Login here.")]
+                        [_vm._v("Already have an account? Login here.")]
                       )
                     ],
                     1

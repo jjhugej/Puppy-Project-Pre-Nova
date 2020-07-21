@@ -1,5 +1,5 @@
 <template>
-  <section class="hero is-primary is-fullheight">
+  <section class="hero is-fullheight">
     <div class="hero-body">
       <div class="container">
         <div class="columns is-centered">
@@ -63,11 +63,7 @@
                   class="button is-success"
                   value="Register"
                 />
-                <router-link
-                  to="/register"
-                  class="pl-3"
-                  exact
-                >Already have an account yet? Login here.</router-link>
+                <router-link to="/register" class="pl-3" exact>Already have an account? Login here.</router-link>
               </div>
             </form>
           </div>
@@ -116,5 +112,8 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.hero {
+  background-color: #00e5ffd2;
 }
 </style>

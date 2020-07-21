@@ -21,7 +21,7 @@
           </p>
         </div>
       </div>
-      <button @click="goBack" class="button is-medium is-warning">Back</button>
+      <button @click="goBack" class="button is-medium">Back</button>
     </div>
   </section>
 </template>
@@ -52,7 +52,7 @@ export default {
       var years = Math.floor(totalDays / 365);
       var months = Math.floor((totalDays - years * 365) / 30);
       var days = Math.floor(totalDays - years * 365 - months * 30);
-      var result; //= years + " years and " + months + " months"; // + days + " days";
+      var result;
       if (years == 0) {
         result = months + " months";
       } else if (months == 0) {
@@ -97,6 +97,7 @@ h1 {
 p {
   font-size: 22px;
   font-weight: 400;
+  padding: 10px;
 }
 img {
   max-width: auto;
@@ -106,6 +107,8 @@ strong {
 }
 button {
   margin: 25px 30px;
+  background-color: #00e4ff;
+  color: white;
 }
 .image img {
   height: 256px;
