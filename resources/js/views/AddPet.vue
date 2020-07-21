@@ -9,7 +9,20 @@
             <input v-model="name" class="input" type="text" placeholder="e.g Max" />
           </div>
         </div>
+        <div class="field">
+          <label class="label">Age</label>
+          <div class="control">
+            <input v-model="age" class="input" type="integer" placeholder="e.g 1" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Breed</label>
+          <div class="control">
+            <input v-model="animalBreed" class="input" type="integer" placeholder="e.g mixed" />
+          </div>
+        </div>
         <div class="select">
+          <p>Animal Type</p>
           <select v-model="animalType">
             <option value="all">All Animals</option>
             <option value="dog">Dogs</option>
@@ -17,11 +30,12 @@
             <option value="other">Other</option>
           </select>
         </div>
-        <div class="field">
-          <label class="label">Age</label>
-          <div class="control">
-            <input v-model="age" class="input" type="integer" placeholder="e.g Max" />
-          </div>
+        <div class="select">
+          <p>Sex:</p>
+          <select v-model="animalSex">
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
         </div>
         <div class="field">
           <label class="label">Image</label>
@@ -51,6 +65,8 @@ export default {
       name: "",
       age: "",
       animalType: "",
+      animalBreed: "",
+      animalSex: "",
       image: "",
       imagePreview: ""
     };
@@ -71,6 +87,8 @@ export default {
       data.append("name", this.name);
       data.append("age", this.age);
       data.append("animalType", this.animalType);
+      data.append("animalBreed", this.animalBreed);
+      data.append("animalSex", this.animalSex);
       data.append("image", this.image);
 
       axios

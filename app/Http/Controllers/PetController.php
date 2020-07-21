@@ -55,8 +55,10 @@ class PetController extends Controller
         if($request->ajax()){
             $validatedData = $this->validate($request, [
                 'name' => 'required|string',
-                'age' => 'required|integer',
+                'age' => 'required|between:0,99.99',
                 'animalType' => 'required|string',
+                'animalBreed' => 'required|string',
+                'animalSex' => 'required|string',
                 'image' => 'required|image',
             ]); 
         
@@ -64,6 +66,8 @@ class PetController extends Controller
             $pet->name = $request->name;
             $pet->age = $request->age;
             $pet->animal_type = $request->animalType;
+            $pet->animal_breed = $request->animalBreed;
+            $pet->animal_sex = $request->animalSex;
             $image_path = request()->file('image')->store('images');
             $pet->image = $image_path;
             $image_name = request()->file('image')->getClientOriginalName();

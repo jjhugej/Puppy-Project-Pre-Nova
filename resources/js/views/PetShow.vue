@@ -1,13 +1,18 @@
 <template>
-  <div class="container">
-    <h1>Pet Show View!</h1>
-    <p>Name:{{name}}</p>
-    <p>Age:{{age}}</p>
-    <p>animal type:{{animalType}}</p>
-    <figure class="image is-4by3">
-      <img :src="image" />
-    </figure>
-  </div>
+  <section>
+    <div class="container">
+      <div class="puppy-info-wrapper">
+        <figure class="image is-256x256">
+          <img class="is-rounded" :src="image" />
+        </figure>
+        <div class="info-text-wrapper">
+          <h1 class="has-text-centered">{{name}}</h1>
+          <p>Age:{{age}}</p>
+          <p>{{name}} is {{animalType}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -39,3 +44,36 @@ export default {
   }
 };
 </script>
+<style scoped>
+section {
+  margin-top: 20vh;
+}
+h1 {
+  font-size: 30px;
+  font-weight: 500;
+}
+p {
+  font-size: 22px;
+  font-weight: 400;
+}
+img {
+  max-width: auto;
+}
+.image img {
+  height: 256px;
+  width: 256px;
+}
+.puppy-info-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 25px;
+}
+.info-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+</style>

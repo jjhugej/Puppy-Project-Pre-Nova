@@ -17,7 +17,9 @@ class CreatePetsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('animal_type');
-            $table->integer('age');
+            $table->string('animal_breed');
+            $table->string('animal_sex');
+            $table->decimal('age', 8, 2);
             $table->string('image')->nullable();
             $table->string('image_name')->nullable();
             $table->timestamps();
