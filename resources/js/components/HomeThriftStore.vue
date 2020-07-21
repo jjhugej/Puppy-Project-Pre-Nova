@@ -67,5 +67,6 @@ a {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-weight: 700;
 }
 </style>
