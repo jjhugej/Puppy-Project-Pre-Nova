@@ -171,34 +171,66 @@ class PetController extends Controller
     }
 
     public function refineSearch(Request $request){
+        /* if(Auth::check()){
+            $user = Auth::user();
+            $userPetsArr = $user->pets()->pluck('pets.id')->toArray();
+            $pets = Pet::paginate(20);
+
+             foreach($pets as $pet){
+                if(in_array($pet->id, $userPetsArr)){
+                    $pet->is_liked = true;
+                }
+            } 
+
+            return $pets;
+            //return Pet::all()->users()->get();
+        }else{
+            return Pet::paginate(20);
+        } */
         $animal_type = request()->query('animal_type');
         $age = request()->query('age');
 
         // possible refactor here. There are too many if statements. 
         if($animal_type == 'all' && $age == 'all'){
-            return Pet::paginate(20);
+            $pets = Pet::paginate(20);
+            $pets = $this->checkForLikedPets($pets);
+            return $pets;
         }
         elseif($age == 'all'){
-            return Pet::where('animal_type', $animal_type)->paginate(20);
+            $pets = Pet::where('animal_type', $animal_type)->paginate(20);
+            $pets = $this->checkForLikedPets($pets);
+            return $pets;
         }
         elseif($age == 'less_than_one'){
             if($animal_type !== 'all'){
-                return Pet::where('animal_type', $animal_type)->where('age', '<', 1)->paginate(20);
+                $pets = Pet::where('animal_type', $animal_type)->where('age', '<', 1)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }else{
-                return Pet::where('age', '<',1)->paginate(20);
+                $pets = Pet::where('age', '<',1)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }
         }elseif($age == 'less_than_five'){
             if($animal_type !== 'all'){
-                return Pet::where('animal_type', $animal_type)->where('age', '<', 5)->paginate(20);
+                $pets = Pet::where('animal_type', $animal_type)->where('age', '<', 5)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }else{
-                return Pet::where('age', '<', 5)->paginate(20);
+                $pets = Pet::where('age', '<', 5)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }
             
         }elseif($age == 'five_or_more'){
              if($animal_type !== 'all'){
-                 return Pet::where('animal_type', $animal_type)->where('age', '>=', 5)->paginate(20);
+                $pets = Pet::where('animal_type', $animal_type)->where('age', '>=', 5)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }else{
-                return Pet::where('age', '>=', 5)->paginate(20);
+                $pets = Pet::where('age', '>=', 5)->paginate(20);
+                $pets = $this->checkForLikedPets($pets);
+                return $pets;
             }
            
         }
@@ -210,5 +242,21 @@ class PetController extends Controller
 
     }
     
+    public function checkForLikedPets($pets){
+        if(Auth::check()){
+            $user = Auth::user();
+            $userPetsArr = $user->pets()->pluck('pets.id')->toArray();
+            //$pets = Pet::paginate(20);
+
+             foreach($pets as $pet){
+                if(in_array($pet->id, $userPetsArr)){
+                    $pet->is_liked = true;
+                }
+            } 
+
+            return $pets;
+            /* return Pet::all()->users()->get(); */
+        }
+    }
     
 }
