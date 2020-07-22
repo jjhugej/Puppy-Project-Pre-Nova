@@ -36,11 +36,12 @@ export default new Vuex.Store({
             state.alertMessage = alertData.alertMessage;
             state.alertType = alertData.alertType;
             state.showAlertMessage = true;
+            //remove alert message
             setTimeout(() => {
                 if (state.showAlertMessage === true) {
                     this.commit("removeAlertMessage");
                 }
-            }, 5000);
+            }, 3000);
         },
         setLoggedInUser(state, { name, email, id }) {
             //here the payload is destructured from response.data(context coming from userLogin action and
@@ -55,16 +56,15 @@ export default new Vuex.Store({
                 alertMessage: "You have been logged in",
                 alertType: "is-success"
             });
-
-            //remove the login message after timeout
-            setTimeout(() => {
-                if (state.showAlertMessage === true) {
-                    this.commit("removeAlertMessage");
-                }
-            }, 3000);
         },
         userLogout(state) {
             console.log("user logout fired");
+            this.commit("setAlertMessage", {
+                alertTitle: "Logout",
+                alertMessage: "You have been logged out",
+                alertType: "is-danger"
+            });
+
             state.loggedInUser.isLoggedIn = false;
         },
         removeAlertMessage(state) {
@@ -80,12 +80,6 @@ export default new Vuex.Store({
         }
     },
     actions: {
-        //FUTURE TODO:refactor this to say loginUser ... it makes more sense
-        userLogin(context) {
-            console.log("fired");
-            //context.commit("setLoggedInUser", context);
-        },
-
         redirectWithAlert(context, data) {
             console.log(data);
             context.commit("setAlertMessage", data);

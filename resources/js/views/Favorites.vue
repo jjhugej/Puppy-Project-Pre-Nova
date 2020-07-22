@@ -4,10 +4,8 @@
     <div class="container">
       <h2 class="has-text-centered">Here are the pets you saved:</h2>
       <div class="columns is-multiline">
-        <div v-if="!hasLikedPets">
-          <p
-            class="has-text-centered"
-          >You haven't liked any pets! Go to pet search to find your new best friend!</p>
+        <div class="has-text-centered no-pets-desc" v-if="!hasLikedPets">
+          <p>You haven't liked any pets! Go to pet search to find your new best friend!</p>
         </div>
         <pet-card
           v-for="pet in pets"
@@ -215,12 +213,19 @@ section {
   margin-top: 12vh;
 }
 h2 {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 500;
-  margin-bottom: 20px;
+  margin-bottom: 30px;
 }
 .section-header {
   font-weight: 700;
   font-size: 30px;
+}
+.no-pets-desc {
+  width: 100%;
+}
+.columns {
+  padding: 15px;
+  border-top: solid 0.5px grey;
 }
 </style>

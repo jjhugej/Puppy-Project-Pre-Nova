@@ -27,7 +27,7 @@
             Pet Search
             <i class="fas fa-paw search-icon"></i>
           </router-link>
-          <router-link to="/dashboard" class="navbar-item" exact>
+          <router-link to="/favorites" class="navbar-item" exact>
             Favorites
             <i class="fas fa-heart search-icon"></i>
           </router-link>

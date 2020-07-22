@@ -30,8 +30,8 @@ let routes = [
         component: require("./views/AddNews.vue").default
     },
     {
-        path: "/dashboard",
-        component: require("./views/Dashboard.vue").default
+        path: "/favorites",
+        component: require("./views/Favorites.vue").default
     },
     {
         path: "/news",
