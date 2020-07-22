@@ -92,7 +92,19 @@ class PetController extends Controller
      */
     public function show(Pet $pet)
     {
-        return $pet;
+        $user = Auth::user();
+
+        //returns null if pet is not liked
+        $petIsLiked = $user->pets()->where('pet_id', $pet->id)->first();
+
+        if($petIsLiked !== null){
+            $pet->is_liked = true;
+            return $pet;
+        }else{
+            $pet->is_liked = false;
+            return $pet;
+        }
+      
     }
 
     /**

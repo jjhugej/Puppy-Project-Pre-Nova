@@ -96,4 +96,9 @@ export default {
   padding: 5px 2px;
   margin: 20px;
 }
+@media only screen and (max-width: 800px) {
+  .mission-box-body {
+    height: auto;
+  }
+}
 </style>

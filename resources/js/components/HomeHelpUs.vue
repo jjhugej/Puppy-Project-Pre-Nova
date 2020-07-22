@@ -86,7 +86,7 @@ h1 {
   font-weight: 700;
 }
 h2 {
-  font-size: 30px;
+  font-size: 32px;
   font-weight: 600;
   margin-top: 10vh;
 }
@@ -131,6 +131,7 @@ li {
 }
 .wish-list-header {
   text-decoration: underline;
+  font-size: 26px;
   margin-bottom: 3vh;
 }
 #wish-list-ul {

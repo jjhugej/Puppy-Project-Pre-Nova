@@ -13,20 +13,23 @@
           >Since PAWS inception, we have adopted more than 3,000 animals to loving, forever homes and provided financial assistance for 11,000+ spay/neuter surgeries. We can’t do any of this without your generous donations. The average cost for routine medical intake per animal at PAWS is $169.</p>
         </div>
 
-        <h2 class="has-text-centered">Donate Online</h2>
+        <div class="ways-to-donate-wrapper">
+          <div class="donate-link-wrapper">
+            <h2 class="has-text-centered">Donate Online</h2>
+            <a
+              class="button"
+              href="https://www.paypal.com/donate/?token=Oa-ARZfo2yKtXZuSjMZzGzWdrSRVNYwqt31fzntksO-cGNfFzxZT9HFXIWYDc04SJFv06G&country.x=US&locale.x="
+            >Donate Via Paypal</a>
+          </div>
 
-        <div class="donate-link-wrapper">
-          <a
-            class="button"
-            href="https://www.paypal.com/donate/?token=Oa-ARZfo2yKtXZuSjMZzGzWdrSRVNYwqt31fzntksO-cGNfFzxZT9HFXIWYDc04SJFv06G&country.x=US&locale.x="
-          >Donate Via Paypal</a>
+          <div class="mail-donate-wrapper">
+            <h2 class="has-text-centered">Mail In Donations</h2>
+            <p class="mail-donate-paragraph">PAWS Animal Shelter</p>
+            <p class="mail-donate-paragraph">PO BOX 1814</p>
+            <p class="mail-donate-paragraph">Bryson City, NC 28713</p>
+          </div>
         </div>
-        <div class="mail-donate-wrapper">
-          <h2 class="has-text-centered">Mail In Donations</h2>
-          <p class="mail-donate-paragraph">PAWS Animal Shelter</p>
-          <p class="mail-donate-paragraph">PO BOX 1814</p>
-          <p class="mail-donate-paragraph">Bryson City, NC 28713</p>
-        </div>
+
         <h2 class="has-text-centered">Other ways to donate</h2>
         <ul>
           <li>Stop by the Thrift Store to make a donation.</li>
@@ -146,14 +149,20 @@ li {
   color: white;
 }
 .donate-link-wrapper {
-  width: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.ways-to-donate-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   align-items: center;
   margin-bottom: 10vh;
 }
 .mail-donate-wrapper {
-  margin-bottom: 10vh;
 }
 .help-section-wrapper {
   margin-bottom: 10vh;

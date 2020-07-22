@@ -19,6 +19,10 @@
             <strong>Breed:</strong>
             {{animalBreed}}
           </p>
+
+          <i v-if="!isFavorited" @click="addToFavorites" class="far fa-heart like-btn"></i>
+          <i v-if="isFavorited" @click="removeFromFavorites" class="fas fa-heart like-btn"></i>
+          <p class="like-btn-header">Click the heart to toggle favorite status</p>
         </div>
       </div>
       <button @click="goBack" class="button is-medium">
@@ -32,7 +36,7 @@
 import store from "../store";
 import router from "../routes";
 export default {
-  props: ["petId"],
+  props: ["petId", "is_liked"],
   data: function() {
     return {
       name: "",
@@ -40,14 +44,11 @@ export default {
       animalType: "",
       animalBreed: "",
       animalSex: "",
+      isFavorited: false,
       image: ""
     };
   },
-  methods: {
-    goBack: function() {
-      router.go(-1);
-    }
-  },
+
   computed: {
     animalName: function() {
       return this.name.charAt(0).toUpperCase() + this.name.slice(1);
@@ -74,6 +75,90 @@ export default {
       return result;
     }
   },
+  methods: {
+    goBack: function() {
+      router.go(-1);
+    },
+    addToFavorites: function() {
+      if (store.getters.getLoggedInUser.isLoggedIn === false) {
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+
+        something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
+        axios
+          .get("/api/user")
+          .then(response => {
+            store.commit("setLoggedInUser", response.data);
+            //once user is logged in, post to persist liked pets for current user
+          })
+          .catch(errors => {
+            console.log(errors);
+            if (errors.response.status === 401) {
+              //401 status is unauthorized, redirect to login with flash message.
+              store.dispatch("redirectWithAlert", {
+                url: "/login",
+                alertTitle: "Log In",
+                alertMessage: "You must log in to like an animal",
+                alertType: "is-danger"
+              });
+            }
+          });
+      } //end user check
+
+      axios
+        .post("/pets/like/" + this.petId)
+        .then(response => {
+          this.updateFavoriteStatus();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+    removeFromFavorites: function() {
+      // TODO THERES SOMETHING WRONG WITH THIS. PET LIKED STATUS NOT BEING PROPERLY REMOVED
+      if (store.getters.getLoggedInUser.isLoggedIn === false) {
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+
+        something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
+        axios
+          .get("/api/user")
+          .then(response => {
+            store.commit("setLoggedInUser", response.data);
+          })
+          .catch(errors => {
+            console.log(errors);
+            if (errors.response.status === 401) {
+              //401 status is unauthorized, redirect to login with flash message.
+              store.dispatch("redirectWithAlert", {
+                url: "/login",
+                alertTitle: "Log In",
+                alertMessage: "You must log in to like an animal",
+                alertType: "is-danger"
+              });
+            }
+          });
+      } //end user check
+
+      axios
+        .post("/pets/unlike/" + this.petId)
+        .then(response => {
+          this.updateFavoriteStatus();
+        })
+        .catch(errors => {
+          console.log(errors);
+        });
+    },
+    updateFavoriteStatus: function() {
+      this.isFavorited = !this.isFavorited;
+    }
+  },
   mounted() {
     axios
       .get("/pets/show/" + this.petId)
@@ -83,6 +168,7 @@ export default {
         this.animalType = response.data.animal_type;
         this.animalBreed = response.data.animal_breed;
         this.animalSex = response.data.animal_sex;
+        this.isFavorited = response.data.is_liked;
         this.image = response.data.image_name;
       })
       .catch(errors => {
@@ -118,6 +204,20 @@ button {
 }
 i {
   padding-right: 10px;
+}
+.like-btn {
+  cursor: pointer;
+  margin: 20px;
+  text-align: center;
+  color: red;
+  font-size: 100px;
+}
+.like-btn-header {
+  font-size: 14px;
+  font-weight: 300;
+}
+.favorite-btn {
+  margin: 25px 0;
 }
 .image img {
   height: 256px;

@@ -33,10 +33,10 @@ section {
   margin: 10vh 0;
 }
 h1 {
-  margin-left: 15px;
   font-size: 40px;
   font-weight: 700;
   font-style: italic;
+  text-align: center;
 }
 p {
   margin-top: 5vh;

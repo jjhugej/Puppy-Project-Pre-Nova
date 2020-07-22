@@ -2081,6 +2081,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {},
@@ -3324,6 +3327,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {},
@@ -3876,10 +3882,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ["petId"],
+  props: ["petId", "is_liked"],
   data: function data() {
     return {
       name: "",
@@ -3887,13 +3897,9 @@ __webpack_require__.r(__webpack_exports__);
       animalType: "",
       animalBreed: "",
       animalSex: "",
+      isFavorited: false,
       image: ""
     };
-  },
-  methods: {
-    goBack: function goBack() {
-      _routes__WEBPACK_IMPORTED_MODULE_1__["default"].go(-1);
-    }
   },
   computed: {
     animalName: function animalName() {
@@ -3923,16 +3929,94 @@ __webpack_require__.r(__webpack_exports__);
       return result;
     }
   },
+  methods: {
+    goBack: function goBack() {
+      _routes__WEBPACK_IMPORTED_MODULE_1__["default"].go(-1);
+    },
+    addToFavorites: function addToFavorites() {
+      var _this = this;
+
+      if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+          something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
+        axios.get("/api/user").then(function (response) {
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data); //once user is logged in, post to persist liked pets for current user
+        })["catch"](function (errors) {
+          console.log(errors);
+
+          if (errors.response.status === 401) {
+            //401 status is unauthorized, redirect to login with flash message.
+            _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch("redirectWithAlert", {
+              url: "/login",
+              alertTitle: "Log In",
+              alertMessage: "You must log in to like an animal",
+              alertType: "is-danger"
+            });
+          }
+        });
+      } //end user check
+
+
+      axios.post("/pets/like/" + this.petId).then(function (response) {
+        _this.updateFavoriteStatus();
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    },
+    removeFromFavorites: function removeFromFavorites() {
+      var _this2 = this;
+
+      // TODO THERES SOMETHING WRONG WITH THIS. PET LIKED STATUS NOT BEING PROPERLY REMOVED
+      if (_store__WEBPACK_IMPORTED_MODULE_0__["default"].getters.getLoggedInUser.isLoggedIn === false) {
+        /* 
+        future todo: this is very similar to what is called in the dashboard
+        refactor to keep it DRY...
+          something like: checkUserLoginStatus()
+         */
+        //check if user status is set to isLoggedIn and if not get user info or redirect
+        axios.get("/api/user").then(function (response) {
+          _store__WEBPACK_IMPORTED_MODULE_0__["default"].commit("setLoggedInUser", response.data);
+        })["catch"](function (errors) {
+          console.log(errors);
+
+          if (errors.response.status === 401) {
+            //401 status is unauthorized, redirect to login with flash message.
+            _store__WEBPACK_IMPORTED_MODULE_0__["default"].dispatch("redirectWithAlert", {
+              url: "/login",
+              alertTitle: "Log In",
+              alertMessage: "You must log in to like an animal",
+              alertType: "is-danger"
+            });
+          }
+        });
+      } //end user check
+
+
+      axios.post("/pets/unlike/" + this.petId).then(function (response) {
+        _this2.updateFavoriteStatus();
+      })["catch"](function (errors) {
+        console.log(errors);
+      });
+    },
+    updateFavoriteStatus: function updateFavoriteStatus() {
+      this.isFavorited = !this.isFavorited;
+    }
+  },
   mounted: function mounted() {
-    var _this = this;
+    var _this3 = this;
 
     axios.get("/pets/show/" + this.petId).then(function (response) {
-      _this.name = response.data.name;
-      _this.age = response.data.age;
-      _this.animalType = response.data.animal_type;
-      _this.animalBreed = response.data.animal_breed;
-      _this.animalSex = response.data.animal_sex;
-      _this.image = response.data.image_name;
+      _this3.name = response.data.name;
+      _this3.age = response.data.age;
+      _this3.animalType = response.data.animal_type;
+      _this3.animalBreed = response.data.animal_breed;
+      _this3.animalSex = response.data.animal_sex;
+      _this3.isFavorited = response.data.is_liked;
+      _this3.image = response.data.image_name;
     })["catch"](function (errors) {
       console.log(errors);
     });
@@ -4367,7 +4451,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh1[data-v-ff5b6dae] {\r\n  font-size: 40px;\r\n  font-style: italic;\r\n  margin-left: 15px;\r\n  font-weight: 700;\n}\nh2[data-v-ff5b6dae] {\r\n  font-size: 30px;\r\n  font-weight: 600;\r\n  margin-top: 10vh;\n}\np[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  font-size: 20px;\r\n  margin-top: 5vh;\r\n  font-weight: 500;\n}\nul[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  margin-top: 10px;\n}\nli[data-v-ff5b6dae] {\r\n  padding: 8px 0;\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-paragraph[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-link-wrapper[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 15px;\r\n  padding: 10px 0;\r\n  border-bottom: solid 0.25px #00e4ff;\n}\n.help-link[data-v-ff5b6dae] {\r\n  width: 200px;\r\n  margin-bottom: 5vh;\r\n  padding: 10px;\r\n  border-radius: 15px;\r\n  background-color: #00e4ff;\r\n  color: white;\r\n  font-weight: 500;\n}\n.help-section-wrapper[data-v-ff5b6dae] {\r\n  margin-bottom: 10vh;\n}\n.wish-list-header[data-v-ff5b6dae] {\r\n  text-decoration: underline;\r\n  margin-bottom: 3vh;\n}\n#wish-list-ul[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\r\n", ""]);
+exports.push([module.i, "\nh1[data-v-ff5b6dae] {\r\n  font-size: 40px;\r\n  font-style: italic;\r\n  margin-left: 15px;\r\n  font-weight: 700;\n}\nh2[data-v-ff5b6dae] {\r\n  font-size: 32px;\r\n  font-weight: 600;\r\n  margin-top: 10vh;\n}\np[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  font-size: 20px;\r\n  margin-top: 5vh;\r\n  font-weight: 500;\n}\nul[data-v-ff5b6dae] {\r\n  padding: 0 10vw;\r\n  margin-top: 10px;\n}\nli[data-v-ff5b6dae] {\r\n  padding: 8px 0;\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-paragraph[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\n.help-link-wrapper[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-top: 15px;\r\n  padding: 10px 0;\r\n  border-bottom: solid 0.25px #00e4ff;\n}\n.help-link[data-v-ff5b6dae] {\r\n  width: 200px;\r\n  margin-bottom: 5vh;\r\n  padding: 10px;\r\n  border-radius: 15px;\r\n  background-color: #00e4ff;\r\n  color: white;\r\n  font-weight: 500;\n}\n.help-section-wrapper[data-v-ff5b6dae] {\r\n  margin-bottom: 10vh;\n}\n.wish-list-header[data-v-ff5b6dae] {\r\n  text-decoration: underline;\r\n  font-size: 26px;\r\n  margin-bottom: 3vh;\n}\n#wish-list-ul[data-v-ff5b6dae] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-ff5b6dae] {\r\n  font-size: 18px;\r\n  font-weight: 500;\n}\r\n", ""]);
 
 // exports
 
@@ -4386,7 +4470,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.landing[data-v-72d5931d] {\r\n  height: 100vh;\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.4),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-72d5931d] {\r\n  width: 40%;\r\n  margin-left: 5vw;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\nh1[data-v-72d5931d] {\r\n  font-size: 40px;\r\n  font-family: sans-serif;\r\n  font-weight: 900;\r\n  color: white;\r\n  line-height: 50px;\n}\n.hero-btn[data-v-72d5931d] {\r\n  background-color: #3eebff;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-72d5931d] {\r\n  color: white;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\r\n", ""]);
+exports.push([module.i, "\nh1[data-v-72d5931d] {\r\n  font-size: 40px;\r\n  font-family: sans-serif;\r\n  font-weight: 900;\r\n  color: white;\r\n  line-height: 50px;\n}\nh2[data-v-72d5931d] {\r\n  color: white;\r\n  font-size: 24px;\r\n  font-family: sans-serif;\r\n  font-weight: 800;\n}\n.landing[data-v-72d5931d] {\r\n  height: 100vh;\r\n  background-image: linear-gradient(\r\n      to right,\r\n      rgba(0, 0, 0, 0.9),\r\n      rgba(0, 0, 0, -1)\r\n    ),\r\n    url(\"/images/puppy_landing.jpg\");\r\n  background-repeat: no-repeat;\r\n  background-position: center;\r\n  background-size: cover;\n}\n.hero-wrapper[data-v-72d5931d] {\r\n  width: 40%;\r\n  margin-left: 3vw;\r\n  height: 100%;\r\n  padding: 30px;\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: space-evenly;\n}\n.hero-btn[data-v-72d5931d] {\r\n  background-color: #3eebff;\r\n  border-radius: 10px;\r\n  padding: 20px;\n}\n.hero-cta[data-v-72d5931d] {\r\n  color: white;\r\n  font-size: 30px;\r\n  font-weight: 800;\r\n  line-height: 30px;\n}\n.cta-wrapper[data-v-72d5931d] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-around;\r\n  align-items: center;\n}\r\n", ""]);
 
 // exports
 
@@ -4405,7 +4489,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.columns[data-v-b0b5cfdc] {\r\n  margin: 0;\n}\n.column[data-v-b0b5cfdc] {\r\n  padding: 0;\n}\n.home-mission-header[data-v-b0b5cfdc] {\r\n  font-style: italic;\r\n  margin: 10vh 0;\r\n  font-size: 40px;\n}\n.mission-box[data-v-b0b5cfdc] {\r\n  margin: 20px;\r\n  border: solid 1px #7e7e7e;\r\n  border-radius: 12px;\n}\n.mission-box-header[data-v-b0b5cfdc] {\r\n  font-size: 30px;\r\n  font-weight: 700;\r\n  text-align: center;\r\n  background-color: #9497ff;\r\n  color: white;\r\n  border-top-left-radius: 10px;\r\n  border-top-right-radius: 10px;\r\n  padding: 10px 5px;\n}\n.mission-box-body[data-v-b0b5cfdc] {\r\n  height: 150px;\r\n  padding: 15px;\r\n  font-weight: 500;\n}\n.mission-box-link[data-v-b0b5cfdc] {\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #00e4ff;\r\n  border-radius: 12px;\r\n  padding: 5px 2px;\r\n  margin: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\n.columns[data-v-b0b5cfdc] {\r\n  margin: 0;\n}\n.column[data-v-b0b5cfdc] {\r\n  padding: 0;\n}\n.home-mission-header[data-v-b0b5cfdc] {\r\n  font-style: italic;\r\n  margin: 10vh 0;\r\n  font-size: 40px;\n}\n.mission-box[data-v-b0b5cfdc] {\r\n  margin: 20px;\r\n  border: solid 1px #7e7e7e;\r\n  border-radius: 12px;\n}\n.mission-box-header[data-v-b0b5cfdc] {\r\n  font-size: 30px;\r\n  font-weight: 700;\r\n  text-align: center;\r\n  background-color: #9497ff;\r\n  color: white;\r\n  border-top-left-radius: 10px;\r\n  border-top-right-radius: 10px;\r\n  padding: 10px 5px;\n}\n.mission-box-body[data-v-b0b5cfdc] {\r\n  height: 150px;\r\n  padding: 15px;\r\n  font-weight: 500;\n}\n.mission-box-link[data-v-b0b5cfdc] {\r\n  text-align: center;\r\n  color: white;\r\n  background-color: #00e4ff;\r\n  border-radius: 12px;\r\n  padding: 5px 2px;\r\n  margin: 20px;\n}\n@media only screen and (max-width: 800px) {\n.mission-box-body[data-v-b0b5cfdc] {\r\n    height: auto;\n}\n}\r\n", ""]);
 
 // exports
 
@@ -4443,7 +4527,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-4bcd982e] {\r\n  margin: 10vh 0;\n}\nh1[data-v-4bcd982e] {\r\n  margin-left: 15px;\r\n  font-size: 40px;\r\n  font-weight: 700;\r\n  font-style: italic;\n}\np[data-v-4bcd982e] {\r\n  margin-top: 5vh;\r\n  font-size: 22px;\r\n  font-weight: 500;\r\n  padding: 0 6vw;\r\n  text-align: center;\n}\na[data-v-4bcd982e] {\r\n  margin-top: 10px;\r\n  color: white;\r\n  padding: 15px 25px;\r\n  border-radius: 20px;\n}\n#blue-link[data-v-4bcd982e] {\r\n  background-color: #00e4ff;\n}\n#purple-link[data-v-4bcd982e] {\r\n  background-color: #9497ff;\n}\n.btn-group-wrapper[data-v-4bcd982e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.btn-group[data-v-4bcd982e] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-weight: 700;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-4bcd982e] {\r\n  margin: 10vh 0;\n}\nh1[data-v-4bcd982e] {\r\n  font-size: 40px;\r\n  font-weight: 700;\r\n  font-style: italic;\r\n  text-align: center;\n}\np[data-v-4bcd982e] {\r\n  margin-top: 5vh;\r\n  font-size: 22px;\r\n  font-weight: 500;\r\n  padding: 0 6vw;\r\n  text-align: center;\n}\na[data-v-4bcd982e] {\r\n  margin-top: 10px;\r\n  color: white;\r\n  padding: 15px 25px;\r\n  border-radius: 20px;\n}\n#blue-link[data-v-4bcd982e] {\r\n  background-color: #00e4ff;\n}\n#purple-link[data-v-4bcd982e] {\r\n  background-color: #9497ff;\n}\n.btn-group-wrapper[data-v-4bcd982e] {\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\n}\n.btn-group[data-v-4bcd982e] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  align-items: center;\r\n  justify-content: center;\r\n  font-weight: 700;\n}\r\n", ""]);
 
 // exports
 
@@ -4690,7 +4774,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh2[data-v-32ff9664] {\r\n  margin-top: 5vh;\r\n  font-size: 24px;\r\n  font-weight: 600;\r\n  text-decoration: underline;\n}\nul[data-v-32ff9664] {\r\n  padding: 5vh 10vw;\n}\nli[data-v-32ff9664] {\r\n  padding: 10px 0;\r\n  list-style-type: circle;\r\n  font-weight: 500;\n}\n.container[data-v-32ff9664] {\r\n  margin-top: 12vh;\n}\n.donate-header[data-v-32ff9664] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\n.donate-sub-header[data-v-32ff9664] {\r\n  font-style: italic;\n}\n.donate-info-wrapper[data-v-32ff9664] {\r\n  padding: 5vh 10vw;\n}\n.donate-paragraph[data-v-32ff9664] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  padding: 18px 0;\n}\n.mail-donate-paragraph[data-v-32ff9664] {\r\n  font-size: 16px;\r\n  font-weight: 500;\r\n  padding: 4px;\r\n  text-align: center;\n}\n.button[data-v-32ff9664] {\r\n  padding: 20px;\r\n  margin: 20px 0;\r\n  font-weight: 500;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\n.donate-link-wrapper[data-v-32ff9664] {\r\n  width: 100%;\r\n  display: flex;\r\n  justify-content: center;\r\n  align-items: center;\r\n  margin-bottom: 10vh;\n}\n.mail-donate-wrapper[data-v-32ff9664] {\r\n  margin-bottom: 10vh;\n}\n.help-section-wrapper[data-v-32ff9664] {\r\n  margin-bottom: 10vh;\n}\n#wish-list-ul[data-v-32ff9664] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-32ff9664] {\r\n  font-size: 16px;\n}\r\n", ""]);
+exports.push([module.i, "\nh2[data-v-32ff9664] {\r\n  margin-top: 5vh;\r\n  font-size: 24px;\r\n  font-weight: 600;\r\n  text-decoration: underline;\n}\nul[data-v-32ff9664] {\r\n  padding: 5vh 10vw;\n}\nli[data-v-32ff9664] {\r\n  padding: 10px 0;\r\n  list-style-type: circle;\r\n  font-weight: 500;\n}\n.container[data-v-32ff9664] {\r\n  margin-top: 12vh;\n}\n.donate-header[data-v-32ff9664] {\r\n  font-size: 30px;\r\n  font-weight: 700;\n}\n.donate-sub-header[data-v-32ff9664] {\r\n  font-style: italic;\n}\n.donate-info-wrapper[data-v-32ff9664] {\r\n  padding: 5vh 10vw;\n}\n.donate-paragraph[data-v-32ff9664] {\r\n  font-size: 18px;\r\n  font-weight: 500;\r\n  padding: 18px 0;\n}\n.mail-donate-paragraph[data-v-32ff9664] {\r\n  font-size: 16px;\r\n  font-weight: 500;\r\n  padding: 4px;\r\n  text-align: center;\n}\n.button[data-v-32ff9664] {\r\n  padding: 20px;\r\n  margin: 20px 0;\r\n  font-weight: 500;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\n.donate-link-wrapper[data-v-32ff9664] {\r\n  display: flex;\r\n  justify-content: center;\r\n  flex-direction: column;\r\n  align-items: center;\n}\n.ways-to-donate-wrapper[data-v-32ff9664] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  margin-bottom: 10vh;\n}\n.mail-donate-wrapper[data-v-32ff9664] {\n}\n.help-section-wrapper[data-v-32ff9664] {\r\n  margin-bottom: 10vh;\n}\n#wish-list-ul[data-v-32ff9664] {\r\n  display: flex;\r\n  justify-content: space-between;\n}\n#wish-list-ul li[data-v-32ff9664] {\r\n  font-size: 16px;\n}\r\n", ""]);
 
 // exports
 
@@ -4804,7 +4888,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\r\n  padding: 10px;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\r\n  font-weight: 700;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\ni[data-v-8257a226] {\r\n  padding-right: 10px;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
+exports.push([module.i, "\nsection[data-v-8257a226] {\r\n  margin-top: 20vh;\n}\nh1[data-v-8257a226] {\r\n  font-size: 30px;\r\n  font-weight: 600;\n}\np[data-v-8257a226] {\r\n  font-size: 22px;\r\n  font-weight: 400;\r\n  padding: 10px;\n}\nimg[data-v-8257a226] {\r\n  max-width: auto;\n}\nstrong[data-v-8257a226] {\r\n  font-weight: 500;\n}\nbutton[data-v-8257a226] {\r\n  margin: 25px 30px;\r\n  font-weight: 700;\r\n  background-color: #00e4ff;\r\n  color: white;\n}\ni[data-v-8257a226] {\r\n  padding-right: 10px;\n}\n.like-btn[data-v-8257a226] {\r\n  cursor: pointer;\r\n  margin: 20px;\r\n  text-align: center;\r\n  color: red;\r\n  font-size: 100px;\n}\n.like-btn-header[data-v-8257a226] {\r\n  font-size: 14px;\r\n  font-weight: 300;\n}\n.favorite-btn[data-v-8257a226] {\r\n  margin: 25px 0;\n}\n.image img[data-v-8257a226] {\r\n  height: 256px;\r\n  width: 256px;\n}\n.puppy-info-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: row;\r\n  flex-wrap: wrap;\r\n  justify-content: space-evenly;\r\n  align-items: center;\r\n  padding: 25px;\n}\n.info-text-wrapper[data-v-8257a226] {\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: space-evenly;\n}\r\n", ""]);
 
 // exports
 
@@ -7067,31 +7151,38 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("section", [
     _c("div", { staticClass: "landing" }, [
-      _c(
-        "div",
-        { staticClass: "hero-wrapper" },
-        [
-          _c("h1", [_vm._v("Find your new best friend!")]),
-          _vm._v(" "),
-          _c(
-            "transition",
-            { directives: [{ name: "enter", rawName: "v-enter" }] },
-            [
-              _c(
-                "router-link",
-                { staticClass: "hero-btn", attrs: { to: "/pets", exact: "" } },
-                [
-                  _c("div", { staticClass: "hero-cta" }, [
-                    _vm._v("Get Started")
-                  ])
-                ]
-              )
-            ],
-            1
-          )
-        ],
-        1
-      )
+      _c("div", { staticClass: "hero-wrapper" }, [
+        _c("h1", [_vm._v("PAWS Animal Shelter")]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "cta-wrapper" },
+          [
+            _c("h2", [_vm._v("Find your new best friend!")]),
+            _vm._v(" "),
+            _c(
+              "transition",
+              { directives: [{ name: "enter", rawName: "v-enter" }] },
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "hero-btn",
+                    attrs: { to: "/pets", exact: "" }
+                  },
+                  [
+                    _c("div", { staticClass: "hero-cta" }, [
+                      _vm._v("Get Started")
+                    ])
+                  ]
+                )
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ])
     ])
   ])
 }
@@ -8533,39 +8624,41 @@ var staticRenderFns = [
           ])
         ]),
         _vm._v(" "),
-        _c("h2", { staticClass: "has-text-centered" }, [
-          _vm._v("Donate Online")
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "donate-link-wrapper" }, [
-          _c(
-            "a",
-            {
-              staticClass: "button",
-              attrs: {
-                href:
-                  "https://www.paypal.com/donate/?token=Oa-ARZfo2yKtXZuSjMZzGzWdrSRVNYwqt31fzntksO-cGNfFzxZT9HFXIWYDc04SJFv06G&country.x=US&locale.x="
-              }
-            },
-            [_vm._v("Donate Via Paypal")]
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "mail-donate-wrapper" }, [
-          _c("h2", { staticClass: "has-text-centered" }, [
-            _vm._v("Mail In Donations")
+        _c("div", { staticClass: "ways-to-donate-wrapper" }, [
+          _c("div", { staticClass: "donate-link-wrapper" }, [
+            _c("h2", { staticClass: "has-text-centered" }, [
+              _vm._v("Donate Online")
+            ]),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "button",
+                attrs: {
+                  href:
+                    "https://www.paypal.com/donate/?token=Oa-ARZfo2yKtXZuSjMZzGzWdrSRVNYwqt31fzntksO-cGNfFzxZT9HFXIWYDc04SJFv06G&country.x=US&locale.x="
+                }
+              },
+              [_vm._v("Donate Via Paypal")]
+            )
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "mail-donate-paragraph" }, [
-            _vm._v("PAWS Animal Shelter")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "mail-donate-paragraph" }, [
-            _vm._v("PO BOX 1814")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "mail-donate-paragraph" }, [
-            _vm._v("Bryson City, NC 28713")
+          _c("div", { staticClass: "mail-donate-wrapper" }, [
+            _c("h2", { staticClass: "has-text-centered" }, [
+              _vm._v("Mail In Donations")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mail-donate-paragraph" }, [
+              _vm._v("PAWS Animal Shelter")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mail-donate-paragraph" }, [
+              _vm._v("PO BOX 1814")
+            ]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mail-donate-paragraph" }, [
+              _vm._v("Bryson City, NC 28713")
+            ])
           ])
         ]),
         _vm._v(" "),
@@ -9349,6 +9442,24 @@ var render = function() {
           _c("p", [
             _c("strong", [_vm._v("Breed:")]),
             _vm._v("\n          " + _vm._s(_vm.animalBreed) + "\n        ")
+          ]),
+          _vm._v(" "),
+          !_vm.isFavorited
+            ? _c("i", {
+                staticClass: "far fa-heart like-btn",
+                on: { click: _vm.addToFavorites }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.isFavorited
+            ? _c("i", {
+                staticClass: "fas fa-heart like-btn",
+                on: { click: _vm.removeFromFavorites }
+              })
+            : _vm._e(),
+          _vm._v(" "),
+          _c("p", { staticClass: "like-btn-header" }, [
+            _vm._v("Click the heart to toggle favorite status")
           ])
         ])
       ]),
