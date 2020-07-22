@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <h2>{{title}}</h2>
+    <span>{{created_at}}</span>
     <p v-if="isTruncated">{{truncatedBody}}</p>
     <p v-if="!isTruncated">{{body}}</p>
     <a @click="seeMore" v-if="showExpandBtns && isTruncated" class="see-more-btn">More</a>
@@ -44,6 +45,11 @@ h2 {
 p {
   margin-left: 20px;
   font-size: 20px;
+}
+span {
+  padding: 5px 0;
+  margin-left: 10px;
+  font-size: 14px;
 }
 .container {
   width: 100%;

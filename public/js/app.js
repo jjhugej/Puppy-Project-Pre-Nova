@@ -2437,6 +2437,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["id", "title", "body", "created_at"],
@@ -4680,7 +4681,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\nh2[data-v-e970eff0] {\r\n  font-size: 28px;\r\n  font-weight: 600;\n}\np[data-v-e970eff0] {\r\n  margin-left: 20px;\r\n  font-size: 20px;\n}\n.container[data-v-e970eff0] {\r\n  width: 100%;\r\n  margin: 5vh 0;\n}\n.see-more-btn[data-v-e970eff0] {\r\n  margin-left: 20px;\r\n  font-size: 20px;\n}\r\n", ""]);
+exports.push([module.i, "\nh2[data-v-e970eff0] {\r\n  font-size: 28px;\r\n  font-weight: 600;\n}\np[data-v-e970eff0] {\r\n  margin-left: 20px;\r\n  font-size: 20px;\n}\nspan[data-v-e970eff0] {\r\n  padding: 5px 0;\r\n  margin-left: 10px;\r\n  font-size: 14px;\n}\n.container[data-v-e970eff0] {\r\n  width: 100%;\r\n  margin: 5vh 0;\n}\n.see-more-btn[data-v-e970eff0] {\r\n  margin-left: 20px;\r\n  font-size: 20px;\n}\r\n", ""]);
 
 // exports
 
@@ -7873,6 +7874,8 @@ var render = function() {
   return _c("div", { staticClass: "container" }, [
     _c("h2", [_vm._v(_vm._s(_vm.title))]),
     _vm._v(" "),
+    _c("span", [_vm._v(_vm._s(_vm.created_at))]),
+    _vm._v(" "),
     _vm.isTruncated ? _c("p", [_vm._v(_vm._s(_vm.truncatedBody))]) : _vm._e(),
     _vm._v(" "),
     !_vm.isTruncated ? _c("p", [_vm._v(_vm._s(_vm.body))]) : _vm._e(),
@@ -9350,7 +9353,7 @@ var render = function() {
                   id: article.id,
                   title: article.title,
                   body: article.body,
-                  created_at: article.created_at
+                  created_at: article.formatted_created_at
                 }
               })
             })

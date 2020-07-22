@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\News;
 use Auth;
+use Carbon\Carbon;
+
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -15,7 +17,14 @@ class NewsController extends Controller
      */
     public function index()
     {
-        return News::all();
+        $news =  News::all();
+        //TODO: CHANGE CREATED AT TO HUMAN READABLE FORMAT
+        foreach($news as $newsArticle){
+            $createdAt = Carbon::parse($newsArticle->created_at)->format('M d Y');
+            $newsArticle->formatted_created_at =  $createdAt;
+        }
+        return $news;
+       
     }
 
     /**

@@ -9,7 +9,7 @@
           :id="article.id"
           :title="article.title"
           :body="article.body"
-          :created_at="article.created_at"
+          :created_at="article.formatted_created_at"
         ></news-article>
       </div>
     </section>
