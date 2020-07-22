@@ -6,11 +6,6 @@
           <img :src="image" />
         </figure>
       </div>
-      <!--  <div class="card-content">
-        <div class="content">
-          <p class="has-text-centered">{{ name }}</p>
-        </div>
-      </div>-->
 
       <footer class="card-footer">
         <a class="card-footer-item" v-if="!likedStatus" v-on:click="liked">

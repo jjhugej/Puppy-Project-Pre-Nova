@@ -24,7 +24,7 @@
         </button>
       </div>
       <div class="columns is-multiline">
-        <loading-icon v-if="noMatches"></loading-icon>
+        <pet-card-loading-icon v-if="isLoading" :key="icon.id" v-for="icon in numberOfLoadingIcons"></pet-card-loading-icon>
         <pet-card
           v-for="pet in pets"
           v-bind:key="pet.id"
@@ -73,7 +73,10 @@ export default {
       selectFields: {
         animalTypeSelect: "all",
         animalAgeSelect: "all"
-      }
+      },
+      noMatchesTest: true,
+      numberOfLoadingIcons: 20,
+      isLoading: false
     };
   },
   computed: {
@@ -136,6 +139,7 @@ export default {
     },
     //future todo: refactor all of these page methods into one
     getNextPage: function() {
+      this.isLoading = true;
       axios
         .get(this.petPaginate.nextPageUrl)
         .then(response => {
@@ -150,12 +154,14 @@ export default {
             left: 0,
             behavior: "smooth"
           });
+          this.isLoading = false;
         })
         .catch(function(error) {
           console.log(error);
         });
     },
     getPrevPage: function() {
+      this.isLoading = true;
       axios
         .get(this.petPaginate.prevPageUrl)
         .then(response => {
@@ -169,12 +175,14 @@ export default {
             left: 0,
             behavior: "smooth"
           });
+          this.isLoading = false;
         })
         .catch(function(error) {
           console.log(error);
         });
     },
     getFirstPage: function() {
+      this.isLoading = true;
       axios
         .get(this.petPaginate.firstPageUrl)
         .then(response => {
@@ -183,12 +191,19 @@ export default {
             this.pets.push(pet);
             this.setPaginator(response.data);
           });
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
+          this.isLoading = false;
         })
         .catch(function(error) {
           console.log(error);
         });
     },
     getLastPage: function() {
+      this.isLoading = true;
       axios
         .get(this.petPaginate.lastPageUrl)
         .then(response => {
@@ -197,6 +212,12 @@ export default {
             this.pets.push(pet);
             this.setPaginator(response.data);
           });
+          window.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: "smooth"
+          });
+          this.isLoading = false;
         })
         .catch(function(error) {
           console.log(error);
@@ -205,9 +226,11 @@ export default {
   },
   beforeCreate() {
     //set loading screen before create
+    this.isLoading = true;
   },
   mounted() {
     //remove loading screen once ajax data is in
+    this.isLoading = true;
     axios
       .get("/pets")
       .then(response => {
@@ -216,6 +239,7 @@ export default {
           this.pets.push(pet);
           this.setPaginator(response.data);
         });
+        this.isLoading = false;
       })
       .catch(function(error) {
         console.log(error);
